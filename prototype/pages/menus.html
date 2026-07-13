@@ -1,0 +1,671 @@
+<section class="menus-page">
+
+    <!-- EN-TÊTE -->
+    <div class="menus-page__header text-center">
+        <h1 class="menus-page__title">Nos Menus</h1>
+        <div class="menus-page__divider">
+            <span></span>
+            <i class="bi bi-flower1"></i>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- BARRE DE FILTRES -->
+    <div class="menus-filter-sticky">
+        <div class="container">
+            <div class="menus-filter">
+
+                <!-- Rangée 1 : tags + tri + reset -->
+                <div class="menus-filter__row">
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Régime</span>
+                        <div class="menus-filter__tags">
+                            <button class="filter-tag filter-tag--veggie" data-filter="vegetarien"><i class="bi bi-flower2"></i> Végétarien</button>
+                            <button class="filter-tag filter-tag--gluten" data-filter="gluten"><i class="bi bi-slash-circle"></i> Sans gluten</button>
+                            <button class="filter-tag filter-tag--lactose" data-filter="lactose"><i class="bi bi-droplet-slash"></i> Sans lactose</button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__sep-v"></div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Thème</span>
+                        <div class="menus-filter__tags">
+                            <button class="filter-tag filter-tag--noel" data-theme="noel">🎄 Noël</button>
+                            <button class="filter-tag filter-tag--paques" data-theme="paques">🐣 Pâques</button>
+                            <button class="filter-tag filter-tag--ete" data-theme="ete">☀️ Été</button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__sep-v"></div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Tri par prix</span>
+                        <div class="menus-filter__sort">
+                            <button class="sort-btn" id="sort-asc" title="Prix croissant"><i class="bi bi-sort-numeric-down"></i></button>
+                            <button class="sort-btn" id="sort-desc" title="Prix décroissant"><i class="bi bi-sort-numeric-up"></i></button>
+                        </div>
+                    </div>
+
+                    <button class="menus-filter__reset" id="filter-reset">
+                        <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+                    </button>
+
+                </div>
+
+                <!-- Rangée 2 : budget + quantités + date -->
+                <div class="menus-filter__row menus-filter__row--controls">
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Prix min. <span id="price-min-display">— €</span></span>
+                        <input type="range" class="menus-filter__range" id="price-range-min" min="15" max="100" step="5" value="15">
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Prix max. <span id="price-display">— €</span></span>
+                        <input type="range" class="menus-filter__range" id="price-range" min="15" max="100" step="5" value="100">
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Plats min.</span>
+                        <div class="menus-filter__counter">
+                            <button class="persons-btn" id="min-qty-minus"><i class="bi bi-dash"></i></button>
+                            <span id="min-qty-display">—</span>
+                            <button class="persons-btn" id="min-qty-plus"><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Plats max.</span>
+                        <div class="menus-filter__counter">
+                            <button class="persons-btn" id="max-qty-minus"><i class="bi bi-dash"></i></button>
+                            <span id="max-qty-display">—</span>
+                            <button class="persons-btn" id="max-qty-plus"><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label"><i class="bi bi-calendar3"></i> Livraison</span>
+                        <input type="date" class="menus-filter__date" id="delivery-date">
+                    </div>
+
+                </div>
+
+            </div>
+            <p class="menus-filter__count" id="filter-count"></p>
+            <div class="menus-page__divider" style="margin: 0.1rem 0 0;">
+                <span></span>
+                <i class="bi bi-flower1"></i>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRILLE -->
+    <div class="container pb-5 pt-4">
+        <div class="row g-4 justify-content-center" id="menus-grid">
+
+            <!-- Menu Délice -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten lactose"
+                 data-price="32.50"
+                 data-min-qty="10" data-max-qty="150"
+                 data-prep-days="2"
+                 data-themes="all"
+                 data-stock="15">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-delice" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-delice-1.png" alt="Menu Délice" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-delice-2.png" alt="Menu Délice" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-delice-3.png" alt="Menu Délice" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-delice" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-delice" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <h2 class="menu-card__name">Menu Délice</h2>
+                        <p class="menu-card__desc">Une expérience raffinée et équilibrée, idéale pour tous vos événements.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Tartare de saumon, agrumes et aneth</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Filet de canette rôti, sauce aux fruits rouges, gratin dauphinois</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Entremet chocolat noir, praliné croustillant</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">32,50 € <span>par plat · 10 à 150 plats · préparation 2j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Gourmand -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten lactose"
+                 data-price="36.90"
+                 data-min-qty="10" data-max-qty="150"
+                 data-prep-days="3"
+                 data-themes="all"
+                 data-stock="8">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-gourmand" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-gourmand-1.png" alt="Menu Gourmand" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-gourmand-2.png" alt="Menu Gourmand" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-gourmand-3.png" alt="Menu Gourmand" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-gourmand" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-gourmand" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <h2 class="menu-card__name">Menu Gourmand</h2>
+                        <p class="menu-card__desc">Des saveurs authentiques et de saison pour un moment d'exception.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Velouté de potiron, éclats de châtaignes</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Dos de cabillaud, émulsion citronnée, risotto crémeux au parmesan</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Tarte fine aux pommes, caramel beurre salé</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">36,90 € <span>par plat · 10 à 150 plats · préparation 3j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Prestige -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten lactose"
+                 data-price="49.90"
+                 data-min-qty="20" data-max-qty="100"
+                 data-prep-days="5"
+                 data-themes="all noel"
+                 data-stock="3">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-prestige" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-prestige-1.png" alt="Menu Prestige" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-prestige-2.png" alt="Menu Prestige" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-prestige-3.png" alt="Menu Prestige" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-prestige" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-prestige" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Prestige</h2>
+                            <span class="menu-tag menu-tag--noel">🎄 Noël</span>
+                        </div>
+                        <p class="menu-card__desc">Le choix parfait pour des réceptions haut de gamme et inoubliables.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Foie gras de canard, chutney de figues et pain brioché</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Filet de bœuf Rossini, jus truffé, poêlée de légumes anciens</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Entremet framboise et pistache</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">49,90 € <span>par plat · 20 à 100 plats · préparation 5j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Végétarien -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten"
+                 data-price="28.50"
+                 data-min-qty="10" data-max-qty="150"
+                 data-prep-days="2"
+                 data-themes="all paques"
+                 data-stock="20">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-vegetarien" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-vegetarien-1.jpg" alt="Menu Végétarien" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-vegetarien-2.jpg" alt="Menu Végétarien" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-vegetarien-3.jpg" alt="Menu Végétarien" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-vegetarien" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-vegetarien" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Végétarien</h2>
+                            <span class="menu-tag menu-tag--paques">🐣 Pâques</span>
+                        </div>
+                        <p class="menu-card__desc">Une carte 100% végétale, créative et généreuse pour régaler tous vos convives.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Gaspacho de tomates anciennes, huile de basilic</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Risotto de petit épeautre, champignons des bois et truffe</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Panna cotta vanille, coulis de fruits rouges</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">28,50 € <span>par plat · 10 à 150 plats · préparation 2j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Cocktail -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="gluten"
+                 data-price="24.90"
+                 data-min-qty="20" data-max-qty="300"
+                 data-prep-days="2"
+                 data-themes="all"
+                 data-stock="25">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-cocktail" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-cocktail-1.jpg" alt="Menu Cocktail" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-cocktail-2.jpg" alt="Menu Cocktail" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-cocktail-3.jpg" alt="Menu Cocktail" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-cocktail" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-cocktail" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <h2 class="menu-card__name">Menu Cocktail</h2>
+                        <p class="menu-card__desc">Mises en bouche élaborées et petits fours pour un cocktail dinatoire élégant.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Verrines</strong><br>Avocat-crevette, tartare de saumon, mousse de chèvre</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Chauds</strong><br>Mini-feuilletés au comté, brochettes de poulet tandoori</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Petits fours</strong><br>Macarons, financiers au citron, tartelettes aux fruits</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">24,90 € <span>par plat · 20 à 300 plats · préparation 2j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Mer -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="gluten lactose"
+                 data-price="44.90"
+                 data-min-qty="15" data-max-qty="100"
+                 data-prep-days="3"
+                 data-themes="all ete"
+                 data-stock="12">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-mer" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-mer-1.jpg" alt="Menu Mer" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-mer-2.jpg" alt="Menu Mer" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-mer-3.jpg" alt="Menu Mer" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-mer" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-mer" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Mer</h2>
+                            <span class="menu-tag menu-tag--ete">☀️ Été</span>
+                        </div>
+                        <p class="menu-card__desc">L'océan dans votre assiette — produits de la mer frais et préparations iodées.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Huîtres gratinées au beurre d'herbes</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Saint-Jacques poêlées, velouté de céleri, chips de jambon</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Sorbet citron vert, tuiles à la noix de coco</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">44,90 € <span>par plat · 15 à 100 plats · préparation 3j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Terroir -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="gluten"
+                 data-price="34.50"
+                 data-min-qty="10" data-max-qty="150"
+                 data-prep-days="3"
+                 data-themes="all"
+                 data-stock="18">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-terroir" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-terroir-1.jpg" alt="Menu Terroir" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-terroir-2.jpg" alt="Menu Terroir" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-terroir-3.jpg" alt="Menu Terroir" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-terroir" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-terroir" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <h2 class="menu-card__name">Menu Terroir</h2>
+                        <p class="menu-card__desc">Un hommage aux producteurs locaux et aux recettes généreuses du Sud-Ouest.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Salade de gésiers confits, magret fumé et noix</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Confit de canard, pommes sarladaises, haricots verts</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Pastis landais, crème anglaise à la vanille</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">34,50 € <span>par plat · 10 à 150 plats · préparation 3j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Enfants -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien lactose"
+                 data-price="16.90"
+                 data-min-qty="5" data-max-qty="80"
+                 data-prep-days="1"
+                 data-themes="all noel paques"
+                 data-stock="30">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-enfants" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-enfants-1.jpg" alt="Menu Enfants" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-enfants-2.jpg" alt="Menu Enfants" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-enfants-3.jpg" alt="Menu Enfants" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-enfants" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-enfants" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Enfants</h2>
+                            <span class="menu-tag menu-tag--noel">🎄 Noël</span>
+                            <span class="menu-tag menu-tag--paques">🐣 Pâques</span>
+                        </div>
+                        <p class="menu-card__desc">Des plats savoureux et adaptés aux plus petits, pour qu'ils aussi se régalent.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Velouté de carottes, croûtons dorés</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Émincé de poulet rôti, purée maison et haricots verts</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Mousse au chocolat, éclats de praline rose</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">16,90 € <span>par plat · 5 à 80 plats · préparation 1j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Brunch -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten"
+                 data-price="22.00"
+                 data-min-qty="15" data-max-qty="200"
+                 data-prep-days="1"
+                 data-themes="all ete paques"
+                 data-stock="22">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-brunch" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-brunch-1.jpg" alt="Menu Brunch" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-brunch-2.jpg" alt="Menu Brunch" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-brunch-3.jpg" alt="Menu Brunch" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-brunch" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-brunch" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Brunch</h2>
+                            <span class="menu-tag menu-tag--paques">🐣 Pâques</span>
+                            <span class="menu-tag menu-tag--ete">☀️ Été</span>
+                        </div>
+                        <p class="menu-card__desc">Un brunch généreux et coloré, idéal pour vos événements du matin ou de mi-journée.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Sucré</strong><br>Viennoiseries, fruits frais, yaourts et confitures maison</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Salé</strong><br>Œufs brouillés, saumon fumé, fromages et charcuteries</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Boissons</strong><br>Jus frais, café, thé et infusions</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">22,00 € <span>par plat · 15 à 200 plats · préparation 1j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Fusion -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="gluten lactose"
+                 data-price="38.90"
+                 data-min-qty="10" data-max-qty="100"
+                 data-prep-days="4"
+                 data-themes="all"
+                 data-stock="7">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-fusion" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-fusion-1.jpg" alt="Menu Fusion" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-fusion-2.jpg" alt="Menu Fusion" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-fusion-3.jpg" alt="Menu Fusion" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-fusion" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-fusion" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <h2 class="menu-card__name">Menu Fusion</h2>
+                        <p class="menu-card__desc">Un voyage culinaire mêlant influences asiatiques et techniques françaises.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Tataki de thon, sésame et ponzu maison</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Magret laqué au miso, pak choï sauté et riz jasmin</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Moelleux au matcha, glace yuzu</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">38,90 € <span>par plat · 10 à 100 plats · préparation 4j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Été -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="vegetarien gluten lactose"
+                 data-price="31.00"
+                 data-min-qty="15" data-max-qty="150"
+                 data-prep-days="2"
+                 data-themes="ete"
+                 data-stock="14">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-ete" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-ete-1.jpg" alt="Menu Été" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-ete-2.jpg" alt="Menu Été" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-ete-3.jpg" alt="Menu Été" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-ete" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-ete" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Été</h2>
+                            <span class="menu-tag menu-tag--ete">☀️ Été</span>
+                        </div>
+                        <p class="menu-card__desc">Légèreté et fraîcheur au rendez-vous pour vos événements estivaux en plein air.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--veggie">Végétarien</span>
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                            <span class="menu-tag menu-tag--lactose">Sans lactose</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Carpaccio de melon, jambon de Bayonne et roquette</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Pavé de veau grillé, tapenade et légumes du soleil</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Vacherin glacé aux fruits de la passion</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">31,00 € <span>par plat · 15 à 150 plats · préparation 2j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Luxe -->
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="gluten"
+                 data-price="89.00"
+                 data-min-qty="20" data-max-qty="50"
+                 data-prep-days="7"
+                 data-themes="all noel"
+                 data-stock="2">
+                <div class="menu-card">
+                    <div class="menu-card__img-wrapper">
+                        <div id="carousel-luxe" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner h-100">
+                                <div class="carousel-item active h-100"><img src="/img/menu-luxe-1.jpg" alt="Menu Luxe" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-luxe-2.jpg" alt="Menu Luxe" class="menu-card__img"></div>
+                                <div class="carousel-item h-100"><img src="/img/menu-luxe-3.jpg" alt="Menu Luxe" class="menu-card__img"></div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-luxe" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-luxe" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                        </div>
+                    </div>
+                    <div class="menu-card__body">
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">Menu Luxe</h2>
+                            <span class="menu-tag menu-tag--noel">🎄 Noël</span>
+                        </div>
+                        <p class="menu-card__desc">L'excellence à table — truffes, caviar et grands crus pour vos occasions les plus précieuses.</p>
+                        <div class="menu-card__tags">
+                            <span class="menu-tag menu-tag--gluten">Sans gluten</span>
+                        </div>
+                        <hr class="menu-card__sep">
+                        <ul class="menu-card__courses">
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>Œuf parfait, caviar osciètre et crème de chou-fleur</div></li>
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>Homard bleu rôti, bisque réduite et tagliatelles fraîches</div></li>
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>Soufflé chaud au Grand Marnier</div></li>
+                        </ul>
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">89,00 € <span>par plat · 20 à 50 plats · préparation 7j</span></p>
+                            <a href="/commande" onclick="route(event)" class="btn menu-card__btn">Commander ce menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="no-results" class="text-center py-5" style="display:none;">
+            <i class="bi bi-search" style="font-size:2.5rem; color: #BE7D8D; opacity:0.5;"></i>
+            <p class="mt-3" style="color:#800020; font-family: 'Aclonica', sans-serif;">Aucun menu ne correspond à vos critères.</p>
+        </div>
+
+    </div>
+
+
+<!-- MODAL DÉTAIL MENU -->
+<div class="menu-modal-overlay" id="menu-modal" aria-modal="true" role="dialog" style="display:none;">
+    <div class="menu-modal__panel">
+
+        <button class="menu-modal__close" id="modal-close" aria-label="Fermer">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <!-- Colonne image -->
+        <div class="menu-modal__left">
+            <div class="menu-modal__img-stack" id="modal-img-stack"></div>
+        </div>
+
+        <!-- Colonne détails -->
+        <div class="menu-modal__right" id="modal-content"></div>
+
+    </div>
+</div>
+
+<!-- TOAST PANIER -->
+<div class="cart-toast" id="cart-toast">
+    <i class="bi bi-check-circle-fill"></i> <span id="cart-toast-msg">Ajouté au panier !</span>
+</div>
+
+</section>

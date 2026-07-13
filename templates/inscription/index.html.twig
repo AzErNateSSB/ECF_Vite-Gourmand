@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte — Vite & Gourmand{% endblock %}
+
+{% block body %}
+{% include '_navbar.html.twig' %}
+
+<main id="veg-main">
+<section class="auth-page">
+    <div class="auth-card auth-card--wide">
+
+        <div class="auth-card__header">
+            <h1 class="auth-card__title">Créer un compte</h1>
+            <p class="auth-card__subtitle">Rejoignez Vite &amp; Gourmand pour commander en ligne</p>
+        </div>
+
+        {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label" for="{{ form.prenom.vars.id }}">Prénom</label>
+                    {{ form_widget(form.prenom, {attr: {class: 'auth-field__input', placeholder: 'Julie'}}) }}
+                    {{ form_errors(form.prenom) }}
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label" for="{{ form.nom.vars.id }}">Nom</label>
+                    {{ form_widget(form.nom, {attr: {class: 'auth-field__input', placeholder: 'Dupont'}}) }}
+                    {{ form_errors(form.nom) }}
+                </div>
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label" for="{{ form.email.vars.id }}">Adresse e-mail</label>
+                {{ form_widget(form.email, {attr: {class: 'auth-field__input', placeholder: 'julie@exemple.fr'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label" for="{{ form.telephone.vars.id }}">Numéro de téléphone</label>
+                {{ form_widget(form.telephone, {attr: {class: 'auth-field__input', placeholder: '06 12 34 56 78'}}) }}
+                {{ form_errors(form.telephone) }}
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label" for="{{ form.adresse.vars.id }}">Adresse</label>
+                {{ form_widget(form.adresse, {attr: {class: 'auth-field__input', placeholder: '12 rue des Vignes'}}) }}
+                {{ form_errors(form.adresse) }}
+            </div>
+
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label" for="{{ form.adressePostale.vars.id }}">Code postal</label>
+                    {{ form_widget(form.adressePostale, {attr: {class: 'auth-field__input', placeholder: '33000'}}) }}
+                    {{ form_errors(form.adressePostale) }}
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label" for="{{ form.ville.vars.id }}">Ville</label>
+                    {{ form_widget(form.ville, {attr: {class: 'auth-field__input', placeholder: 'Bordeaux'}}) }}
+                    {{ form_errors(form.ville) }}
+                </div>
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label">Mot de passe</label>
+                <div class="auth-field__input-wrap">
+                    {{ form_widget(form.plainPassword.first, {attr: {class: 'auth-field__input', placeholder: '••••••••••', id: 'signup-password'}}) }}
+                    <button type="button" class="auth-field__eye" id="toggle-pwd" aria-label="Afficher">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label">Confirmer le mot de passe</label>
+                <div class="auth-field__input-wrap">
+                    {{ form_widget(form.plainPassword.second, {attr: {class: 'auth-field__input', placeholder: '••••••••••', id: 'confirm-password'}}) }}
+                    <button type="button" class="auth-field__eye" id="toggle-confirm" aria-label="Afficher">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+
+            <button type="submit" class="auth-btn">
+                <i class="bi bi-person-plus"></i> Créer mon compte
+            </button>
+
+        {{ form_end(form) }}
+
+        <hr class="auth-sep">
+
+        <p class="auth-card__switch">
+            Déjà un compte ?
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        </p>
+
+    </div>
+</section>
+</main>
+
+{% include '_footer.html.twig' %}
+
+<script>
+function toggleEye(btnId, inputId) {
+    document.getElementById(btnId).addEventListener('click', function() {
+        const el = document.getElementById(inputId);
+        const ic = this.querySelector('i');
+        el.type = el.type === 'password' ? 'text' : 'password';
+        ic.className = el.type === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash';
+    });
+}
+toggleEye('toggle-pwd', 'signup-password');
+toggleEye('toggle-confirm', 'confirm-password');
+</script>
+{% endblock %}

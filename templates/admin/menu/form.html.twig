@@ -1,0 +1,59 @@
+{% extends 'admin/layout.html.twig' %}
+{% block title %}{{ titre }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ titre }}</h2>
+    <a href="{{ path('admin_menu_index') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Retour
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        {{ form_start(form, {attr: {class: 'row g-3'}}) }}
+            <div class="col-md-8">
+                {{ form_row(form.titre) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.theme) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.prixParPersonne) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.nombrePersonneMinimum) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.quantiteRestante) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.conditions) }}
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h6>Plats</h6>
+                    {{ form_widget(form.plats) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h6>Régimes alimentaires</h6>
+                    {{ form_widget(form.regimes) }}
+                </div>
+            </div>
+            <div class="col-12">
+                {{ form_row(form.actif) }}
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i> Enregistrer
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

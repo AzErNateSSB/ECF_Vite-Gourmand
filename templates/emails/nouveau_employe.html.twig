@@ -1,0 +1,29 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Votre compte employé est prêt !</h2>
+<p>Bonjour {{ employe.prenom }},</p>
+<p>
+    Un compte employé vient d'être créé pour vous sur la plateforme <strong>Vite &amp; Gourmand</strong>.
+    Voici vos identifiants de connexion :
+</p>
+
+<div class="info-box">
+    <div class="label">Adresse email (identifiant)</div>
+    <div class="value">{{ employe.email }}</div>
+    <div class="label">Mot de passe temporaire</div>
+    <div class="value" style="font-size:18px;font-weight:bold;letter-spacing:2px;color:#800020;">{{ password }}</div>
+</div>
+
+<p>
+    Pour votre sécurité, nous vous recommandons de changer votre mot de passe lors de votre première connexion.
+</p>
+
+<p style="text-align:center;">
+    <a href="{{ app.request.schemeAndHttpHost }}/employe" class="btn">Accéder à mon espace</a>
+</p>
+
+<p style="font-size:13px;color:#888;">
+    Si vous pensez avoir reçu cet email par erreur, contactez votre administrateur.
+</p>
+{% endblock %}

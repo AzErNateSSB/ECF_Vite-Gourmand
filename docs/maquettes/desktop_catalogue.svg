@@ -1,0 +1,97 @@
+<svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Maquette Desktop — Catalogue des menus</title>
+  <rect width="1000" height="680" fill="#f0f0f0"/>
+  <text x="500" y="18" text-anchor="middle" font-size="12" fill="#999">Maquette Desktop — Catalogue des menus (1440px)</text>
+  <rect x="20" y="25" width="960" height="640" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <rect x="20" y="25" width="960" height="28" rx="6" fill="#e9ecef"/>
+  <circle cx="38" cy="39" r="5" fill="#ff5f57"/>
+  <circle cx="54" cy="39" r="5" fill="#febc2e"/>
+  <circle cx="70" cy="39" r="5" fill="#28c840"/>
+  <rect x="180" y="31" width="640" height="16" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <text x="500" y="43" text-anchor="middle" font-size="9" fill="#adb5bd">127.0.0.1:8000/menus</text>
+  <rect x="20" y="53" width="960" height="48" fill="#1a1a2e"/>
+  <text x="80" y="82" font-size="15" font-weight="700" fill="white">Vite &amp; Gourmand</text>
+  <text x="480" y="82" text-anchor="middle" font-size="12" fill="#c8a96e" font-weight="600">Nos menus</text>
+  <text x="580" y="82" text-anchor="middle" font-size="12" fill="#adb5bd">À propos</text>
+  <text x="670" y="82" text-anchor="middle" font-size="12" fill="#adb5bd">Contact</text>
+  <rect x="800" y="66" width="80" height="24" rx="12" fill="none" stroke="#adb5bd" stroke-width="1"/>
+  <text x="840" y="82" text-anchor="middle" font-size="11" fill="#adb5bd">Connexion</text>
+  <rect x="890" y="66" width="75" height="24" rx="12" fill="#c8a96e"/>
+  <text x="927" y="82" text-anchor="middle" font-size="11" fill="white">Commander</text>
+  <rect x="20" y="101" width="960" height="50" fill="#f8f9fa"/>
+  <text x="50" y="130" font-size="11" fill="#6c757d">Accueil &gt; Nos menus</text>
+  <text x="500" y="130" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a2e">Nos menus</text>
+  <rect x="30" y="162" width="940" height="44" rx="6" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="55" y="188" font-size="11" fill="#6c757d">Filtrer :</text>
+  <rect x="105" y="173" width="70" height="22" rx="11" fill="#1a1a2e"/>
+  <text x="140" y="188" text-anchor="middle" font-size="10" fill="white">Tous</text>
+  <rect x="185" y="173" width="80" height="22" rx="11" fill="none" stroke="#dee2e6" stroke-width="1"/>
+  <text x="225" y="188" text-anchor="middle" font-size="10" fill="#495057">Classique</text>
+  <rect x="275" y="173" width="80" height="22" rx="11" fill="none" stroke="#dee2e6" stroke-width="1"/>
+  <text x="315" y="188" text-anchor="middle" font-size="10" fill="#495057">Prestige</text>
+  <rect x="365" y="173" width="100" height="22" rx="11" fill="none" stroke="#dee2e6" stroke-width="1"/>
+  <text x="415" y="188" text-anchor="middle" font-size="10" fill="#495057">Végétarien</text>
+  <rect x="475" y="173" width="80" height="22" rx="11" fill="none" stroke="#dee2e6" stroke-width="1"/>
+  <text x="515" y="188" text-anchor="middle" font-size="10" fill="#495057">Mariage</text>
+  <text x="850" y="188" text-anchor="end" font-size="11" fill="#6c757d">3 menus disponibles</text>
+  <!-- Carte 1 -->
+  <rect x="30" y="218" width="292" height="330" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="30" y="218" width="292" height="150" rx="8" fill="#e9ecef"/>
+  <rect x="30" y="340" width="292" height="28" fill="#e9ecef"/>
+  <text x="176" y="300" text-anchor="middle" font-size="11" fill="#adb5bd">[ Photo du menu ]</text>
+  <rect x="30" y="362" width="292" height="186" rx="0" fill="white"/>
+  <rect x="30" y="530" width="292" height="18" rx="8" fill="white"/>
+  <text x="176" y="385" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">Menu Classique</text>
+  <rect x="44" y="393" width="50" height="18" rx="9" fill="#e8f5e9"/>
+  <text x="69" y="405" text-anchor="middle" font-size="9" fill="#198754">Végét.</text>
+  <rect x="100" y="393" width="70" height="18" rx="9" fill="#fff3cd"/>
+  <text x="135" y="405" text-anchor="middle" font-size="9" fill="#856404">Sans gluten</text>
+  <line x1="44" y1="420" x2="308" y2="420" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="44" y="440" font-size="10" fill="#6c757d">Entrée · Plat · Dessert</text>
+  <text x="44" y="458" font-size="10" fill="#6c757d">Minimum 20 personnes</text>
+  <text x="44" y="480" font-size="13" font-weight="700" fill="#c8a96e">45,00 € / pers.</text>
+  <text x="44" y="497" font-size="9" fill="#adb5bd">+ 50,00 € livraison</text>
+  <rect x="44" y="510" width="260" height="32" rx="16" fill="#c8a96e"/>
+  <text x="174" y="530" text-anchor="middle" font-size="11" font-weight="600" fill="white">Commander ce menu</text>
+  <!-- Carte 2 -->
+  <rect x="354" y="218" width="292" height="330" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="354" y="218" width="292" height="150" rx="8" fill="#e9ecef"/>
+  <rect x="354" y="340" width="292" height="28" fill="#e9ecef"/>
+  <text x="500" y="300" text-anchor="middle" font-size="11" fill="#adb5bd">[ Photo du menu ]</text>
+  <rect x="354" y="362" width="292" height="186" rx="0" fill="white"/>
+  <rect x="354" y="530" width="292" height="18" rx="8" fill="white"/>
+  <text x="500" y="385" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">Menu Prestige</text>
+  <rect x="368" y="393" width="70" height="18" rx="9" fill="#fce8e8"/>
+  <text x="403" y="405" text-anchor="middle" font-size="9" fill="#dc3545">Premium</text>
+  <line x1="368" y1="420" x2="632" y2="420" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="368" y="440" font-size="10" fill="#6c757d">Apéritif · Entrée · Plat · Dessert</text>
+  <text x="368" y="458" font-size="10" fill="#6c757d">Minimum 30 personnes</text>
+  <text x="368" y="480" font-size="13" font-weight="700" fill="#c8a96e">65,00 € / pers.</text>
+  <text x="368" y="497" font-size="9" fill="#adb5bd">+ 50,00 € livraison</text>
+  <rect x="368" y="510" width="260" height="32" rx="16" fill="#c8a96e"/>
+  <text x="498" y="530" text-anchor="middle" font-size="11" font-weight="600" fill="white">Commander ce menu</text>
+  <!-- Carte 3 -->
+  <rect x="678" y="218" width="292" height="330" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="678" y="218" width="292" height="150" rx="8" fill="#e9ecef"/>
+  <rect x="678" y="340" width="292" height="28" fill="#e9ecef"/>
+  <text x="824" y="300" text-anchor="middle" font-size="11" fill="#adb5bd">[ Photo du menu ]</text>
+  <rect x="678" y="362" width="292" height="186" rx="0" fill="white"/>
+  <rect x="678" y="530" width="292" height="18" rx="8" fill="white"/>
+  <text x="824" y="385" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">Menu Végétarien</text>
+  <rect x="692" y="393" width="50" height="18" rx="9" fill="#e8f5e9"/>
+  <text x="717" y="405" text-anchor="middle" font-size="9" fill="#198754">Végét.</text>
+  <rect x="748" y="393" width="60" height="18" rx="9" fill="#e8f4fd"/>
+  <text x="778" y="405" text-anchor="middle" font-size="9" fill="#0d6efd">Vegan ok</text>
+  <line x1="692" y1="420" x2="956" y2="420" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="692" y="440" font-size="10" fill="#6c757d">Entrée · Plat · Dessert</text>
+  <text x="692" y="458" font-size="10" fill="#6c757d">Minimum 15 personnes</text>
+  <text x="692" y="480" font-size="13" font-weight="700" fill="#c8a96e">38,00 € / pers.</text>
+  <text x="692" y="497" font-size="9" fill="#adb5bd">+ 50,00 € livraison</text>
+  <rect x="692" y="510" width="260" height="32" rx="16" fill="#c8a96e"/>
+  <text x="822" y="530" text-anchor="middle" font-size="11" font-weight="600" fill="white">Commander ce menu</text>
+  <rect x="20" y="562" width="960" height="88" fill="#1a1a2e"/>
+  <text x="500" y="596" text-anchor="middle" font-size="14" font-weight="700" fill="white">Vous avez un événement spécifique ?</text>
+  <text x="500" y="616" text-anchor="middle" font-size="11" fill="#adb5bd">Contactez-nous pour un devis sur mesure.</text>
+  <rect x="400" y="628" width="200" height="30" rx="15" fill="#c8a96e"/>
+  <text x="500" y="647" text-anchor="middle" font-size="11" font-weight="600" fill="white">Demander un devis</text>
+</svg>

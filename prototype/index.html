@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="scss/main.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica:wght@300;400&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+
+</head>
+<body> 
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src=".\img\Logo_V&G_Blanc.png" alt="Vite & Gourmand" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/" onclick="route(event)">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/menus" onclick="route(event)">Nos Menus</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact" onclick="route(event)">Contacts</a>
+            </li>
+            <!-- Zone dynamique selon état de connexion -->
+            <li class="nav-item" id="nav-account" style="display:none;">
+              <a class="nav-link" href="/account" onclick="route(event)" id="nav-username">Mon compte</a>
+            </li>
+            <li class="nav-item" id="nav-signin" style="display:none;">
+              <a class="nav-link" href="/signin" onclick="route(event)">Connexion / Inscription</a>
+            </li>
+            <li class="nav-item" id="nav-signout" style="display:none;">
+              <a class="nav-link nav-link--signout" href="#" id="nav-signout-btn">Déconnexion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <!-- Modal confirmation déconnexion -->
+    <div class="signout-overlay" id="signout-overlay" style="display:none;" role="dialog" aria-modal="true">
+        <div class="signout-modal">
+            <p class="signout-modal__text"><i class="bi bi-box-arrow-right"></i> Confirmer la déconnexion ?</p>
+            <div class="signout-modal__actions">
+                <button class="signout-modal__btn signout-modal__btn--cancel" id="signout-cancel">Annuler</button>
+                <button class="signout-modal__btn signout-modal__btn--confirm" id="signout-confirm">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast déconnexion -->
+    <div class="cart-toast" id="signout-toast">
+        <i class="bi bi-check-circle-fill"></i> <span>Vous avez bien été déconnecté</span>
+    </div>
+
+    <main id="main-page">
+        <!-- Le contenu de la page sera injecté ici -->
+    </main>
+
+<footer class="bg-dark text-white text-center footer">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <h4>Nos Horaires</h4>
+        <!-- À défaut d'être mentionnées dans le sujet de l'examen,
+        Les Horaires ont été trouvées sur le site "https://viteetgourmand.com/" -->
+      <p>
+        LUN-VEN · 09:00-18:00<br/>
+        SAM · 10:00-16:00<br/>
+        DIM · Fermé<br/>
+      </p>
+    </div>
+    <div class="col-12 col-md-4">
+      <h4>Nous Contacter</h4>
+      <p>
+        05 56 00 00 00<br/>
+        contact@viteetgourmand.fr
+      </p>
+      <a href="/contact" onclick="route(event)" class="footer-link">Formulaire de contact</a>
+    </div>
+    <div class="col-12 col-md-4">
+      <h4>Mentions Légales</h4>
+      <a href="/mentions-legales" onclick="route(event)" class="footer-link">Consulter les mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+    <script type="module" src="Router/router.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const signoutOverlay = document.getElementById('signout-overlay');
+      const signoutToast   = document.getElementById('signout-toast');
+      let signoutTimer     = null;
+
+      // Ouvre le modal de confirmation
+      document.getElementById('nav-signout-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        signoutOverlay.style.display = 'flex';
+      });
+
+      // Annuler
+      document.getElementById('signout-cancel').addEventListener('click', function() {
+        signoutOverlay.style.display = 'none';
+      });
+
+      // Fermer en cliquant l'overlay
+      signoutOverlay.addEventListener('click', function(e) {
+        if (e.target === signoutOverlay) signoutOverlay.style.display = 'none';
+      });
+
+      // Confirmer la déconnexion
+      document.getElementById('signout-confirm').addEventListener('click', function() {
+        signoutOverlay.style.display = 'none';
+        localStorage.removeItem('veg_user');
+        window.history.pushState({}, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+
+        // Toast de confirmation
+        signoutToast.classList.add('cart-toast--visible');
+        clearTimeout(signoutTimer);
+        signoutTimer = setTimeout(() => signoutToast.classList.remove('cart-toast--visible'), 3000);
+      });
+
+      // Fermer avec Échap
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') signoutOverlay.style.display = 'none';
+      });
+    </script>
+</body>
+</html>

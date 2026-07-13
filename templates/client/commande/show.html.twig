@@ -1,0 +1,161 @@
+{% extends 'client/layout.html.twig' %}
+
+{% block title %}Commande {{ commande.numeroCommande }} — Vite & Gourmand{% endblock %}
+
+{% block client_content %}
+<section class="account-page">
+    <div class="container py-5">
+
+        {# ── EN-TÊTE ─────────────────────────────────────────────────────── #}
+        <div class="account-header" style="margin-bottom:2rem;">
+            <div class="account-header__avatar">
+                <i class="bi bi-bag-fill" style="font-size:1.4rem;"></i>
+            </div>
+            <div>
+                <h1 class="account-header__name">{{ commande.numeroCommande }}</h1>
+                <p class="account-header__email">
+                    Passée le {{ commande.dateCommande|date('d/m/Y à H:i') }}
+                </p>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+            <a href="{{ path('client_dashboard') }}"
+               style="color:var(--veg-primary);text-decoration:none;font-size:.9rem;">
+                <i class="bi bi-arrow-left"></i> Retour à mon compte
+            </a>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+
+            {# ── DÉTAILS ─────────────────────────────────────────────────── #}
+            <div class="account-card" style="grid-column:1;">
+                <h2 class="account-card__title">Détails de la commande</h2>
+
+                <div style="display:flex;flex-direction:column;gap:1rem;">
+                    <div style="display:flex;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--veg-secondary);">
+                        <span style="color:#888;font-size:.875rem;">Menu</span>
+                        <strong style="color:var(--veg-dark);">{{ commande.menu ? commande.menu.titre : '—' }}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--veg-secondary);">
+                        <span style="color:#888;font-size:.875rem;">Nombre de personnes</span>
+                        <strong>{{ commande.nombrePersonne }}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--veg-secondary);">
+                        <span style="color:#888;font-size:.875rem;">Date de l'événement</span>
+                        <strong>{{ commande.datePrestation|date('d/m/Y') }}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--veg-secondary);">
+                        <span style="color:#888;font-size:.875rem;">Heure de livraison</span>
+                        <strong>{{ commande.heureLivraison }}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding-bottom:.75rem;border-bottom:1px solid var(--veg-secondary);">
+                        <span style="color:#888;font-size:.875rem;">Adresse</span>
+                        <strong style="text-align:right;">{{ commande.adresseLivraison }}<br>{{ commande.villeLivraison }}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;">
+                        <span style="color:#888;font-size:.875rem;">Matériel inclus</span>
+                        <strong>{{ commande.pretMateriel ? 'Oui' : 'Non' }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div style="grid-column:2;display:flex;flex-direction:column;gap:1.5rem;">
+
+                {# ── RÉCAPITULATIF FINANCIER ────────────────────────────── #}
+                <div class="account-card">
+                    <h2 class="account-card__title">Récapitulatif financier</h2>
+
+                    <div style="display:flex;flex-direction:column;gap:.75rem;">
+                        <div style="display:flex;justify-content:space-between;font-size:.9rem;">
+                            <span style="color:#666;">Prix menu</span>
+                            <span>{{ commande.prixMenu|number_format(2, ',', ' ') }} €</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;font-size:.9rem;">
+                            <span style="color:#666;">Livraison</span>
+                            <span>{{ commande.prixLivraison|number_format(2, ',', ' ') }} €</span>
+                        </div>
+                        {% if commande.prixReduction > 0 %}
+                        <div style="display:flex;justify-content:space-between;font-size:.9rem;color:#16a34a;">
+                            <span>Réduction</span>
+                            <span>- {{ commande.prixReduction|number_format(2, ',', ' ') }} €</span>
+                        </div>
+                        {% endif %}
+                        <div style="display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;padding-top:.75rem;border-top:2px solid var(--veg-secondary);color:var(--veg-dark);">
+                            <span>Total</span>
+                            <span>{{ commande.prixTotal|number_format(2, ',', ' ') }} €</span>
+                        </div>
+                    </div>
+                </div>
+
+                {# ── STATUT ─────────────────────────────────────────────── #}
+                <div class="account-card">
+                    <h2 class="account-card__title">Suivi de commande</h2>
+
+                    {% set statuts = ['en_attente', 'confirmee', 'en_preparation', 'prete', 'en_cours_de_livraison', 'livree', 'en_attente_retour_materiel', 'terminee'] %}
+                    {% set statut_labels = {
+                        'en_attente':                 'En attente',
+                        'confirmee':                  'Confirmée',
+                        'en_preparation':             'En préparation',
+                        'prete':                      'Prête',
+                        'en_cours_de_livraison':      'En cours de livraison',
+                        'livree':                     'Livrée',
+                        'en_attente_retour_materiel': 'Retour matériel',
+                        'terminee':                   'Terminée'
+                    } %}
+                    {% set current_idx = (statuts|filter(s => s == commande.statut)|keys|first)|default(-1) %}
+
+                    <div style="display:flex;flex-direction:column;gap:.75rem;">
+                        {% if commande.statut == 'annulee' %}
+                            <div style="display:flex;align-items:center;gap:.75rem;">
+                                <i class="bi bi-x-circle-fill" style="color:#dc2626;font-size:1.25rem;"></i>
+                                <span style="font-weight:700;color:#dc2626;">Commande annulée</span>
+                            </div>
+                        {% else %}
+                            {% for i, statut in statuts %}
+                                {% set is_done    = current_idx is not null and i < current_idx %}
+                                {% set is_current = commande.statut == statut %}
+                                <div style="display:flex;align-items:center;gap:.75rem;">
+                                    {% if is_current %}
+                                        <i class="bi bi-record-circle-fill" style="color:var(--veg-primary);font-size:1.25rem;"></i>
+                                    {% elseif is_done %}
+                                        <i class="bi bi-check-circle-fill" style="color:#16a34a;font-size:1.25rem;"></i>
+                                    {% else %}
+                                        <i class="bi bi-circle" style="color:#ccc;font-size:1.25rem;"></i>
+                                    {% endif %}
+                                    <span style="
+                                        font-weight:{{ is_current ? '700' : '400' }};
+                                        color:{{ is_current ? 'var(--veg-dark)' : (is_done ? '#16a34a' : '#bbb') }};
+                                        font-size:.9rem;">
+                                        {{ statut_labels[statut] }}
+                                    </span>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {# ── SUIVI HISTORIQUE ─────────────────────────────────────────── #}
+        {% if commande.suiviCommandes is defined and commande.suiviCommandes|length > 0 %}
+        <div class="account-card" style="margin-top:1.5rem;">
+            <h2 class="account-card__title">Historique du suivi</h2>
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+                {% for suivi in commande.suiviCommandes %}
+                <div style="display:flex;gap:1rem;align-items:flex-start;font-size:.875rem;">
+                    <span style="color:#aaa;white-space:nowrap;">{{ suivi.dateStatut|date('d/m/Y H:i') }}</span>
+                    <span style="color:var(--veg-dark);font-weight:600;">{{ suivi.statut|replace({'_': ' '})|capitalize }}</span>
+                    {% if suivi.commentaire %}
+                        <span style="color:#666;">— {{ suivi.commentaire }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

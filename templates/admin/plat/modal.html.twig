@@ -1,0 +1,85 @@
+{{ form_start(form, {attr: {class: 'row g-3', id: 'plat-modal-form', action: path('admin_plat_modal', {id: plat.id}), enctype: 'multipart/form-data'}}) }}
+
+<div class="col-md-8">
+    <label class="form-label fw-semibold">Nom du plat</label>
+    {{ form_widget(form.titre, {attr: {class: 'form-control'}}) }}
+</div>
+<div class="col-md-4">
+    <label class="form-label fw-semibold">Type</label>
+    {{ form_widget(form.typePlat, {attr: {class: 'form-select'}}) }}
+</div>
+
+<div class="col-12">
+    <div class="p-3 rounded" style="background:#fdf0f3;border:1px solid #E8D1D7;">
+        <label class="form-label fw-semibold mb-2">Allergènes</label>
+        <div class="row g-1">
+        {% for allergene in form.allergenes %}
+            <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                {{ form_widget(allergene) }}
+                <label style="color:#800020;font-size:.9rem;cursor:pointer;">{{ form_label(allergene)|raw }}</label>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <label class="form-label fw-semibold">Photo du plat</label>
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+        {% if plat.imageChemin %}
+            <img id="plat-img-preview" src="{{ asset(plat.imageChemin) }}" alt="Photo actuelle"
+                 style="height:80px;width:80px;object-fit:cover;border-radius:8px;border:2px solid #E8D1D7;">
+        {% else %}
+            <div id="plat-img-preview-placeholder"
+                 style="height:80px;width:80px;border-radius:8px;border:2px dashed #BE7D8D;display:flex;align-items:center;justify-content:center;">
+                <i class="bi bi-image" style="font-size:1.8rem;color:#BE7D8D;"></i>
+            </div>
+        {% endif %}
+        <label for="{{ form.imageFile.vars.id }}"
+               class="btn"
+               style="background:#800020;color:#fff;border-radius:8px;cursor:pointer;margin-bottom:0;">
+            <i class="bi bi-folder2-open me-2"></i> Choisir une photo
+        </label>
+        <span id="plat-file-name" class="small text-muted">Aucun fichier sélectionné</span>
+        {{ form_widget(form.imageFile, {attr: {class: 'd-none', id: form.imageFile.vars.id}}) }}
+    </div>
+</div>
+
+<div class="col-12 d-flex gap-3 justify-content-end pt-3 border-top mt-2">
+    <button type="button"
+            onclick="document.getElementById('plat-modal').style.display='none'"
+            style="border:2px solid #BE7D8D;color:#BE7D8D;background:transparent;border-radius:999px;padding:.55rem 2rem;font-weight:500;cursor:pointer;">
+        Annuler
+    </button>
+    <button type="submit"
+            style="border:none;background:#BE7D8D;color:#fff;border-radius:999px;padding:.55rem 2rem;font-weight:500;cursor:pointer;">
+        <i class="bi bi-floppy-fill me-1"></i> Enregistrer
+    </button>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+(function () {
+    const input   = document.getElementById('{{ form.imageFile.vars.id }}');
+    const label   = document.getElementById('plat-file-name');
+    const preview = document.getElementById('plat-img-preview')
+                 || document.getElementById('plat-img-preview-placeholder');
+
+    if (input) {
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            if (!file) return;
+            label.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = e => {
+                if (preview) {
+                    preview.outerHTML = '<img id="plat-img-preview" src="' + e.target.result
+                        + '" style="height:80px;width:80px;object-fit:cover;border-radius:8px;border:2px solid #E8D1D7;">';
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+})();
+</script>

@@ -1,0 +1,45 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Votre commande a été annulée</h2>
+<p>Bonjour {{ user.prenom }},</p>
+<p>
+    Nous sommes au regret de vous informer que votre commande <strong>{{ commande.numeroCommande }}</strong>
+    a été annulée par notre équipe.
+</p>
+
+<div class="info-box">
+    <div class="label">Commande</div>
+    <div class="value">{{ commande.numeroCommande }}</div>
+    <div class="label">Menu</div>
+    <div class="value">{{ commande.menu.titre }}</div>
+    <div class="label">Date de prestation prévue</div>
+    <div class="value">{{ commande.datePrestation|date('d/m/Y') }}</div>
+    {% if motif %}
+    <div class="label">Motif</div>
+    <div class="value" style="color:#800020;">{{ motif }}</div>
+    {% endif %}
+</div>
+
+<p>
+    Notre équipe souhaite vous recontacter
+    {% if modeContact == 'gsm' %}
+        <strong>par téléphone</strong> au <strong>{{ user.telephone }}</strong>
+    {% else %}
+        <strong>par e-mail</strong> à l'adresse <strong>{{ user.email }}</strong>
+    {% endif %}
+    pour vous proposer une alternative ou vous accompagner dans votre démarche.
+</p>
+
+<p>
+    Nous nous excusons pour la gêne occasionnée et restons à votre disposition.
+</p>
+
+<p style="text-align:center;">
+    <a href="{{ app.request.schemeAndHttpHost }}/compte" class="btn">Voir mes commandes</a>
+</p>
+
+<p style="font-size:13px;color:#888;">
+    Cordialement, l'équipe Vite &amp; Gourmand.
+</p>
+{% endblock %}

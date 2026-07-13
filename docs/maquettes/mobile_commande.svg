@@ -1,0 +1,70 @@
+<svg viewBox="0 0 340 900" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Maquette Mobile — Formulaire commande (390px)</title>
+  <rect width="340" height="900" fill="#f0f0f0"/>
+  <text x="170" y="14" text-anchor="middle" font-size="10" fill="#999">Maquette Mobile — Formulaire commande (390px)</text>
+  <rect x="30" y="20" width="280" height="868" rx="20" fill="white" stroke="#adb5bd" stroke-width="2"/>
+  <rect x="105" y="20" width="130" height="20" rx="10" fill="#adb5bd"/>
+  <rect x="30" y="40" width="280" height="44" fill="#1a1a2e"/>
+  <text x="75" y="67" font-size="11" font-weight="700" fill="white">Vite &amp; Gourmand</text>
+  <line x1="270" y1="57" x2="290" y2="57" stroke="white" stroke-width="2"/>
+  <line x1="270" y1="63" x2="290" y2="63" stroke="white" stroke-width="2"/>
+  <line x1="270" y1="69" x2="290" y2="69" stroke="white" stroke-width="2"/>
+  <rect x="30" y="84" width="280" height="36" fill="#f8f9fa"/>
+  <text x="170" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">Nouvelle commande</text>
+  <!-- Étape 1 -->
+  <rect x="45" y="130" width="250" height="26" rx="6" fill="#1a1a2e"/>
+  <text x="170" y="147" text-anchor="middle" font-size="11" font-weight="700" fill="white">1. Choisir un menu</text>
+  <text x="50" y="172" font-size="10" fill="#495057">Menu *</text>
+  <rect x="50" y="179" width="240" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="198" font-size="10" fill="#6c757d">— Sélectionner —</text>
+  <text x="284" y="198" text-anchor="end" font-size="10" fill="#6c757d">▼</text>
+  <!-- Étape 2 -->
+  <rect x="45" y="222" width="250" height="26" rx="6" fill="#1a1a2e"/>
+  <text x="170" y="239" text-anchor="middle" font-size="11" font-weight="700" fill="white">2. Votre événement</text>
+  <text x="50" y="264" font-size="10" fill="#495057">Nombre de personnes *</text>
+  <rect x="50" y="271" width="240" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="290" font-size="10" fill="#adb5bd">ex: 50</text>
+  <text x="50" y="316" font-size="10" fill="#495057">Date de livraison *</text>
+  <rect x="50" y="323" width="240" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="342" font-size="10" fill="#adb5bd">JJ/MM/AAAA</text>
+  <text x="50" y="368" font-size="10" fill="#495057">Heure de livraison *</text>
+  <rect x="50" y="375" width="240" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="394" font-size="10" fill="#adb5bd">HH:MM</text>
+  <!-- Étape 3 -->
+  <rect x="45" y="418" width="250" height="26" rx="6" fill="#1a1a2e"/>
+  <text x="170" y="435" text-anchor="middle" font-size="11" font-weight="700" fill="white">3. Adresse de livraison</text>
+  <text x="50" y="460" font-size="10" fill="#495057">Adresse *</text>
+  <rect x="50" y="467" width="240" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="486" font-size="10" fill="#adb5bd">15 rue de la Paix</text>
+  <text x="50" y="512" font-size="10" fill="#495057">Ville *</text>
+  <rect x="50" y="519" width="115" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="538" font-size="10" fill="#adb5bd">Bordeaux</text>
+  <text x="175" y="512" font-size="10" fill="#495057">Code postal *</text>
+  <rect x="175" y="519" width="115" height="30" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="187" y="538" font-size="10" fill="#adb5bd">33000</text>
+  <text x="50" y="566" font-size="10" fill="#495057">Note</text>
+  <rect x="50" y="573" width="240" height="44" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="62" y="590" font-size="9" fill="#adb5bd">Allergies, accès spécifique...</text>
+  <!-- Récapitulatif -->
+  <rect x="45" y="630" width="250" height="170" rx="8" fill="white" stroke="#c8a96e" stroke-width="1.5"/>
+  <rect x="45" y="630" width="250" height="26" rx="8" fill="#c8a96e"/>
+  <rect x="45" y="644" width="250" height="12" fill="#c8a96e"/>
+  <text x="170" y="646" text-anchor="middle" font-size="11" font-weight="700" fill="white">Récapitulatif</text>
+  <text x="60" y="675" font-size="10" fill="#6c757d">Nb personnes</text>
+  <text x="284" y="675" text-anchor="end" font-size="10" fill="#1a1a2e">—</text>
+  <text x="60" y="693" font-size="10" fill="#6c757d">Prix menu</text>
+  <text x="284" y="693" text-anchor="end" font-size="10" fill="#1a1a2e">—</text>
+  <text x="60" y="711" font-size="10" fill="#6c757d">Livraison</text>
+  <text x="284" y="711" text-anchor="end" font-size="10" fill="#1a1a2e">50,00 €</text>
+  <line x1="60" y1="722" x2="280" y2="722" stroke="#dee2e6" stroke-width="1"/>
+  <text x="60" y="742" font-size="12" font-weight="700" fill="#1a1a2e">Total estimé</text>
+  <text x="284" y="742" text-anchor="end" font-size="14" font-weight="700" fill="#c8a96e">— €</text>
+  <rect x="60" y="752" width="220" height="34" rx="8" fill="#fff3cd"/>
+  <text x="170" y="768" text-anchor="middle" font-size="9" fill="#856404">Prix calculé automatiquement</text>
+  <text x="170" y="780" text-anchor="middle" font-size="9" fill="#856404">selon vos saisies</text>
+  <!-- Bouton submit -->
+  <rect x="55" y="814" width="220" height="36" rx="18" fill="#c8a96e"/>
+  <text x="165" y="836" text-anchor="middle" font-size="11" font-weight="600" fill="white">Confirmer la commande</text>
+  <rect x="30" y="868" width="280" height="20" rx="10" fill="#1a1a2e"/>
+  <text x="170" y="881" text-anchor="middle" font-size="8" fill="#6c757d">© 2024 Vite &amp; Gourmand</text>
+</svg>

@@ -1,0 +1,26 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Bienvenue, {{ user.prenom }} !</h2>
+<p>
+    Nous sommes ravis de vous accueillir dans la famille <strong>Vite &amp; Gourmand</strong>.
+    Votre compte a été créé avec succès.
+</p>
+
+<div class="info-box">
+    <div class="label">Votre identifiant</div>
+    <div class="value">{{ user.email }}</div>
+</div>
+
+<p>
+    Vous pouvez dès maintenant découvrir nos menus, passer une commande ou gérer votre profil depuis votre espace personnel.
+</p>
+
+<p style="text-align:center;">
+    <a href="{{ app.request.schemeAndHttpHost }}/compte" class="btn">Accéder à mon espace</a>
+</p>
+
+<p style="font-size:13px;color:#888;">
+    Si vous n'êtes pas à l'origine de la création de ce compte, ignorez cet email.
+</p>
+{% endblock %}

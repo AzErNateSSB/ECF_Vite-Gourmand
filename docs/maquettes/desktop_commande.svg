@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Maquette Desktop — Formulaire de commande</title>
+  <rect width="1000" height="720" fill="#f0f0f0"/>
+  <text x="500" y="18" text-anchor="middle" font-size="12" fill="#999">Maquette Desktop — Formulaire de commande (1440px)</text>
+  <rect x="20" y="25" width="960" height="680" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <rect x="20" y="25" width="960" height="28" rx="6" fill="#e9ecef"/>
+  <circle cx="38" cy="39" r="5" fill="#ff5f57"/>
+  <circle cx="54" cy="39" r="5" fill="#febc2e"/>
+  <circle cx="70" cy="39" r="5" fill="#28c840"/>
+  <rect x="180" y="31" width="640" height="16" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <text x="500" y="43" text-anchor="middle" font-size="9" fill="#adb5bd">127.0.0.1:8000/compte/commande/nouvelle</text>
+  <rect x="20" y="53" width="960" height="48" fill="#1a1a2e"/>
+  <text x="80" y="82" font-size="15" font-weight="700" fill="white">Vite &amp; Gourmand</text>
+  <text x="700" y="82" text-anchor="middle" font-size="11" fill="#adb5bd">Bonjour, Sophie</text>
+  <rect x="760" y="66" width="110" height="24" rx="12" fill="#c8a96e"/>
+  <text x="815" y="82" text-anchor="middle" font-size="11" fill="white">Passer une commande</text>
+  <rect x="880" y="66" width="85" height="24" rx="12" fill="none" stroke="#adb5bd" stroke-width="1"/>
+  <text x="922" y="82" text-anchor="middle" font-size="11" fill="#adb5bd">Déconnexion</text>
+  <rect x="20" y="101" width="960" height="44" fill="#f8f9fa"/>
+  <text x="50" y="127" font-size="11" fill="#6c757d">Mon espace &gt; Passer une commande</text>
+  <text x="500" y="127" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a2e">Nouvelle commande</text>
+  <!-- Formulaire gauche -->
+  <rect x="30" y="155" width="590" height="530" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="30" y="155" width="590" height="32" rx="8" fill="#1a1a2e"/>
+  <rect x="30" y="175" width="590" height="12" fill="#1a1a2e"/>
+  <text x="50" y="175" font-size="12" font-weight="700" fill="white">1. Choisir un menu</text>
+  <text x="50" y="210" font-size="11" fill="#495057">Menu *</text>
+  <rect x="50" y="218" width="550" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="238" font-size="11" fill="#6c757d">— Sélectionner un menu —</text>
+  <text x="584" y="238" text-anchor="end" font-size="11" fill="#6c757d">▼</text>
+  <line x1="50" y1="262" x2="600" y2="262" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="50" y="285" font-size="12" font-weight="700" fill="#1a1a2e">2. Votre événement</text>
+  <text x="50" y="308" font-size="11" fill="#495057">Nombre de personnes *</text>
+  <rect x="50" y="316" width="260" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="336" font-size="11" fill="#adb5bd">ex: 50</text>
+  <text x="330" y="308" font-size="11" fill="#495057">Date de livraison *</text>
+  <rect x="330" y="316" width="260" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="346" y="336" font-size="11" fill="#adb5bd">JJ/MM/AAAA</text>
+  <text x="50" y="368" font-size="11" fill="#495057">Heure de livraison *</text>
+  <rect x="50" y="376" width="260" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="396" font-size="11" fill="#adb5bd">HH:MM</text>
+  <line x1="50" y1="420" x2="600" y2="420" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="50" y="443" font-size="12" font-weight="700" fill="#1a1a2e">3. Adresse de livraison</text>
+  <text x="50" y="466" font-size="11" fill="#495057">Adresse *</text>
+  <rect x="50" y="474" width="550" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="494" font-size="11" fill="#adb5bd">15 rue de la Paix</text>
+  <text x="50" y="524" font-size="11" fill="#495057">Ville *</text>
+  <rect x="50" y="532" width="260" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="552" font-size="11" fill="#adb5bd">Bordeaux</text>
+  <text x="330" y="524" font-size="11" fill="#495057">Code postal *</text>
+  <rect x="330" y="532" width="260" height="32" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="346" y="552" font-size="11" fill="#adb5bd">33000</text>
+  <line x1="50" y1="576" x2="600" y2="576" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="50" y="599" font-size="11" fill="#495057">Note / instructions spéciales</text>
+  <rect x="50" y="607" width="550" height="50" rx="4" fill="white" stroke="#ced4da" stroke-width="1"/>
+  <text x="66" y="627" font-size="11" fill="#adb5bd">Allergies, préférences, accès spécifique...</text>
+  <rect x="390" y="665" width="190" height="38" rx="19" fill="#c8a96e"/>
+  <text x="485" y="688" text-anchor="middle" font-size="12" font-weight="600" fill="white">Confirmer la commande</text>
+  <!-- Récapitulatif droite -->
+  <rect x="640" y="155" width="330" height="290" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="640" y="155" width="330" height="32" rx="8" fill="#c8a96e"/>
+  <rect x="640" y="175" width="330" height="12" fill="#c8a96e"/>
+  <text x="805" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="white">Récapitulatif</text>
+  <text x="660" y="215" font-size="11" fill="#6c757d">Menu sélectionné</text>
+  <text x="660" y="235" font-size="12" font-weight="600" fill="#1a1a2e">— (à compléter) —</text>
+  <line x1="660" y1="250" x2="955" y2="250" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="660" y="272" font-size="11" fill="#6c757d">Nombre de personnes</text>
+  <text x="955" y="272" text-anchor="end" font-size="11" fill="#1a1a2e">—</text>
+  <text x="660" y="293" font-size="11" fill="#6c757d">Prix par personne</text>
+  <text x="955" y="293" text-anchor="end" font-size="11" fill="#1a1a2e">—</text>
+  <text x="660" y="314" font-size="11" fill="#6c757d">Prix du menu</text>
+  <text x="955" y="314" text-anchor="end" font-size="11" fill="#1a1a2e">—</text>
+  <text x="660" y="335" font-size="11" fill="#6c757d">Livraison</text>
+  <text x="955" y="335" text-anchor="end" font-size="11" fill="#1a1a2e">50,00 €</text>
+  <line x1="660" y1="348" x2="955" y2="348" stroke="#dee2e6" stroke-width="1"/>
+  <text x="660" y="370" font-size="13" font-weight="700" fill="#1a1a2e">Total estimé</text>
+  <text x="955" y="370" text-anchor="end" font-size="15" font-weight="700" fill="#c8a96e">— €</text>
+  <rect x="660" y="383" width="290" height="48" rx="6" fill="#fff3cd"/>
+  <text x="805" y="403" text-anchor="middle" font-size="10" fill="#856404">Le prix est calculé automatiquement</text>
+  <text x="805" y="420" text-anchor="middle" font-size="10" fill="#856404">selon vos saisies.</text>
+  <rect x="640" y="458" width="330" height="90" rx="8" fill="white" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="640" y="458" width="330" height="26" rx="8" fill="#e8f5e9"/>
+  <rect x="640" y="472" width="330" height="12" fill="#e8f5e9"/>
+  <text x="805" y="474" text-anchor="middle" font-size="11" font-weight="600" fill="#198754">Allergènes déclarés</text>
+  <text x="660" y="498" font-size="10" fill="#6c757d">Tous nos menus mentionnent les 14</text>
+  <text x="660" y="514" font-size="10" fill="#6c757d">allergènes réglementaires. Consultez</text>
+  <text x="660" y="530" font-size="10" fill="#6c757d">le détail de chaque menu.</text>
+  <rect x="640" y="560" width="330" height="80" rx="8" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1"/>
+  <text x="660" y="582" font-size="11" font-weight="600" fill="#0d6efd">Tarification</text>
+  <text x="660" y="600" font-size="10" fill="#495057">Prix menu = prix/pers × nb personnes</text>
+  <text x="660" y="616" font-size="10" fill="#495057">+ forfait livraison 50 €</text>
+  <text x="660" y="632" font-size="10" fill="#495057">Paiement à réception de devis.</text>
+</svg>

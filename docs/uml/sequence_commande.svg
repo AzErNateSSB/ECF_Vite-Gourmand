@@ -1,0 +1,106 @@
+<svg viewBox="0 0 860 700" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <rect width="860" height="700" fill="#f8f9fa"/>
+  <text x="430" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a2e">Diagramme de Séquence — Passer une commande</text>
+  <rect x="40" y="45" width="90" height="32" rx="4" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1.5"/>
+  <text x="85" y="66" text-anchor="middle" font-size="11" font-weight="600" fill="#0d6efd">Client</text>
+  <rect x="180" y="45" width="90" height="32" rx="4" fill="#f3f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+  <text x="225" y="66" text-anchor="middle" font-size="11" font-weight="600" fill="#6f42c1">Navigateur</text>
+  <rect x="320" y="45" width="100" height="32" rx="4" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
+  <text x="370" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#856404">Security</text>
+  <text x="370" y="73" text-anchor="middle" font-size="10" fill="#856404">Controller</text>
+  <rect x="460" y="45" width="100" height="32" rx="4" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
+  <text x="510" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#198754">Compte</text>
+  <text x="510" y="73" text-anchor="middle" font-size="10" fill="#198754">Controller</text>
+  <rect x="600" y="45" width="90" height="32" rx="4" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="645" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#dc3545">Doctrine</text>
+  <text x="645" y="73" text-anchor="middle" font-size="10" fill="#dc3545">ORM</text>
+  <rect x="730" y="45" width="90" height="32" rx="4" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
+  <text x="775" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#198754">MongoDB</text>
+  <text x="775" y="73" text-anchor="middle" font-size="10" fill="#198754">Stats</text>
+  <line x1="85" y1="77" x2="85" y2="670" stroke="#0d6efd" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="225" y1="77" x2="225" y2="670" stroke="#6f42c1" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="370" y1="77" x2="370" y2="670" stroke="#ffc107" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="510" y1="77" x2="510" y2="670" stroke="#198754" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="645" y1="77" x2="645" y2="670" stroke="#dc3545" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="775" y1="77" x2="775" y2="670" stroke="#198754" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="85" y1="105" x2="220" y2="105" stroke="#333" stroke-width="1.5"/>
+  <polygon points="220,101 228,105 220,109" fill="#333"/>
+  <text x="150" y="100" text-anchor="middle" font-size="10" fill="#333">GET /connexion</text>
+  <line x1="225" y1="120" x2="365" y2="120" stroke="#333" stroke-width="1.5"/>
+  <polygon points="365,116 373,120 365,124" fill="#333"/>
+  <text x="295" y="115" text-anchor="middle" font-size="10" fill="#333">route app_login</text>
+  <line x1="365" y1="138" x2="90" y2="138" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="90,134 82,138 90,142" fill="#6c757d"/>
+  <text x="220" y="133" text-anchor="middle" font-size="10" fill="#6c757d">200 formulaire connexion</text>
+  <line x1="85" y1="162" x2="220" y2="162" stroke="#333" stroke-width="1.5"/>
+  <polygon points="220,158 228,162 220,166" fill="#333"/>
+  <text x="150" y="157" text-anchor="middle" font-size="10" fill="#333">POST email + password</text>
+  <line x1="225" y1="178" x2="365" y2="178" stroke="#333" stroke-width="1.5"/>
+  <polygon points="365,174 373,178 365,182" fill="#333"/>
+  <text x="295" y="173" text-anchor="middle" font-size="10" fill="#333">vérif. CSRF + credentials</text>
+  <line x1="370" y1="196" x2="640" y2="196" stroke="#333" stroke-width="1.5"/>
+  <polygon points="640,192 648,196 640,200" fill="#333"/>
+  <text x="505" y="191" text-anchor="middle" font-size="10" fill="#333">SELECT WHERE email=?</text>
+  <line x1="640" y1="212" x2="375" y2="212" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="375,208 367,212 375,216" fill="#6c757d"/>
+  <text x="505" y="207" text-anchor="middle" font-size="10" fill="#6c757d">Utilisateur trouvé</text>
+  <line x1="370" y1="230" x2="90" y2="230" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="90,226 82,230 90,234" fill="#6c757d"/>
+  <text x="225" y="225" text-anchor="middle" font-size="10" fill="#6c757d">302 redirect /compte</text>
+  <rect x="40" y="248" width="800" height="18" rx="3" fill="#e9ecef"/>
+  <text x="430" y="261" text-anchor="middle" font-size="10" fill="#495057">Client authentifié — Session active</text>
+  <line x1="85" y1="285" x2="220" y2="285" stroke="#333" stroke-width="1.5"/>
+  <polygon points="220,281 228,285 220,289" fill="#333"/>
+  <text x="150" y="280" text-anchor="middle" font-size="10" fill="#333">GET /compte/commande/nouvelle</text>
+  <line x1="225" y1="300" x2="505" y2="300" stroke="#333" stroke-width="1.5"/>
+  <polygon points="505,296 513,300 505,304" fill="#333"/>
+  <text x="365" y="295" text-anchor="middle" font-size="10" fill="#333">route client_commande_new</text>
+  <line x1="510" y1="318" x2="640" y2="318" stroke="#333" stroke-width="1.5"/>
+  <polygon points="640,314 648,318 640,322" fill="#333"/>
+  <text x="575" y="313" text-anchor="middle" font-size="10" fill="#333">SELECT menus actifs</text>
+  <line x1="640" y1="334" x2="515" y2="334" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="515,330 507,334 515,338" fill="#6c757d"/>
+  <text x="575" y="329" text-anchor="middle" font-size="10" fill="#6c757d">liste Menu[]</text>
+  <line x1="505" y1="350" x2="90" y2="350" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="90,346 82,350 90,354" fill="#6c757d"/>
+  <text x="295" y="345" text-anchor="middle" font-size="10" fill="#6c757d">200 formulaire commande</text>
+  <line x1="85" y1="375" x2="220" y2="375" stroke="#333" stroke-width="1.5"/>
+  <polygon points="220,371 228,375 220,379" fill="#333"/>
+  <text x="150" y="370" text-anchor="middle" font-size="10" fill="#333">POST données commande</text>
+  <line x1="225" y1="390" x2="505" y2="390" stroke="#333" stroke-width="1.5"/>
+  <polygon points="505,386 513,390 505,394" fill="#333"/>
+  <text x="365" y="385" text-anchor="middle" font-size="10" fill="#333">handleRequest() + isValid()</text>
+  <rect x="490" y="405" width="40" height="20" rx="3" fill="#e8f5e9" stroke="#198754" stroke-width="1"/>
+  <text x="510" y="419" text-anchor="middle" font-size="9" fill="#198754">calcul</text>
+  <text x="400" y="418" text-anchor="middle" font-size="10" fill="#495057">prix = prixParPersonne × nb + livraison</text>
+  <line x1="510" y1="435" x2="640" y2="435" stroke="#333" stroke-width="1.5"/>
+  <polygon points="640,431 648,435 640,439" fill="#333"/>
+  <text x="575" y="430" text-anchor="middle" font-size="10" fill="#333">INSERT commande</text>
+  <line x1="640" y1="451" x2="515" y2="451" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="515,447 507,451 515,455" fill="#6c757d"/>
+  <text x="575" y="446" text-anchor="middle" font-size="10" fill="#6c757d">id généré</text>
+  <line x1="510" y1="470" x2="770" y2="470" stroke="#333" stroke-width="1.5"/>
+  <polygon points="770,466 778,470 770,474" fill="#333"/>
+  <text x="640" y="465" text-anchor="middle" font-size="10" fill="#333">enregistrerCommande()</text>
+  <rect x="490" y="478" width="300" height="38" rx="3" fill="none" stroke="#6c757d" stroke-width="1" stroke-dasharray="4,2"/>
+  <rect x="490" y="478" width="55" height="14" rx="2" fill="#6c757d"/>
+  <text x="517" y="489" text-anchor="middle" font-size="9" fill="white">alt</text>
+  <text x="640" y="502" text-anchor="middle" font-size="9" fill="#6c757d">[extension dispo] INSERT document stats</text>
+  <text x="640" y="513" text-anchor="middle" font-size="9" fill="#adb5bd">[sinon] silencieux (mode dégradé)</text>
+  <line x1="505" y1="528" x2="90" y2="528" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="90,524 82,528 90,532" fill="#6c757d"/>
+  <text x="295" y="523" text-anchor="middle" font-size="10" fill="#6c757d">302 redirect /compte + flash success</text>
+  <line x1="85" y1="552" x2="220" y2="552" stroke="#333" stroke-width="1.5"/>
+  <polygon points="220,548 228,552 220,556" fill="#333"/>
+  <text x="150" y="547" text-anchor="middle" font-size="10" fill="#333">GET /compte</text>
+  <line x1="225" y1="567" x2="505" y2="567" stroke="#333" stroke-width="1.5"/>
+  <polygon points="505,563 513,567 505,571" fill="#333"/>
+  <line x1="510" y1="582" x2="640" y2="582" stroke="#333" stroke-width="1.5"/>
+  <polygon points="640,578 648,582 640,586" fill="#333"/>
+  <text x="575" y="577" text-anchor="middle" font-size="10" fill="#333">SELECT commandes client</text>
+  <line x1="640" y1="598" x2="515" y2="598" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="515,594 507,598 515,602" fill="#6c757d"/>
+  <line x1="505" y1="618" x2="90" y2="618" stroke="#6c757d" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="90,614 82,618 90,622" fill="#6c757d"/>
+  <text x="295" y="613" text-anchor="middle" font-size="10" fill="#6c757d">200 dashboard + commande #CMD-xxx</text>
+</svg>

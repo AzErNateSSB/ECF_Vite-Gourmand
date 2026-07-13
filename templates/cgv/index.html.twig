@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conditions Générales de Vente — Vite & Gourmand{% endblock %}
+
+{% block body %}
+{% include '_navbar.html.twig' %}
+
+<main id="veg-main" style="background:#E8D1D7;min-height:80vh;">
+<div class="container py-5">
+    <div style="max-width:860px;margin:0 auto;background:#fff;border-radius:16px;padding:2.5rem 3rem;box-shadow:0 4px 24px rgba(128,0,32,.08);">
+
+        <h1 style="font-family:'Aclonica',sans-serif;color:#800020;font-size:2rem;margin-bottom:.25rem;">
+            Conditions Générales de Vente
+        </h1>
+        <p style="color:#BE7D8D;font-size:.9rem;margin-bottom:2rem;">
+            Vite &amp; Gourmand — En vigueur au {{ "now"|date("d/m/Y") }}
+        </p>
+        <div style="height:3px;background:linear-gradient(90deg,#800020,#BE7D8D);border-radius:2px;margin-bottom:2.5rem;"></div>
+
+        {% macro section(numero, titre) %}
+        <h2 style="font-family:'Aclonica',sans-serif;color:#800020;font-size:1.1rem;margin-top:2rem;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid #E8D1D7;">
+            Article {{ numero }} — {{ titre }}
+        </h2>
+        {% endmacro %}
+
+        {% import _self as m %}
+
+        {{ m.section(1, "Objet et champ d'application") }}
+        <p>
+            Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des relations contractuelles entre
+            <strong>Vite &amp; Gourmand</strong>, entreprise de traiteur événementiel dont le siège social est situé à
+            <strong>Bordeaux (33)</strong>, et tout client passant commande via le site ou en direct.
+            Toute commande implique l'acceptation pleine et entière des présentes CGV.
+        </p>
+
+        {{ m.section(2, "Prestations proposées") }}
+        <p>
+            Vite &amp; Gourmand propose des services de traiteur à domicile sous forme de menus composés
+            (entrée, plat, dessert), livrés et servis lors d'événements privés ou professionnels.
+            Les menus disponibles, leur composition et leur tarif sont décrits sur le site et peuvent évoluer
+            sans préavis.
+        </p>
+
+        {{ m.section(3, "Commande") }}
+        <p>
+            Toute commande est effectuée en ligne via l'espace client ou par contact direct avec notre équipe.
+            Elle est validée par la réception d'une confirmation écrite (e-mail) de notre part.
+            Nous nous réservons le droit de refuser toute commande ne respectant pas les présentes CGV ou
+            pour des raisons de disponibilité.
+        </p>
+        <p>
+            Le client doit renseigner avec exactitude ses coordonnées, l'adresse de livraison, la date et
+            l'heure de la prestation ainsi que le nombre de personnes. Toute erreur dans ces informations
+            est de la responsabilité exclusive du client.
+        </p>
+
+        {{ m.section(4, "Délais de commande") }}
+        <p>
+            Sauf mention contraire sur la fiche du menu, les commandes doivent être passées au minimum :
+        </p>
+        <ul style="margin-left:1.5rem;line-height:2;">
+            <li><strong>48 heures</strong> avant la prestation pour les menus standards.</li>
+            <li><strong>5 jours ouvrés</strong> avant la prestation pour les menus avec préparation spécifique.</li>
+            <li><strong>7 jours calendaires</strong> pour les commandes de plus de 20 personnes.</li>
+        </ul>
+
+        {{ m.section(5, "Tarifs et modalités de paiement") }}
+        <p>
+            Les tarifs sont indiqués en euros TTC sur le site. Le prix total comprend :
+        </p>
+        <ul style="margin-left:1.5rem;line-height:2;">
+            <li>Le prix du menu (par personne × nombre de personnes)</li>
+            <li>Les frais de livraison : <strong>5 € de base + 0,59 € par km</strong> si la livraison est effectuée hors de Bordeaux</li>
+            <li>Une réduction de <strong>10 %</strong> sur le prix du menu est accordée lorsque le nombre de personnes dépasse de plus de 5 le minimum du menu</li>
+        </ul>
+        <p>
+            Le paiement est exigible à la confirmation de commande selon les modalités convenues avec notre équipe
+            (virement bancaire, chèque ou espèces à la livraison).
+        </p>
+
+        {{ m.section(6, "Annulation et modification") }}
+        <p>
+            Le client peut annuler ou modifier sa commande <strong>tant que le statut est « En attente »</strong>,
+            directement depuis son espace personnel. Au-delà, toute annulation ou modification doit être
+            formulée par écrit (e-mail) et est soumise à notre validation.
+        </p>
+        <p>En cas d'annulation :</p>
+        <ul style="margin-left:1.5rem;line-height:2;">
+            <li>Plus de 5 jours avant la prestation : <strong>aucun frais</strong>.</li>
+            <li>Entre 2 et 5 jours avant la prestation : <strong>30 % du montant total</strong> seront retenus.</li>
+            <li>Moins de 48 heures avant la prestation : <strong>100 % du montant total</strong> sera dû.</li>
+        </ul>
+        <p>
+            Vite &amp; Gourmand se réserve le droit d'annuler une commande pour des raisons indépendantes de
+            sa volonté (force majeure, indisponibilité). Le client en sera informé dans les meilleurs délais
+            et ne sera pas facturé.
+        </p>
+
+        {{ m.section(7, "Livraison") }}
+        <p>
+            La livraison est effectuée à l'adresse indiquée lors de la commande. Il appartient au client
+            de s'assurer de l'accessibilité des lieux à la date et l'heure convenues. En cas d'absence
+            ou d'adresse erronée, les frais supplémentaires éventuels seront à la charge du client.
+        </p>
+
+        {{ m.section(8, "Prêt de matériel") }}
+        <p>
+            Vite &amp; Gourmand peut mettre à disposition du matériel (tables, chaises, vaisselle, etc.)
+            lors de la prestation. Ce matériel reste la propriété exclusive de Vite &amp; Gourmand.
+        </p>
+        <p>
+            Le matériel prêté doit être restitué dans un état correct dans un délai de
+            <strong>10 jours ouvrés</strong> suivant la date de la prestation.
+            En cas de non-restitution ou de détérioration constatée, une pénalité forfaitaire de
+            <strong>600 €</strong> sera appliquée et facturée au client.
+        </p>
+
+        {{ m.section(9, "Responsabilité") }}
+        <p>
+            Vite &amp; Gourmand s'engage à préparer les plats dans le respect des normes d'hygiène et
+            de sécurité alimentaire en vigueur (HACCP). Notre responsabilité ne saurait être engagée
+            en cas d'allergie non signalée préalablement à la commande.
+            Le client est responsable d'informer Vite &amp; Gourmand de tout régime alimentaire particulier
+            ou allergie lors de la commande.
+        </p>
+
+        {{ m.section(10, "Avis clients") }}
+        <p>
+            À l'issue de la prestation, le client peut déposer un avis via son espace personnel.
+            Les avis sont soumis à validation par notre équipe avant publication.
+            Vite &amp; Gourmand se réserve le droit de ne pas publier tout avis contenant des propos
+            injurieux, diffamatoires ou sans rapport avec la prestation.
+        </p>
+
+        {{ m.section(11, "Données personnelles") }}
+        <p>
+            Les données collectées lors de la commande sont utilisées exclusivement dans le cadre de
+            la relation commerciale. Conformément au RGPD, le client dispose d'un droit d'accès,
+            de rectification et de suppression de ses données en contactant :
+            <a href="mailto:contact@viteetgourmand.fr" style="color:#800020;">contact@viteetgourmand.fr</a>.
+        </p>
+
+        {{ m.section(12, "Droit applicable et litiges") }}
+        <p>
+            Les présentes CGV sont soumises au droit français. En cas de litige, les parties s'engagent
+            à rechercher une solution amiable avant tout recours judiciaire.
+            À défaut, le litige sera porté devant les tribunaux compétents de <strong>Bordeaux</strong>.
+        </p>
+
+        <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid #E8D1D7;text-align:center;color:#999;font-size:.82rem;">
+            Vite &amp; Gourmand · Bordeaux · contact@viteetgourmand.fr · 05 56 00 00 00
+        </div>
+
+    </div>
+</div>
+</main>
+
+{% include '_footer.html.twig' %}
+{% endblock %}

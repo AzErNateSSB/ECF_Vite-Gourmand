@@ -1,0 +1,194 @@
+<section class="commande-page">
+    <div class="container py-5">
+
+        <!-- Stepper -->
+        <div class="commande-stepper" id="commande-stepper">
+            <div class="commande-stepper__step active" data-step="1">
+                <div class="commande-stepper__circle">1</div>
+                <span class="commande-stepper__label">Informations</span>
+            </div>
+            <div class="commande-stepper__line"></div>
+            <div class="commande-stepper__step" data-step="2">
+                <div class="commande-stepper__circle">2</div>
+                <span class="commande-stepper__label">Menu</span>
+            </div>
+            <div class="commande-stepper__line"></div>
+            <div class="commande-stepper__step" data-step="3">
+                <div class="commande-stepper__circle">3</div>
+                <span class="commande-stepper__label">Récapitulatif</span>
+            </div>
+        </div>
+
+        <div class="commande-card">
+
+            <!-- ── ÉTAPE 1 : Informations ──────────────────────────────── -->
+            <div class="commande-step" id="step-1">
+                <h2 class="commande-card__title">Informations de prestation</h2>
+
+                <div class="auth-alert auth-alert--error" id="step1-error" style="display:none;"></div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-prenom">Prénom</label>
+                        <input class="auth-field__input" type="text" id="cmd-prenom" required>
+                        <span class="auth-field__error" id="err-cmd-prenom"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-nom">Nom</label>
+                        <input class="auth-field__input" type="text" id="cmd-nom" required>
+                        <span class="auth-field__error" id="err-cmd-nom"></span>
+                    </div>
+                </div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-email">E-mail</label>
+                        <input class="auth-field__input" type="email" id="cmd-email" required>
+                        <span class="auth-field__error" id="err-cmd-email"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-gsm">Téléphone</label>
+                        <input class="auth-field__input" type="tel" id="cmd-gsm" required>
+                        <span class="auth-field__error" id="err-cmd-gsm"></span>
+                    </div>
+                </div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="cmd-adresse">Adresse de prestation</label>
+                    <input class="auth-field__input" type="text" id="cmd-adresse" placeholder="12 rue des Vignes" required>
+                    <span class="auth-field__error" id="err-cmd-adresse"></span>
+                </div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-ville">Ville</label>
+                        <input class="auth-field__input" type="text" id="cmd-ville" placeholder="Bordeaux" required>
+                        <span class="auth-field__error" id="err-cmd-ville"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-cp">Code postal</label>
+                        <input class="auth-field__input" type="text" id="cmd-cp" placeholder="33000" required>
+                        <span class="auth-field__error" id="err-cmd-cp"></span>
+                    </div>
+                </div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-date">Date de prestation</label>
+                        <input class="auth-field__input" type="date" id="cmd-date" required>
+                        <span class="auth-field__error" id="err-cmd-date"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="cmd-heure">Heure souhaitée</label>
+                        <input class="auth-field__input" type="time" id="cmd-heure" required>
+                        <span class="auth-field__error" id="err-cmd-heure"></span>
+                    </div>
+                </div>
+
+                <div class="commande-card__actions">
+                    <button class="auth-btn" id="step1-next">
+                        Suivant <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── ÉTAPE 2 : Menu ─────────────────────────────────────── -->
+            <div class="commande-step" id="step-2" style="display:none;">
+                <h2 class="commande-card__title">Choix du menu</h2>
+
+                <div class="auth-alert auth-alert--error" id="step2-error" style="display:none;"></div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="cmd-menu">Menu</label>
+                    <select class="auth-field__input commande-select" id="cmd-menu" required>
+                        <option value="">— Sélectionnez un menu —</option>
+                        <option value="delice"     data-price="32.50" data-min="10" data-max="150">Menu Délice — 32,50 € / plat (min. 10)</option>
+                        <option value="gourmand"   data-price="36.90" data-min="10" data-max="150">Menu Gourmand — 36,90 € / plat (min. 10)</option>
+                        <option value="prestige"   data-price="49.90" data-min="20" data-max="100">Menu Prestige — 49,90 € / plat (min. 20)</option>
+                        <option value="vegetarien" data-price="28.50" data-min="10" data-max="150">Menu Végétarien — 28,50 € / plat (min. 10)</option>
+                        <option value="cocktail"   data-price="24.90" data-min="20" data-max="300">Menu Cocktail — 24,90 € / plat (min. 20)</option>
+                        <option value="mer"        data-price="44.90" data-min="15" data-max="100">Menu Mer — 44,90 € / plat (min. 15)</option>
+                        <option value="terroir"    data-price="34.50" data-min="10" data-max="150">Menu Terroir — 34,50 € / plat (min. 10)</option>
+                        <option value="enfants"    data-price="16.90" data-min="5"  data-max="80" >Menu Enfants — 16,90 € / plat (min. 5)</option>
+                        <option value="brunch"     data-price="22.00" data-min="15" data-max="200">Menu Brunch — 22,00 € / plat (min. 15)</option>
+                        <option value="fusion"     data-price="38.90" data-min="10" data-max="100">Menu Fusion — 38,90 € / plat (min. 10)</option>
+                        <option value="ete"        data-price="31.00" data-min="15" data-max="150">Menu Été — 31,00 € / plat (min. 15)</option>
+                        <option value="luxe"       data-price="89.00" data-min="20" data-max="50" >Menu Luxe — 89,00 € / plat (min. 20)</option>
+                    </select>
+                    <span class="auth-field__error" id="err-cmd-menu"></span>
+                </div>
+
+                <div class="auth-field" id="qty-field" style="display:none;">
+                    <label class="auth-field__label">Nombre de plats</label>
+                    <div class="commande-qty">
+                        <button type="button" class="persons-btn" id="cmd-qty-minus"><i class="bi bi-dash"></i></button>
+                        <span class="commande-qty__val" id="cmd-qty-val">—</span>
+                        <button type="button" class="persons-btn" id="cmd-qty-plus"><i class="bi bi-plus"></i></button>
+                    </div>
+                    <span class="auth-field__error" id="err-cmd-qty"></span>
+                </div>
+
+                <!-- Résumé prix menu -->
+                <div class="commande-price-box" id="price-box" style="display:none;">
+                    <div class="commande-price-box__row">
+                        <span>Prix unitaire</span>
+                        <strong id="pb-unit">—</strong>
+                    </div>
+                    <div class="commande-price-box__row">
+                        <span>Nombre de plats</span>
+                        <strong id="pb-qty">—</strong>
+                    </div>
+                    <div class="commande-price-box__row commande-price-box__row--discount" id="pb-discount-row" style="display:none;">
+                        <span><i class="bi bi-tag-fill"></i> Réduction −10%</span>
+                        <strong id="pb-discount">—</strong>
+                    </div>
+                    <hr class="commande-price-box__sep">
+                    <div class="commande-price-box__row commande-price-box__row--total">
+                        <span>Sous-total menu</span>
+                        <strong id="pb-total">—</strong>
+                    </div>
+                    <p class="commande-price-box__hint" id="pb-discount-hint"></p>
+                </div>
+
+                <div class="commande-card__actions commande-card__actions--spaced">
+                    <button class="auth-btn auth-btn--secondary" id="step2-back">
+                        <i class="bi bi-arrow-left"></i> Retour
+                    </button>
+                    <button class="auth-btn" id="step2-next">
+                        Suivant <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── ÉTAPE 3 : Récapitulatif ────────────────────────────── -->
+            <div class="commande-step" id="step-3" style="display:none;">
+                <h2 class="commande-card__title">Récapitulatif de la commande</h2>
+
+                <div class="commande-recap" id="recap-content"></div>
+
+                <div class="commande-card__actions commande-card__actions--spaced">
+                    <button class="auth-btn auth-btn--secondary" id="step3-back">
+                        <i class="bi bi-arrow-left"></i> Retour
+                    </button>
+                    <button class="auth-btn" id="step3-confirm">
+                        <i class="bi bi-check-circle"></i> Confirmer la commande
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── SUCCÈS ──────────────────────────────────────────────── -->
+            <div class="commande-step commande-success" id="step-success" style="display:none;">
+                <div class="commande-success__icon"><i class="bi bi-check-circle-fill"></i></div>
+                <h2 class="commande-success__title">Commande confirmée !</h2>
+                <p class="commande-success__text" style="text-align:center;">
+                    Un e-mail de confirmation vous a été envoyé à <strong id="success-email"></strong>.<br>
+                    Merci de votre confiance — l'équipe Vite &amp; Gourmand vous contactera prochainement.
+                </p>
+                <a href="/menus" onclick="route(event)" class="auth-btn" style="max-width:260px; margin:0 auto;">
+                    <i class="bi bi-grid"></i> Retour aux menus
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>

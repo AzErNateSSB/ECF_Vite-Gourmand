@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ menu.titre }}{% endblock %}
+
+{% block body %}
+{% include '_navbar.html.twig' %}
+
+<main id="veg-main">
+
+{# ── FIL D'ARIANE ─────────────────────────────────────────────────────────── #}
+<div style="background:var(--veg-dark);" class="py-2 px-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0" style="font-size:.85rem;">
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_home') }}" class="text-white-50 text-decoration-none">Accueil</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_menus') }}" class="text-white-50 text-decoration-none">Nos Menus</a>
+            </li>
+            <li class="breadcrumb-item active text-white">{{ menu.titre }}</li>
+        </ol>
+    </nav>
+</div>
+
+{# ── DÉTAIL DU MENU ──────────────────────────────────────────────────────── #}
+<section class="py-5" style="background-color:var(--veg-secondary);">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+
+            <div class="col-12 col-lg-5">
+                <div class="rounded overflow-hidden shadow"
+                     style="background:#ddc5cb;aspect-ratio:4/3;">
+                    {% set image = menu.menuImages|first %}
+                    {% if image %}
+                        <img src="{{ asset('images/menus/' ~ image.chemin) }}"
+                             alt="{{ menu.titre }}" class="w-100 h-100" style="object-fit:cover;"
+                             onerror="this.style.display='none'">
+                    {% else %}
+                        <div class="w-100 h-100 d-flex align-items-center justify-content-center"
+                             style="color:var(--veg-dark);font-size:5rem;">
+                            <i class="bi bi-egg-fried"></i>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-7">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    {% if menu.theme %}
+                        <span class="badge rounded-pill"
+                              style="background:var(--veg-dark);color:#fff;font-size:.75rem;">
+                            {{ menu.theme.libelle }}
+                        </span>
+                    {% endif %}
+                    {% for regime in menu.regimes %}
+                        <span class="badge rounded-pill"
+                              style="background:#d4edda;color:#155724;font-size:.75rem;">
+                            {{ regime.libelle }}
+                        </span>
+                    {% endfor %}
+                </div>
+
+                <h1 class="mb-3" style="font-family:'Aclonica',sans-serif;color:var(--veg-dark);">
+                    {{ menu.titre }}
+                </h1>
+
+                <p class="mb-4">{{ menu.description }}</p>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-sm-4">
+                        <div class="bg-white rounded p-3 text-center shadow-sm">
+                            <div class="fw-bold fs-5" style="color:var(--veg-dark);">
+                                {{ menu.prixParPersonne|number_format(2, ',', ' ') }} €
+                            </div>
+                            <div class="text-muted small">par personne</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="bg-white rounded p-3 text-center shadow-sm">
+                            <div class="fw-bold fs-5" style="color:var(--veg-dark);">
+                                {{ menu.nombrePersonneMinimum }}
+                            </div>
+                            <div class="text-muted small">personnes min.</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="bg-white rounded p-3 text-center shadow-sm">
+                            <div class="fw-bold fs-5"
+                                 style="color:{% if menu.quantiteRestante > 5 %}var(--veg-dark){% elseif menu.quantiteRestante > 0 %}#856404{% else %}#dc3545{% endif %};">
+                                {{ menu.quantiteRestante }}
+                            </div>
+                            <div class="text-muted small">disponible(s)</div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if menu.conditions %}
+                <div class="alert alert-light border mb-4"
+                     style="border-color:var(--veg-secondary)!important;">
+                    <i class="bi bi-info-circle-fill me-2" style="color:var(--veg-primary);"></i>
+                    {{ menu.conditions }}
+                </div>
+                {% endif %}
+
+                <div class="d-flex gap-3">
+                    {% if menu.quantiteRestante > 0 %}
+                        <a href="{{ app.user ? path('client_commande_new', {menu: menu.id}) : path('app_login') }}"
+                           class="menu-card__btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;">
+                            <i class="bi bi-cart3"></i>Commander ce menu
+                        </a>
+                    {% else %}
+                        <span class="menu-card__btn" style="opacity:.5;cursor:default;">Indisponible</span>
+                    {% endif %}
+                    <a href="{{ path('app_menus') }}"
+                       class="btn btn-outline-secondary rounded-pill px-4">
+                        ← Retour aux menus
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% if menu.plats|length > 0 %}
+        <div class="mt-5">
+            <h2 class="mb-4" style="font-family:'Aclonica',sans-serif;color:var(--veg-dark);">
+                Composition du menu
+            </h2>
+            <div class="row g-3">
+                {% set types = {'entree': 'Entrée', 'plat': 'Plat', 'dessert': 'Dessert'} %}
+                {% set type_colors = {
+                    'entree':  {bg: '#d4edda', txt: '#155724'},
+                    'plat':    {bg: '#e8d1d7', txt: '#800020'},
+                    'dessert': {bg: '#f8d7da', txt: '#721c24'}
+                } %}
+                {% for type, label in types %}
+                    {% set plats_type = menu.plats|filter(p => p.typePlat == type) %}
+                    {% if plats_type|length > 0 %}
+                    <div class="col-12 col-md-4">
+                        <div class="bg-white rounded p-3 shadow-sm h-100">
+                            <h6 class="fw-bold mb-3">
+                                <span class="badge rounded-pill me-2"
+                                      style="background:{{ type_colors[type].bg }};color:{{ type_colors[type].txt }};">
+                                    {{ label }}
+                                </span>
+                            </h6>
+                            <ul class="list-unstyled mb-0">
+                                {% for plat in plats_type %}
+                                <li class="mb-2">
+                                    <div class="fw-semibold">{{ plat.titre }}</div>
+                                    {% if plat.allergenes|length > 0 %}
+                                    <div class="mt-1">
+                                        {% for a in plat.allergenes %}
+                                            <span class="badge me-1"
+                                                  style="background:#fff3cd;color:#856404;border:1px solid #ffc107;font-size:.65rem;">
+                                                {{ a.libelle }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+</main>
+
+{% include '_footer.html.twig' %}
+{% endblock %}

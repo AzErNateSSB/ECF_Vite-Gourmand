@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "symfony-veg",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "127.0.0.1:8001", "-t", "public"],
+      "port": 8001
+    },
+    {
+      "name": "veg-front",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "127.0.0.1:8080"],
+      "port": 8080
+    }
+  ]
+}

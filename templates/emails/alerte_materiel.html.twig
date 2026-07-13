@@ -1,0 +1,32 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Retour du matériel requis</h2>
+<p>Bonjour {{ user.prenom }},</p>
+<p>
+    Suite à votre prestation du <strong>{{ commande.datePrestation|date('d/m/Y') }}</strong>, nous vous rappelons que
+    le matériel prêté doit être restitué dans un délai de <strong>10 jours ouvrés</strong>.
+</p>
+
+<div class="info-box">
+    <div class="label">Commande concernée</div>
+    <div class="value">{{ commande.numeroCommande }}</div>
+    <div class="label">À retourner avant le</div>
+    <div class="value" style="color:#800020;font-weight:bold;">
+        {{ commande.datePrestation|date_modify('+14 days')|date('d/m/Y') }}
+    </div>
+</div>
+
+<p>
+    Sans retour dans ce délai, une <strong>pénalité de 600 €</strong> pourra être appliquée conformément à nos conditions générales de vente.
+</p>
+
+<p>
+    Pour organiser le retour ou poser une question, contactez-nous :
+    <a href="mailto:contact@vitegourmand.fr">contact@vitegourmand.fr</a>
+</p>
+
+<p style="font-size:13px;color:#888;margin-top:24px;">
+    Cordialement, l'équipe Vite &amp; Gourmand.
+</p>
+{% endblock %}

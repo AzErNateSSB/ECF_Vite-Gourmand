@@ -1,0 +1,119 @@
+{% extends 'admin/layout.html.twig' %}
+{% block title %}Statistiques{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Statistiques <small class="text-muted fs-6">(données MongoDB)</small></h2>
+
+{% if not stats.disponible %}
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle"></i>
+        <strong>MongoDB indisponible</strong> — L'extension PHP mongodb n'est pas compatible avec PHP 8.5 sur Windows pour l'instant.
+        Les statistiques seront actives dès qu'une version compatible sera disponible.
+        Le code d'intégration est en place dans <code>src/Service/StatistiqueService.php</code>.
+    </div>
+{% endif %}
+
+{# KPIs #}
+<div class="row g-4 mb-5">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary shadow-sm">
+            <div class="card-body">
+                <div class="fs-2 fw-bold">{{ stats.total_commandes }}</div>
+                <div>Commandes totales</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success shadow-sm">
+            <div class="card-body">
+                <div class="fs-2 fw-bold">{{ stats.chiffre_affaires|number_format(2, ',', ' ') }} €</div>
+                <div>Chiffre d'affaires</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning shadow-sm">
+            <div class="card-body">
+                <div class="fs-2 fw-bold">{{ stats.moyenne_panier|number_format(2, ',', ' ') }} €</div>
+                <div>Panier moyen</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info shadow-sm">
+            <div class="card-body">
+                <div class="fs-2 fw-bold">{{ stats.total_personnes }}</div>
+                <div>Personnes servies</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    {# Top menus #}
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-bold"><i class="bi bi-trophy"></i> Top 5 menus</div>
+            <div class="card-body p-0">
+                {% if stats.top_menus is empty %}
+                    <p class="text-muted text-center py-3">Aucune donnée.</p>
+                {% else %}
+                    <ul class="list-group list-group-flush">
+                    {% for menu in stats.top_menus %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ menu._id }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ menu.count }}</span>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# Top villes #}
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-bold"><i class="bi bi-geo-alt"></i> Top 5 villes</div>
+            <div class="card-body p-0">
+                {% if stats.top_villes is empty %}
+                    <p class="text-muted text-center py-3">Aucune donnée.</p>
+                {% else %}
+                    <ul class="list-group list-group-flush">
+                    {% for ville in stats.top_villes %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ ville._id }}</span>
+                            <span class="badge bg-success rounded-pill">{{ ville.count }}</span>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# Commandes par mois #}
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-bold"><i class="bi bi-calendar3"></i> 6 derniers mois</div>
+            <div class="card-body p-0">
+                {% if stats.par_mois is empty %}
+                    <p class="text-muted text-center py-3">Aucune donnée.</p>
+                {% else %}
+                    <ul class="list-group list-group-flush">
+                    {% for mois in stats.par_mois %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <strong>{{ mois._id }}</strong>
+                                <span class="badge bg-secondary">{{ mois.count }} cmd</span>
+                            </div>
+                            <small class="text-muted">{{ mois.revenu|number_format(2, ',', ' ') }} €</small>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'admin/layout.html.twig' %}
+{% block title %}Commandes{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Commandes</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover bg-white rounded shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Menu</th>
+                <th>Date</th>
+                <th>Personnes</th>
+                <th>Total</th>
+                <th>Statut</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.utilisateur.prenom }} {{ commande.utilisateur.nom }}</td>
+                <td>{{ commande.menu ? commande.menu.titre : '—' }}</td>
+                <td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+                <td>{{ commande.nombrePersonne }}</td>
+                <td>{{ commande.prixTotal|number_format(2, ',', ' ') }} €</td>
+                <td>
+                    <span class="badge
+                        {% if commande.statut == 'en_attente' %}bg-warning text-dark
+                        {% elseif commande.statut == 'confirmee' %}bg-info
+                        {% elseif commande.statut == 'en_preparation' %}bg-primary
+                        {% elseif commande.statut == 'prete' %}bg-success
+                        {% elseif commande.statut == 'livree' %}bg-secondary
+                        {% else %}bg-danger{% endif %}">
+                        {{ commande.statut|replace({'_': ' '}) }}
+                    </span>
+                </td>
+                <td>
+                    <a href="{{ path('admin_commande_show', {id: commande.id}) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="8" class="text-center text-muted">Aucune commande.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

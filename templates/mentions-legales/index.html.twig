@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions Légales — Vite & Gourmand{% endblock %}
+
+{% block body %}
+{% include '_navbar.html.twig' %}
+
+<main id="veg-main">
+<section class="mentions-page">
+    <div class="container py-5">
+        <div class="mentions-card">
+
+            <h1 class="mentions-card__title">Mentions Légales</h1>
+            <p class="mentions-card__update">Dernière mise à jour : juillet 2026</p>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">1. Éditeur du site</h2>
+                <p>
+                    Le site <strong>Vite &amp; Gourmand</strong> est édité par la société :<br><br>
+                    <strong>Vite &amp; Gourmand SAS</strong><br>
+                    Siège social : 12 Allée des Saveurs, 33000 Bordeaux, France<br>
+                    SIRET : 123 456 789 00012<br>
+                    Capital social : 10 000 €<br>
+                    Téléphone : 05 56 00 00 00<br>
+                    E-mail : <a href="mailto:contact@viteetgourmand.fr">contact@viteetgourmand.fr</a>
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">2. Directeur de la publication</h2>
+                <p>
+                    Le directeur de la publication est le représentant légal de la société Vite &amp; Gourmand SAS.
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">3. Hébergement</h2>
+                <p>
+                    Ce site est hébergé par :<br><br>
+                    <strong>OVHcloud</strong><br>
+                    2 rue Kellermann, 59100 Roubaix, France<br>
+                    Téléphone : 1007<br>
+                    Site web : <a href="https://www.ovhcloud.com" target="_blank" rel="noopener">www.ovhcloud.com</a>
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">4. Propriété intellectuelle</h2>
+                <p>
+                    L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.) est la propriété
+                    exclusive de la société Vite &amp; Gourmand SAS, sauf mention contraire. Toute reproduction,
+                    distribution, modification ou utilisation sans autorisation écrite préalable est strictement
+                    interdite et constitue une contrefaçon sanctionnée par le Code de la propriété intellectuelle.
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">5. Protection des données personnelles (RGPD)</h2>
+                <p>
+                    Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique
+                    et Libertés, vous disposez des droits suivants sur vos données personnelles :
+                </p>
+                <ul class="mentions-list">
+                    <li><strong>Droit d'accès</strong> — obtenir une copie des données vous concernant</li>
+                    <li><strong>Droit de rectification</strong> — corriger des données inexactes</li>
+                    <li><strong>Droit à l'effacement</strong> — demander la suppression de vos données</li>
+                    <li><strong>Droit d'opposition</strong> — vous opposer au traitement de vos données</li>
+                    <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format structuré</li>
+                </ul>
+                <p>
+                    Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@viteetgourmand.fr">contact@viteetgourmand.fr</a><br>
+                    Vous pouvez également adresser une réclamation à la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">6. Cookies</h2>
+                <p>
+                    Ce site utilise des données de session pour le fonctionnement du compte utilisateur.
+                    Aucun cookie publicitaire ou de traçage tiers n'est utilisé.
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">7. Responsabilité</h2>
+                <p>
+                    Vite &amp; Gourmand SAS s'efforce de maintenir les informations de ce site à jour et exactes,
+                    mais ne peut garantir l'exactitude, la complétude ou l'actualité des informations diffusées.
+                    L'utilisation des informations et contenus disponibles sur ce site se fait sous l'entière
+                    responsabilité de l'utilisateur.
+                </p>
+            </div>
+
+            <div class="mentions-section">
+                <h2 class="mentions-section__title">8. Droit applicable</h2>
+                <p>
+                    Le présent site et ses mentions légales sont soumis au droit français. En cas de litige,
+                    et après échec de toute tentative de résolution amiable, les tribunaux français seront seuls compétents.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include '_footer.html.twig' %}
+{% endblock %}

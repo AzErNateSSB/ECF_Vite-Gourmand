@@ -1,0 +1,435 @@
+{% extends 'client/layout.html.twig' %}
+
+{% block title %}Mon compte — Vite & Gourmand{% endblock %}
+
+{% block client_content %}
+<section class="account-page">
+    <div class="container py-5">
+
+        {# ── EN-TÊTE COMPTE ──────────────────────────────────────────── #}
+        <div class="account-header">
+            <div class="account-header__avatar">
+                {{ app.user.prenom|slice(0,1)|upper }}{{ app.user.nom|slice(0,1)|upper }}
+            </div>
+            <div>
+                <h1 class="account-header__name">{{ app.user.prenom }} {{ app.user.nom }}</h1>
+                <p class="account-header__email">{{ app.user.email }}</p>
+            </div>
+        </div>
+
+        {# ── ONGLETS ─────────────────────────────────────────────────── #}
+        <div class="account-tabs" id="account-tabs">
+            <button class="account-tabs__btn active" data-tab="profil">
+                <i class="bi bi-person-fill"></i> Mon profil
+            </button>
+            <button class="account-tabs__btn" data-tab="commandes">
+                <i class="bi bi-bag-fill"></i> Mes commandes
+            </button>
+            <button class="account-tabs__btn" data-tab="avis">
+                <i class="bi bi-star-fill"></i> Mes avis
+            </button>
+        </div>
+
+        {# ── ONGLET PROFIL ────────────────────────────────────────────── #}
+        <div class="account-panel active" id="tab-profil">
+
+            <div class="account-card">
+                <h2 class="account-card__title">Informations personnelles</h2>
+
+                <form method="post" action="{{ path('client_profil_update') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('profil_update') }}">
+
+                    <div class="auth-row">
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-prenom">Prénom</label>
+                            <input class="auth-field__input" type="text" id="profil-prenom"
+                                   name="prenom" value="{{ app.user.prenom }}" required>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-nom">Nom</label>
+                            <input class="auth-field__input" type="text" id="profil-nom"
+                                   name="nom" value="{{ app.user.nom }}" required>
+                        </div>
+                    </div>
+
+                    <div class="auth-row">
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-email">E-mail</label>
+                            <input class="auth-field__input" type="email" id="profil-email"
+                                   name="email" value="{{ app.user.email }}" required>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-gsm">Téléphone</label>
+                            <input class="auth-field__input" type="tel" id="profil-gsm"
+                                   name="telephone" value="{{ app.user.telephone }}">
+                        </div>
+                    </div>
+
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="profil-adresse">Adresse</label>
+                        <input class="auth-field__input" type="text" id="profil-adresse"
+                               name="adresse" value="{{ app.user.adresse }}"
+                               placeholder="12 rue des Vignes">
+                    </div>
+
+                    <div class="auth-row">
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-cp">Code postal</label>
+                            <input class="auth-field__input" type="text" id="profil-cp"
+                                   name="adressePostale" value="{{ app.user.adressePostale }}">
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="profil-ville">Ville</label>
+                            <input class="auth-field__input" type="text" id="profil-ville"
+                                   name="ville" value="{{ app.user.ville }}">
+                        </div>
+                    </div>
+
+                    <div class="account-card__actions">
+                        <button type="submit" class="auth-btn">
+                            <i class="bi bi-floppy-fill"></i> Enregistrer les modifications
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="account-card" style="margin-top:1.25rem;">
+                <h2 class="account-card__title">Changer le mot de passe</h2>
+
+                <form method="post" action="{{ path('client_password_update') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('password_update') }}">
+
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="pwd-current">Mot de passe actuel</label>
+                        <div class="auth-field__input-wrap">
+                            <input class="auth-field__input" type="password" id="pwd-current"
+                                   name="currentPassword">
+                            <button type="button" class="auth-field__eye" data-target="pwd-current">
+                                <i class="bi bi-eye-slash" id="eye-pwd-current"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-row">
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="pwd-new">Nouveau mot de passe</label>
+                            <div class="auth-field__input-wrap">
+                                <input class="auth-field__input" type="password" id="pwd-new"
+                                       name="newPassword">
+                                <button type="button" class="auth-field__eye" data-target="pwd-new">
+                                    <i class="bi bi-eye-slash" id="eye-pwd-new"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="pwd-confirm">Confirmer</label>
+                            <div class="auth-field__input-wrap">
+                                <input class="auth-field__input" type="password" id="pwd-confirm"
+                                       name="confirmPassword">
+                                <button type="button" class="auth-field__eye" data-target="pwd-confirm">
+                                    <i class="bi bi-eye-slash" id="eye-pwd-confirm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="account-card__actions">
+                        <button type="submit" class="auth-btn">
+                            <i class="bi bi-shield-lock-fill"></i> Changer le mot de passe
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        {# ── ONGLET COMMANDES ─────────────────────────────────────────── #}
+        <div class="account-panel" id="tab-commandes" style="display:none;">
+            <div class="account-card">
+                <h2 class="account-card__title">Mes commandes</h2>
+
+                {% if commandes is empty %}
+                    <div class="text-center py-4" style="color:var(--veg-primary);">
+                        <i class="bi bi-bag" style="font-size:2.5rem;display:block;margin-bottom:.75rem;"></i>
+                        <p class="mb-3 text-muted">Aucune commande pour l'instant.</p>
+                        <a href="{{ path('app_menus') }}" class="auth-btn" style="max-width:240px;margin:0 auto;text-decoration:none;">
+                            Découvrir nos menus
+                        </a>
+                    </div>
+                {% else %}
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%;border-collapse:collapse;font-size:.9rem;">
+                            <thead>
+                                <tr style="border-bottom:2px solid var(--veg-secondary);">
+                                    <th style="padding:.6rem .75rem;text-align:left;">Numéro</th>
+                                    <th style="padding:.6rem .75rem;text-align:left;">Menu</th>
+                                    <th style="padding:.6rem .75rem;text-align:left;">Date événement</th>
+                                    <th style="padding:.6rem .75rem;text-align:right;">Total</th>
+                                    <th style="padding:.6rem .75rem;text-align:center;">Statut</th>
+                                    <th style="padding:.6rem .75rem;text-align:center;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for commande in commandes %}
+                                <tr style="border-bottom:1px solid #f0e4e8;">
+                                    <td style="padding:.6rem .75rem;color:#999;font-size:.8rem;">
+                                        {{ commande.numeroCommande }}
+                                    </td>
+                                    <td style="padding:.6rem .75rem;font-weight:600;">
+                                        {{ commande.menu ? commande.menu.titre : '—' }}
+                                    </td>
+                                    <td style="padding:.6rem .75rem;">
+                                        {{ commande.datePrestation|date('d/m/Y') }}
+                                    </td>
+                                    <td style="padding:.6rem .75rem;text-align:right;color:var(--veg-dark);font-weight:700;">
+                                        {{ commande.prixTotal|number_format(2, ',', ' ') }} €
+                                    </td>
+                                    <td style="padding:.6rem .75rem;text-align:center;">
+                                        {% set statutLabels = {
+                                            'en_attente': 'En attente',
+                                            'confirmee': 'Confirmée',
+                                            'en_preparation': 'En préparation',
+                                            'prete': 'Prête',
+                                            'en_cours_de_livraison': 'En livraison',
+                                            'livree': 'Livrée',
+                                            'en_attente_retour_materiel': 'Retour matériel',
+                                            'terminee': 'Terminée',
+                                            'annulee': 'Annulée'
+                                        } %}
+                                        <span style="
+                                            display:inline-block;padding:.25rem .65rem;border-radius:999px;font-size:.75rem;font-weight:600;
+                                            {% if commande.statut == 'en_attente' %}background:#fff3cd;color:#856404;
+                                            {% elseif commande.statut == 'confirmee' %}background:#cff4fc;color:#0c5460;
+                                            {% elseif commande.statut == 'en_preparation' %}background:#cfe2ff;color:#084298;
+                                            {% elseif commande.statut == 'prete' %}background:#d1e7dd;color:#0a3622;
+                                            {% elseif commande.statut == 'en_cours_de_livraison' %}background:#ffe5d0;color:#7d3c00;
+                                            {% elseif commande.statut == 'livree' %}background:#e9d5ff;color:#44116e;
+                                            {% elseif commande.statut == 'en_attente_retour_materiel' %}background:#fce4ec;color:#880e4f;
+                                            {% elseif commande.statut == 'terminee' %}background:#e2e8f0;color:#334155;
+                                            {% else %}background:#f8d7da;color:#842029;{% endif %}">
+                                            {{ statutLabels[commande.statut] ?? commande.statut|replace({'_': ' '})|capitalize }}
+                                        </span>
+                                    </td>
+                                    <td style="padding:.6rem .75rem;text-align:center;white-space:nowrap;">
+                                        <a href="{{ path('client_commande_show', {id: commande.id}) }}"
+                                           style="color:var(--veg-primary);font-size:1.1rem;margin-right:.5rem;" title="Voir le détail">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        {% if commande.statut == 'en_attente' %}
+                                        <a href="{{ path('client_commande_modifier', {id: commande.id}) }}"
+                                           style="color:#0d6efd;font-size:1.1rem;margin-right:.5rem;" title="Modifier">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <button type="button"
+                                                onclick="ouvrirModalAnnulation({{ commande.id }}, '{{ commande.numeroCommande }}', '{{ csrf_token('annuler_commande_' ~ commande.id) }}')"
+                                                style="background:none;border:none;color:#dc3545;font-size:1.1rem;cursor:pointer;padding:0;" title="Annuler la commande">
+                                            <i class="bi bi-x-circle"></i>
+                                        </button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_menus') }}" class="auth-btn"
+                           style="max-width:240px;margin:0 auto;text-decoration:none;">
+                            <i class="bi bi-plus-lg"></i> Passer une commande
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {# ── ONGLET AVIS ─────────────────────────────────────────────── #}
+        <div class="account-panel" id="tab-avis" style="display:none;">
+            <div class="account-card">
+                <h2 class="account-card__title">Laisser un avis</h2>
+                <p class="account-card__subtitle">Partagez votre expérience sur une commande passée.</p>
+
+                {% if commandes is empty %}
+                    <p class="text-muted text-center py-3">
+                        Vous n'avez pas encore de commande pour laisser un avis.
+                    </p>
+                {% else %}
+                    <form method="post" action="{{ path('client_avis_new') }}" id="avis-form">
+                        <input type="hidden" name="_token" value="{{ csrf_token('avis_new') }}">
+                        <input type="hidden" name="note" id="avis-note-value" value="0">
+
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="avis-commande">Commande concernée</label>
+                            <select class="auth-field__input" id="avis-commande" name="commandeId" required>
+                                <option value="">— Sélectionnez une commande —</option>
+                                {% for commande in commandes %}
+                                    {% if commande.statut == 'livree' or commande.statut == 'prete' %}
+                                    <option value="{{ commande.id }}">
+                                        {{ commande.menu ? commande.menu.titre : 'Menu' }}
+                                        — {{ commande.datePrestation|date('d/m/Y') }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="auth-field">
+                            <label class="auth-field__label">Note</label>
+                            <div class="avis-stars-input" id="avis-stars-input">
+                                {% for i in 1..5 %}
+                                <button type="button" class="avis-star" data-val="{{ i }}">
+                                    <i class="bi bi-star"></i>
+                                </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label class="auth-field__label" for="avis-texte">Votre avis</label>
+                            <textarea class="auth-field__input contact-textarea" id="avis-texte"
+                                      name="description" rows="4" maxlength="500"
+                                      placeholder="Décrivez votre expérience…"></textarea>
+                        </div>
+
+                        <div class="account-card__actions">
+                            <button type="submit" class="auth-btn">
+                                <i class="bi bi-send-fill"></i> Publier l'avis
+                            </button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+
+            {% if avis is defined and avis|length > 0 %}
+            <div class="account-card" style="margin-top:1.25rem;">
+                <h2 class="account-card__title">Mes avis publiés</h2>
+                {% for a in avis %}
+                <div style="border-bottom:1px solid var(--veg-secondary);padding:1rem 0;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+                        <div>
+                            <div style="color:#f59e0b;font-size:1.1rem;margin-bottom:.25rem;">
+                                {% for i in 1..5 %}
+                                    {% if i <= a.note %}★{% else %}☆{% endif %}
+                                {% endfor %}
+                            </div>
+                            <p style="margin:0;color:#444;">{{ a.description }}</p>
+                            <small style="color:#999;">{{ a.createdAt|date('d/m/Y') }}</small>
+                        </div>
+                        <span style="
+                            font-size:.75rem;padding:.2rem .6rem;border-radius:999px;white-space:nowrap;
+                            {% if a.statut == 'publie' %}background:#d1e7dd;color:#0a3622;
+                            {% else %}background:#fff3cd;color:#856404;{% endif %}">
+                            {{ a.statut == 'publie' ? 'Publié' : 'En attente' }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+{# ── MODAL ANNULATION ─────────────────────────────────────────────────────── #}
+<div id="modal-annulation" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;padding:2rem;max-width:420px;width:90%;box-shadow:0 8px 32px rgba(128,0,32,.15);">
+        <h3 style="font-family:'Aclonica',sans-serif;color:#800020;margin:0 0 .5rem;">Annuler la commande</h3>
+        <div style="height:2px;background:#E8D1D7;margin-bottom:1.25rem;"></div>
+        <p id="modal-annulation-titre" style="color:#555;margin-bottom:1rem;font-size:.95rem;"></p>
+        <form method="post" id="modal-annulation-form">
+            <input type="hidden" name="_token" id="modal-annulation-token">
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:.85rem;color:#800020;font-weight:600;display:block;margin-bottom:.4rem;">Motif d'annulation (optionnel)</label>
+                <textarea name="motif" rows="3" style="width:100%;border:1px solid #E8D1D7;border-radius:8px;padding:.6rem .8rem;font-family:Calibri,sans-serif;font-size:.9rem;resize:vertical;"
+                          placeholder="Changement de date, événement annulé…"></textarea>
+            </div>
+            <div style="display:flex;gap:.75rem;justify-content:flex-end;">
+                <button type="button" onclick="fermerModalAnnulation()"
+                        style="border:2px solid #BE7D8D;color:#BE7D8D;background:transparent;border-radius:999px;padding:.5rem 1.5rem;cursor:pointer;font-weight:500;">
+                    Retour
+                </button>
+                <button type="submit"
+                        style="border:none;background:#dc3545;color:#fff;border-radius:999px;padding:.5rem 1.5rem;cursor:pointer;font-weight:500;">
+                    <i class="bi bi-x-circle-fill"></i> Confirmer l'annulation
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function ouvrirModalAnnulation(id, numero, csrfToken) {
+    var modal = document.getElementById('modal-annulation');
+    var titre = document.getElementById('modal-annulation-titre');
+    var form  = document.getElementById('modal-annulation-form');
+    var token = document.getElementById('modal-annulation-token');
+    titre.textContent = 'Êtes-vous sûr de vouloir annuler la commande ' + numero + ' ?';
+    form.action = '/compte/commande/' + id + '/annuler';
+    token.value = csrfToken;
+    modal.style.display = 'flex';
+}
+function fermerModalAnnulation() {
+    document.getElementById('modal-annulation').style.display = 'none';
+}
+document.getElementById('modal-annulation').addEventListener('click', function(e) {
+    if (e.target === this) fermerModalAnnulation();
+});
+
+// Onglets
+document.querySelectorAll('.account-tabs__btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.account-tabs__btn').forEach(function(b) {
+            b.classList.remove('active');
+        });
+        document.querySelectorAll('.account-panel').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        btn.classList.add('active');
+        var tab = document.getElementById('tab-' + btn.dataset.tab);
+        if (tab) tab.classList.add('active');
+    });
+});
+
+// Étoiles avis
+var selectedNote = 0;
+var stars = document.querySelectorAll('.avis-star');
+stars.forEach(function(star) {
+    star.addEventListener('mouseenter', function() {
+        var val = parseInt(star.dataset.val);
+        stars.forEach(function(s, idx) {
+            s.querySelector('i').className = idx < val ? 'bi bi-star-fill' : 'bi bi-star';
+        });
+    });
+    star.addEventListener('mouseleave', function() {
+        stars.forEach(function(s, idx) {
+            s.querySelector('i').className = idx < selectedNote ? 'bi bi-star-fill' : 'bi bi-star';
+        });
+    });
+    star.addEventListener('click', function() {
+        selectedNote = parseInt(star.dataset.val);
+        var noteInput = document.getElementById('avis-note-value');
+        if (noteInput) noteInput.value = selectedNote;
+        stars.forEach(function(s, idx) {
+            s.querySelector('i').className = idx < selectedNote ? 'bi bi-star-fill' : 'bi bi-star';
+        });
+    });
+});
+
+// Eye toggle
+document.querySelectorAll('.auth-field__eye').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var targetId = btn.dataset.target;
+        var input = document.getElementById(targetId);
+        var icon = document.getElementById('eye-' + targetId);
+        if (!input) return;
+        if (input.type === 'password') {
+            input.type = 'text';
+            if (icon) icon.className = 'bi bi-eye';
+        } else {
+            input.type = 'password';
+            if (icon) icon.className = 'bi bi-eye-slash';
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,161 @@
+<section class="account-page">
+    <div class="container py-5">
+
+        <!-- En-tête compte -->
+        <div class="account-header">
+            <div class="account-header__avatar" id="account-avatar"></div>
+            <div>
+                <h1 class="account-header__name" id="account-name">—</h1>
+                <p class="account-header__email" id="account-email">—</p>
+            </div>
+        </div>
+
+        <!-- Onglets -->
+        <div class="account-tabs" id="account-tabs">
+            <button class="account-tabs__btn active" data-tab="profil">
+                <i class="bi bi-person-fill"></i> Mon profil
+            </button>
+            <button class="account-tabs__btn" data-tab="commandes">
+                <i class="bi bi-bag-fill"></i> Mes commandes
+            </button>
+            <button class="account-tabs__btn" data-tab="avis">
+                <i class="bi bi-star-fill"></i> Mes avis
+            </button>
+        </div>
+
+        <!-- ── ONGLET PROFIL ──────────────────────────────────────────── -->
+        <div class="account-panel" id="tab-profil">
+            <div class="account-card">
+                <h2 class="account-card__title">Informations personnelles</h2>
+                <div class="auth-alert auth-alert--error"   id="profil-error"   style="display:none;"></div>
+                <div class="auth-alert auth-alert--success" id="profil-success" style="display:none;"></div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="profil-prenom">Prénom</label>
+                        <input class="auth-field__input" type="text" id="profil-prenom">
+                        <span class="auth-field__error" id="err-profil-prenom"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="profil-nom">Nom</label>
+                        <input class="auth-field__input" type="text" id="profil-nom">
+                        <span class="auth-field__error" id="err-profil-nom"></span>
+                    </div>
+                </div>
+
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="profil-email">E-mail</label>
+                        <input class="auth-field__input" type="email" id="profil-email">
+                        <span class="auth-field__error" id="err-profil-email"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="profil-gsm">Téléphone</label>
+                        <input class="auth-field__input" type="tel" id="profil-gsm">
+                        <span class="auth-field__error" id="err-profil-gsm"></span>
+                    </div>
+                </div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="profil-adresse">Adresse</label>
+                    <input class="auth-field__input" type="text" id="profil-adresse" placeholder="12 rue des Vignes, 33000 Bordeaux">
+                </div>
+
+                <div class="account-card__actions">
+                    <button class="auth-btn" id="profil-save">
+                        <i class="bi bi-floppy-fill"></i> Enregistrer les modifications
+                    </button>
+                </div>
+            </div>
+
+            <!-- Changer le mot de passe -->
+            <div class="account-card" style="margin-top:1.25rem;">
+                <h2 class="account-card__title">Changer le mot de passe</h2>
+                <div class="auth-alert auth-alert--error"   id="pwd-error"   style="display:none;"></div>
+                <div class="auth-alert auth-alert--success" id="pwd-success" style="display:none;"></div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="pwd-current">Mot de passe actuel</label>
+                    <input class="auth-field__input" type="password" id="pwd-current">
+                    <span class="auth-field__error" id="err-pwd-current"></span>
+                </div>
+                <div class="auth-row">
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="pwd-new">Nouveau mot de passe</label>
+                        <input class="auth-field__input" type="password" id="pwd-new">
+                        <span class="auth-field__error" id="err-pwd-new"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-field__label" for="pwd-confirm">Confirmer</label>
+                        <input class="auth-field__input" type="password" id="pwd-confirm">
+                        <span class="auth-field__error" id="err-pwd-confirm"></span>
+                    </div>
+                </div>
+
+                <div class="account-card__actions">
+                    <button class="auth-btn" id="pwd-save">
+                        <i class="bi bi-shield-lock-fill"></i> Changer le mot de passe
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── ONGLET COMMANDES ───────────────────────────────────────── -->
+        <div class="account-panel" id="tab-commandes" style="display:none;">
+            <div class="account-card">
+                <h2 class="account-card__title">Mes commandes</h2>
+                <div id="commandes-list"></div>
+            </div>
+        </div>
+
+        <!-- ── ONGLET AVIS ────────────────────────────────────────────── -->
+        <div class="account-panel" id="tab-avis" style="display:none;">
+            <div class="account-card">
+                <h2 class="account-card__title">Laisser un avis</h2>
+                <p class="account-card__subtitle">Partagez votre expérience sur une commande passée.</p>
+
+                <div class="auth-alert auth-alert--error"   id="avis-error"   style="display:none;"></div>
+                <div class="auth-alert auth-alert--success" id="avis-success" style="display:none;"></div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="avis-commande">Commande concernée</label>
+                    <select class="auth-field__input" id="avis-commande">
+                        <option value="">— Sélectionnez une commande —</option>
+                    </select>
+                    <span class="auth-field__error" id="err-avis-commande"></span>
+                </div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label">Note</label>
+                    <div class="avis-stars-input" id="avis-stars-input">
+                        <button type="button" class="avis-star" data-val="1"><i class="bi bi-star"></i></button>
+                        <button type="button" class="avis-star" data-val="2"><i class="bi bi-star"></i></button>
+                        <button type="button" class="avis-star" data-val="3"><i class="bi bi-star"></i></button>
+                        <button type="button" class="avis-star" data-val="4"><i class="bi bi-star"></i></button>
+                        <button type="button" class="avis-star" data-val="5"><i class="bi bi-star"></i></button>
+                    </div>
+                    <span class="auth-field__error" id="err-avis-note"></span>
+                </div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="avis-texte">Votre avis</label>
+                    <textarea class="auth-field__input contact-textarea" id="avis-texte"
+                              rows="4" maxlength="500" placeholder="Décrivez votre expérience…"></textarea>
+                </div>
+
+                <div class="account-card__actions">
+                    <button class="auth-btn" id="avis-submit">
+                        <i class="bi bi-send-fill"></i> Publier l'avis
+                    </button>
+                </div>
+            </div>
+
+            <!-- Avis déjà publiés -->
+            <div class="account-card" style="margin-top:1.25rem;" id="mes-avis-card">
+                <h2 class="account-card__title">Mes avis publiés</h2>
+                <div id="mes-avis-list"></div>
+            </div>
+        </div>
+
+    </div>
+</section>

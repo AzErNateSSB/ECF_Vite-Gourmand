@@ -1,0 +1,26 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Votre prestation est terminée, {{ user.prenom }} !</h2>
+<p>
+    Nous espérons que votre événement s'est déroulé à merveille avec notre menu <strong>{{ commande.menu.titre }}</strong>.
+</p>
+<p>
+    Votre avis compte beaucoup pour nous. N'hésitez pas à partager votre expérience !
+</p>
+
+<div class="info-box">
+    <div class="label">Commande</div>
+    <div class="value">{{ commande.numeroCommande }}</div>
+    <div class="label">Prestation du</div>
+    <div class="value">{{ commande.datePrestation|date('d/m/Y') }}</div>
+</div>
+
+<p style="text-align:center;">
+    <a href="{{ app.request.schemeAndHttpHost }}/compte" class="btn">⭐ Laisser un avis</a>
+</p>
+
+<p style="font-size:13px;color:#888;">
+    Merci de votre confiance et à bientôt chez Vite &amp; Gourmand !
+</p>
+{% endblock %}

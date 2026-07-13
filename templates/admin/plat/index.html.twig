@@ -1,0 +1,55 @@
+{% extends 'admin/layout.html.twig' %}
+{% block title %}Plats{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Plats</h2>
+    <a href="{{ path('admin_plat_new') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Nouveau plat
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover bg-white rounded shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Allergènes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plat in plats %}
+            <tr>
+                <td>{{ plat.id }}</td>
+                <td><strong>{{ plat.titre }}</strong></td>
+                <td><span class="badge bg-secondary">{{ plat.typePlat }}</span></td>
+                <td>
+                    {% for a in plat.allergenes %}
+                        <span class="badge bg-warning text-dark">{{ a.libelle }}</span>
+                    {% else %}
+                        <span class="text-muted">—</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('admin_plat_edit', {id: plat.id}) }}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <form method="post" action="{{ path('admin_plat_delete', {id: plat.id}) }}" class="d-inline"
+                          onsubmit="return confirm('Supprimer ce plat ?')">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete_plat_' ~ plat.id) }}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5" class="text-center text-muted">Aucun plat.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

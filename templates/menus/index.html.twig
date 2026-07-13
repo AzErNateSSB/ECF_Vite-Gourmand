@@ -1,0 +1,409 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Menus{% endblock %}
+
+{% block body %}
+{% include '_navbar.html.twig' %}
+
+<main id="veg-main">
+<section class="menus-page">
+
+    <div class="menus-page__header text-center">
+        <h1 class="menus-page__title">Nos Menus</h1>
+        <div class="menus-page__divider">
+            <span></span><i class="bi bi-flower1"></i><span></span>
+        </div>
+    </div>
+
+    {# ── BARRE DE FILTRES ─────────────────────────────────────────────────── #}
+    <div class="menus-filter-sticky">
+        <div class="container">
+            <div class="menus-filter">
+
+                <div class="menus-filter__row">
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Régime</span>
+                        <div class="menus-filter__tags">
+                            <button class="filter-tag filter-tag--veggie" data-filter="vegetarien"><i class="bi bi-flower2"></i> Végétarien</button>
+                            <button class="filter-tag filter-tag--gluten" data-filter="gluten"><i class="bi bi-slash-circle"></i> Sans gluten</button>
+                            <button class="filter-tag filter-tag--lactose" data-filter="lactose"><i class="bi bi-droplet-slash"></i> Sans lactose</button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__sep-v"></div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Thème</span>
+                        <div class="menus-filter__tags">
+                            <button class="filter-tag filter-tag--noel" data-theme="noel">🎄 Noël</button>
+                            <button class="filter-tag filter-tag--paques" data-theme="paques">🐣 Pâques</button>
+                            <button class="filter-tag filter-tag--ete" data-theme="ete">☀️ Été</button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__sep-v"></div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Tri par prix</span>
+                        <div class="menus-filter__sort">
+                            <button class="sort-btn" id="sort-asc" title="Prix croissant"><i class="bi bi-sort-numeric-down"></i></button>
+                            <button class="sort-btn" id="sort-desc" title="Prix décroissant"><i class="bi bi-sort-numeric-up"></i></button>
+                        </div>
+                    </div>
+
+                    <button class="menus-filter__reset" id="filter-reset">
+                        <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+                    </button>
+
+                </div>
+
+                <div class="menus-filter__row menus-filter__row--controls">
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Prix min. <span id="price-min-display">— €</span></span>
+                        <input type="range" class="menus-filter__range" id="price-range-min" min="5" max="100" step="5" value="5">
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Prix max. <span id="price-display">— €</span></span>
+                        <input type="range" class="menus-filter__range" id="price-range" min="5" max="100" step="5" value="100">
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Pers. min.</span>
+                        <div class="menus-filter__counter">
+                            <button class="persons-btn" id="min-qty-minus"><i class="bi bi-dash"></i></button>
+                            <span id="min-qty-display">—</span>
+                            <button class="persons-btn" id="min-qty-plus"><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label">Pers. max.</span>
+                        <div class="menus-filter__counter">
+                            <button class="persons-btn" id="max-qty-minus"><i class="bi bi-dash"></i></button>
+                            <span id="max-qty-display">—</span>
+                            <button class="persons-btn" id="max-qty-plus"><i class="bi bi-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="menus-filter__group">
+                        <span class="menus-filter__label"><i class="bi bi-calendar3"></i> Livraison</span>
+                        <input type="date" class="menus-filter__date" id="delivery-date">
+                    </div>
+
+                </div>
+            </div>
+
+            <p class="menus-filter__count" id="filter-count"></p>
+            <div class="menus-page__divider" style="margin:.1rem 0 0;">
+                <span></span><i class="bi bi-flower1"></i><span></span>
+            </div>
+        </div>
+    </div>
+
+    {# ── GRILLE ───────────────────────────────────────────────────────────── #}
+    <div class="container pb-5 pt-4">
+        <div class="row g-4 justify-content-center" id="menus-grid">
+        {% if menus is empty %}
+            <p class="text-center text-muted py-5">Aucun menu disponible pour le moment.</p>
+        {% else %}
+            {% for menu in menus %}
+            {# Calcul des data-tags (normalisation des régimes) #}
+            {% set tags = [] %}
+            {% for regime in menu.regimes %}
+                {% set lib = regime.libelle|lower %}
+                {% if 'g' in lib and 'ta' in lib %}{% set tags = tags|merge(['vegetarien']) %}
+                {% elseif 'gluten' in lib %}{% set tags = tags|merge(['gluten']) %}
+                {% elseif 'lactose' in lib %}{% set tags = tags|merge(['lactose']) %}
+                {% endif %}
+            {% endfor %}
+
+            {# Calcul data-themes #}
+            {% set themes = ['all'] %}
+            {% if menu.theme %}
+                {% set tlib = menu.theme.libelle|lower %}
+                {% if 'no' in tlib %}{% set themes = themes|merge(['noel']) %}
+                {% elseif 'p' in tlib and 'ques' in tlib %}{% set themes = themes|merge(['paques']) %}
+                {% elseif 't' in tlib %}{% set themes = themes|merge(['ete']) %}
+                {% endif %}
+            {% endif %}
+
+            <div class="col-12 col-md-6 col-lg-4 menu-item"
+                 data-tags="{{ tags|join(' ') }}"
+                 data-price="{{ menu.prixParPersonne }}"
+                 data-min-qty="{{ menu.nombrePersonneMinimum }}"
+                 data-max-qty="999"
+                 data-prep-days="2"
+                 data-themes="{{ themes|join(' ') }}"
+                 data-stock="{{ menu.quantiteRestante }}">
+
+                <div class="menu-card">
+
+                    <div class="menu-card__img-wrapper">
+                        {% set images = menu.menuImages %}
+                        {% if images|length > 0 %}
+                            <div id="carousel-{{ menu.id }}" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                                <div class="carousel-inner h-100">
+                                    {% for img in images %}
+                                    <div class="carousel-item {{ loop.first ? 'active' : '' }} h-100">
+                                        <img src="{{ asset('images/menus/' ~ img.chemin) }}"
+                                             alt="{{ menu.titre }}" class="menu-card__img">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% if images|length > 1 %}
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ menu.id }}" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ menu.id }}" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-center"
+                                 style="background:var(--veg-secondary);color:var(--veg-primary);font-size:3rem;">
+                                <i class="bi bi-egg-fried"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="menu-card__body">
+
+                        <div class="menu-card__title-row">
+                            <h2 class="menu-card__name">{{ menu.titre }}</h2>
+                            {% if menu.theme %}
+                                {% set tlib = menu.theme.libelle|lower %}
+                                {% if 'no' in tlib %}
+                                    <span class="menu-tag menu-tag--noel">🎄 {{ menu.theme.libelle }}</span>
+                                {% elseif 'p' in tlib and 'ques' in tlib %}
+                                    <span class="menu-tag menu-tag--paques">🐣 {{ menu.theme.libelle }}</span>
+                                {% elseif 't' in tlib %}
+                                    <span class="menu-tag menu-tag--ete">☀️ {{ menu.theme.libelle }}</span>
+                                {% else %}
+                                    <span class="menu-tag" style="background:var(--veg-secondary);color:var(--veg-dark);">{{ menu.theme.libelle }}</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <p class="menu-card__desc">
+                            {{ menu.description|length > 100 ? menu.description|slice(0,100) ~ '…' : menu.description }}
+                        </p>
+
+                        {% if menu.regimes|length > 0 %}
+                        <div class="menu-card__tags">
+                            {% for regime in menu.regimes %}
+                                {% set lib = regime.libelle|lower %}
+                                {% if 'g' in lib and 'ta' in lib %}
+                                    <span class="menu-tag menu-tag--veggie">{{ regime.libelle }}</span>
+                                {% elseif 'gluten' in lib %}
+                                    <span class="menu-tag menu-tag--gluten">{{ regime.libelle }}</span>
+                                {% elseif 'lactose' in lib %}
+                                    <span class="menu-tag menu-tag--lactose">{{ regime.libelle }}</span>
+                                {% else %}
+                                    <span class="menu-tag menu-tag--veggie">{{ regime.libelle }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <hr class="menu-card__sep">
+
+                        {% set plats_entree  = menu.plats|filter(p => p.typePlat == 'entree') %}
+                        {% set plats_plat    = menu.plats|filter(p => p.typePlat == 'plat') %}
+                        {% set plats_dessert = menu.plats|filter(p => p.typePlat == 'dessert') %}
+                        <ul class="menu-card__courses">
+                            {% if plats_entree|length > 0 %}
+                            <li><i class="bi bi-leaf"></i><div><strong>Entrée</strong><br>{{ plats_entree|first.titre }}</div></li>
+                            {% endif %}
+                            {% if plats_plat|length > 0 %}
+                            <li><i class="bi bi-cup-hot"></i><div><strong>Plat</strong><br>{{ plats_plat|first.titre }}</div></li>
+                            {% endif %}
+                            {% if plats_dessert|length > 0 %}
+                            <li><i class="bi bi-cake2"></i><div><strong>Dessert</strong><br>{{ plats_dessert|first.titre }}</div></li>
+                            {% endif %}
+                        </ul>
+
+                        <div class="menu-card__footer">
+                            <p class="menu-card__stock"></p>
+                            <p class="menu-card__price">
+                                {{ menu.prixParPersonne|number_format(2, ',', ' ') }} €
+                                <span>par personne · min. {{ menu.nombrePersonneMinimum }} pers.</span>
+                            </p>
+                            {% if menu.quantiteRestante > 0 %}
+                                <a href="{{ app.user ? path('client_commande_new', {menu: menu.id}) : path('app_login') }}"
+                                   class="menu-card__btn">Commander ce menu</a>
+                            {% else %}
+                                <span class="menu-card__btn" style="opacity:.5;cursor:default;">Indisponible</span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+
+        <div id="no-results" class="text-center py-5" style="display:none;">
+            <i class="bi bi-search" style="font-size:2.5rem;color:#BE7D8D;opacity:.5;"></i>
+            <p class="mt-3" style="color:#800020;font-family:'Aclonica',sans-serif;">Aucun menu ne correspond à vos critères.</p>
+        </div>
+    </div>
+
+</section>
+</main>
+
+{% include '_footer.html.twig' %}
+
+<script>
+(function () {
+    const items   = Array.from(document.querySelectorAll('.menu-item'));
+    const grid    = document.getElementById('menus-grid');
+    const countEl = document.getElementById('filter-count');
+    const noRes   = document.getElementById('no-results');
+    if (!grid) return;
+
+    let activeTags = new Set(), activeThemes = new Set();
+    let minPrice = null, maxPrice = null, minQty = null, maxQty = null;
+    let deliveryDate = null, sortDir = null;
+
+    function updateCount(n) {
+        countEl.textContent = n === items.length ? '' : `${n} menu${n > 1 ? 's' : ''} affiché${n > 1 ? 's' : ''}`;
+        noRes.style.display = n === 0 ? 'block' : 'none';
+    }
+
+    function applyFilters() {
+        const today = new Date(); today.setHours(0,0,0,0);
+        let visible = items.filter(item => {
+            const tags     = item.dataset.tags ? item.dataset.tags.split(' ').filter(Boolean) : [];
+            const price    = parseFloat(item.dataset.price);
+            const itemMin  = parseInt(item.dataset.minQty);
+            const itemMax  = parseInt(item.dataset.maxQty);
+            const prepDays = parseInt(item.dataset.prepDays) || 0;
+            const themes   = item.dataset.themes ? item.dataset.themes.split(' ') : ['all'];
+            if (activeTags.size > 0 && ![...activeTags].every(t => tags.includes(t))) return false;
+            if (minPrice !== null && price < minPrice) return false;
+            if (maxPrice !== null && price > maxPrice) return false;
+            if (minQty !== null && itemMax < minQty) return false;
+            if (maxQty !== null && itemMin > maxQty) return false;
+            if (deliveryDate !== null) {
+                const earliest = new Date(today);
+                earliest.setDate(earliest.getDate() + prepDays);
+                if (deliveryDate < earliest) return false;
+            }
+            if (activeThemes.size > 0 && ![...activeThemes].some(t => themes.includes(t))) return false;
+            return true;
+        });
+        if (sortDir) visible.sort((a,b) => sortDir === 'asc'
+            ? parseFloat(a.dataset.price) - parseFloat(b.dataset.price)
+            : parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
+        items.forEach(i => i.style.display = 'none');
+        visible.forEach(i => { i.style.display = ''; grid.appendChild(i); });
+        updateCount(visible.length);
+    }
+
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const f = btn.dataset.filter;
+            if (activeTags.has(f)) { activeTags.delete(f); btn.classList.remove('active'); }
+            else { activeTags.add(f); btn.classList.add('active'); }
+            applyFilters();
+        });
+    });
+
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            if (activeThemes.has(t)) { activeThemes.delete(t); btn.classList.remove('active'); }
+            else { activeThemes.add(t); btn.classList.add('active'); }
+            applyFilters();
+        });
+    });
+
+    const rangeMinEl = document.getElementById('price-range-min');
+    const priceMinDisplay = document.getElementById('price-min-display');
+    rangeMinEl.addEventListener('input', () => {
+        const v = parseInt(rangeMinEl.value);
+        minPrice = v <= 5 ? null : v;
+        priceMinDisplay.textContent = minPrice === null ? '— €' : v + ' €';
+        applyFilters();
+    });
+
+    const rangeEl = document.getElementById('price-range');
+    const priceDisplay = document.getElementById('price-display');
+    rangeEl.addEventListener('input', () => {
+        const v = parseInt(rangeEl.value);
+        maxPrice = v >= 100 ? null : v;
+        priceDisplay.textContent = maxPrice === null ? '— €' : v + ' €';
+        applyFilters();
+    });
+
+    let minQtyVal = null, maxQtyVal = null;
+    const minQtyDisplay = document.getElementById('min-qty-display');
+    const maxQtyDisplay = document.getElementById('max-qty-display');
+
+    document.getElementById('min-qty-plus').addEventListener('click', () => {
+        minQtyVal = minQtyVal === null ? 5 : minQtyVal + 5;
+        minQty = minQtyVal; minQtyDisplay.textContent = minQtyVal; applyFilters();
+    });
+    document.getElementById('min-qty-minus').addEventListener('click', () => {
+        if (!minQtyVal || minQtyVal <= 5) { minQtyVal = null; minQty = null; minQtyDisplay.textContent = '—'; }
+        else { minQtyVal -= 5; minQty = minQtyVal; minQtyDisplay.textContent = minQtyVal; }
+        applyFilters();
+    });
+    document.getElementById('max-qty-plus').addEventListener('click', () => {
+        maxQtyVal = maxQtyVal === null ? 50 : maxQtyVal + 10;
+        maxQty = maxQtyVal; maxQtyDisplay.textContent = maxQtyVal; applyFilters();
+    });
+    document.getElementById('max-qty-minus').addEventListener('click', () => {
+        if (!maxQtyVal || maxQtyVal <= 10) { maxQtyVal = null; maxQty = null; maxQtyDisplay.textContent = '—'; }
+        else { maxQtyVal -= 10; maxQty = maxQtyVal; maxQtyDisplay.textContent = maxQtyVal; }
+        applyFilters();
+    });
+
+    document.getElementById('delivery-date').addEventListener('change', function() {
+        deliveryDate = this.value ? new Date(this.value) : null;
+        if (deliveryDate) deliveryDate.setHours(0,0,0,0);
+        applyFilters();
+    });
+
+    document.getElementById('sort-asc').addEventListener('click', function() {
+        if (sortDir === 'asc') { sortDir = null; this.classList.remove('active'); }
+        else { sortDir = 'asc'; this.classList.add('active'); document.getElementById('sort-desc').classList.remove('active'); }
+        applyFilters();
+    });
+    document.getElementById('sort-desc').addEventListener('click', function() {
+        if (sortDir === 'desc') { sortDir = null; this.classList.remove('active'); }
+        else { sortDir = 'desc'; this.classList.add('active'); document.getElementById('sort-asc').classList.remove('active'); }
+        applyFilters();
+    });
+
+    document.getElementById('filter-reset').addEventListener('click', () => {
+        activeTags.clear(); activeThemes.clear();
+        minPrice = null; maxPrice = null; minQty = null; maxQty = null;
+        sortDir = null; minQtyVal = null; maxQtyVal = null; deliveryDate = null;
+        rangeMinEl.value = 5; priceMinDisplay.textContent = '— €';
+        rangeEl.value = 100; priceDisplay.textContent = '— €';
+        minQtyDisplay.textContent = '—'; maxQtyDisplay.textContent = '—';
+        document.getElementById('delivery-date').value = '';
+        document.querySelectorAll('[data-filter],[data-theme],.sort-btn').forEach(b => b.classList.remove('active'));
+        applyFilters();
+    });
+
+    // Badge stock
+    document.querySelectorAll('.menu-item[data-stock]').forEach(item => {
+        const stock = parseInt(item.dataset.stock);
+        const el = item.querySelector('.menu-card__stock');
+        if (!el) return;
+        let cls = '';
+        if (stock <= 5) cls = 'menu-card__stock--critical';
+        else if (stock <= 10) cls = 'menu-card__stock--low';
+        if (cls) {
+            el.className = 'menu-card__stock ' + cls;
+            el.innerHTML = '<i class="bi bi-box-seam"></i> ' + stock + ' commande' + (stock > 1 ? 's' : '') + ' disponible' + (stock > 1 ? 's' : '');
+        }
+    });
+
+    updateCount(items.length);
+})();
+</script>
+{% endblock %}

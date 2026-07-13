@@ -1,0 +1,139 @@
+<section class="admin-page">
+    <div class="container-fluid py-4 px-4">
+
+        <div class="employe-topbar">
+            <h1 class="employe-topbar__title"><i class="bi bi-shield-lock-fill"></i> Espace Administrateur</h1>
+            <span class="employe-topbar__badge" id="admin-badge">—</span>
+        </div>
+
+        <!-- Onglets -->
+        <div class="employe-tabs">
+            <button class="employe-tabs__btn active" data-tab="dashboard">
+                <i class="bi bi-bar-chart-fill"></i> Tableau de bord
+            </button>
+            <button class="employe-tabs__btn" data-tab="employes">
+                <i class="bi bi-people-fill"></i> Employés
+            </button>
+            <button class="employe-tabs__btn" data-tab="acces">
+                <i class="bi bi-grid-fill"></i> Gestion opérationnelle
+            </button>
+        </div>
+
+        <!-- ── DASHBOARD ───────────────────────────────────────────── -->
+        <div class="employe-panel" id="tab-dashboard">
+
+            <!-- KPIs -->
+            <div class="admin-kpis" id="admin-kpis"></div>
+
+            <!-- Graphiques -->
+            <div class="admin-charts">
+                <div class="admin-chart-card">
+                    <h3 class="admin-chart-card__title">Commandes par statut</h3>
+                    <div class="admin-chart-card__body" id="chart-statuts"></div>
+                </div>
+                <div class="admin-chart-card">
+                    <h3 class="admin-chart-card__title">Top 5 menus commandés</h3>
+                    <div class="admin-chart-card__body" id="chart-menus"></div>
+                </div>
+                <div class="admin-chart-card admin-chart-card--wide">
+                    <h3 class="admin-chart-card__title">Chiffre d'affaires mensuel</h3>
+                    <div class="admin-chart-card__body" id="chart-ca"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── EMPLOYÉS ────────────────────────────────────────────── -->
+        <div class="employe-panel" id="tab-employes" style="display:none;">
+
+            <div class="admin-employe-top">
+                <button class="employe-btn employe-btn--primary" id="employe-add-btn">
+                    <i class="bi bi-person-plus-fill"></i> Créer un compte employé
+                </button>
+            </div>
+
+            <div class="employe-table-wrap">
+                <table class="employe-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>E-mail</th>
+                            <th>Rôle</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employes-tbody"></tbody>
+                </table>
+                <p class="employe-empty" id="employes-empty" style="display:none;">
+                    Aucun employé enregistré.
+                </p>
+            </div>
+        </div>
+
+        <!-- ── ACCÈS ESPACE EMPLOYÉ ───────────────────────────────── -->
+        <div class="employe-panel" id="tab-acces" style="display:none;">
+            <div class="admin-acces-card">
+                <i class="bi bi-briefcase-fill admin-acces-card__icon"></i>
+                <h2 class="admin-acces-card__title">Espace Employé</h2>
+                <p class="admin-acces-card__text">
+                    Gérez les commandes, les menus, les horaires et validez les avis clients.
+                </p>
+                <a href="/employe" onclick="route(event)" class="auth-btn" style="max-width:220px;">
+                    <i class="bi bi-arrow-right-circle"></i> Accéder
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── MODAL CRÉER EMPLOYÉ ───────────────────────────────────────────────── -->
+<div class="employe-overlay" id="employe-modal-overlay" style="display:none;">
+    <div class="employe-modal">
+        <div class="employe-modal__header">
+            <h2 class="employe-modal__title" id="employe-modal-title">Créer un compte employé</h2>
+            <button class="employe-modal__close" id="employe-modal-close"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="employe-modal__body">
+            <div class="auth-alert auth-alert--error" id="emp-modal-error" style="display:none;"></div>
+
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label" for="emp-prenom">Prénom</label>
+                    <input class="auth-field__input" type="text" id="emp-prenom">
+                    <span class="auth-field__error" id="err-emp-prenom"></span>
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label" for="emp-nom">Nom</label>
+                    <input class="auth-field__input" type="text" id="emp-nom">
+                    <span class="auth-field__error" id="err-emp-nom"></span>
+                </div>
+            </div>
+            <div class="auth-field">
+                <label class="auth-field__label" for="emp-email">E-mail</label>
+                <input class="auth-field__input" type="email" id="emp-email">
+                <span class="auth-field__error" id="err-emp-email"></span>
+            </div>
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label" for="emp-password">Mot de passe</label>
+                    <input class="auth-field__input" type="password" id="emp-password">
+                    <span class="auth-field__error" id="err-emp-password"></span>
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label" for="emp-role">Rôle</label>
+                    <select class="auth-field__input" id="emp-role">
+                        <option value="employe">Employé</option>
+                        <option value="admin">Administrateur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="employe-modal__footer">
+            <button class="auth-btn auth-btn--secondary" id="employe-modal-cancel">Annuler</button>
+            <button class="auth-btn" id="employe-modal-save">
+                <i class="bi bi-person-check-fill"></i> Créer le compte
+            </button>
+        </div>
+    </div>
+</div>

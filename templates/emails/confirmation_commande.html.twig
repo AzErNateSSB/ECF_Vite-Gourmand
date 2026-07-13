@@ -1,0 +1,54 @@
+{% extends 'emails/_layout.html.twig' %}
+
+{% block content %}
+<h2>Commande confirmée, {{ user.prenom }} !</h2>
+<p>
+    Merci pour votre confiance. Votre commande a bien été enregistrée et est en attente de traitement.
+</p>
+
+<div class="info-box">
+    <div class="label">Numéro de commande</div>
+    <div class="value" style="font-size:18px;font-weight:bold;color:#800020;">{{ commande.numeroCommande }}</div>
+    <div class="label">Menu choisi</div>
+    <div class="value">{{ commande.menu.titre }}</div>
+    <div class="label">Date de prestation</div>
+    <div class="value">{{ commande.datePrestation|date('d/m/Y') }} à {{ commande.heureLivraison }}</div>
+    <div class="label">Lieu de livraison</div>
+    <div class="value">{{ commande.adresseLivraison }}, {{ commande.villeLivraison }}</div>
+    <div class="label">Nombre de personnes</div>
+    <div class="value">{{ commande.nombrePersonne }} pers.</div>
+</div>
+
+<table class="recap">
+    <tr>
+        <th>Détail</th>
+        <th style="text-align:right;">Montant</th>
+    </tr>
+    <tr>
+        <td>Menu ({{ commande.nombrePersonne }} pers. × {{ commande.menu.prixParPersonne }} €)</td>
+        <td style="text-align:right;">{{ commande.prixMenu }} €</td>
+    </tr>
+    <tr>
+        <td>Livraison</td>
+        <td style="text-align:right;">{{ commande.prixLivraison }} €</td>
+    </tr>
+    {% if commande.prixReduction > 0 %}
+    <tr>
+        <td>Réduction</td>
+        <td style="text-align:right; color:#28a745;">- {{ commande.prixReduction }} €</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td>Total TTC</td>
+        <td style="text-align:right;">{{ commande.prixTotal }} €</td>
+    </tr>
+</table>
+
+<p>
+    Vous pouvez suivre l'état de votre commande depuis votre espace personnel.
+</p>
+
+<p style="text-align:center;">
+    <a href="{{ app.request.schemeAndHttpHost }}/compte" class="btn">Suivre ma commande</a>
+</p>
+{% endblock %}

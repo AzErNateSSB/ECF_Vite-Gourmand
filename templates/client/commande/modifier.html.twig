@@ -1,0 +1,173 @@
+{% extends 'client/layout.html.twig' %}
+
+{% block title %}Modifier ma commande — Vite & Gourmand{% endblock %}
+
+{% block client_content %}
+<section class="account-page">
+    <div class="container py-5">
+
+        <div class="account-header" style="margin-bottom:2rem;">
+            <div class="account-header__avatar">
+                {{ app.user.prenom|slice(0,1)|upper }}{{ app.user.nom|slice(0,1)|upper }}
+            </div>
+            <div>
+                <h1 class="account-header__name">Modifier la commande</h1>
+                <p class="account-header__email">{{ commande.numeroCommande }}</p>
+            </div>
+        </div>
+
+        <div class="account-card">
+            <h2 class="account-card__title">Modifier votre commande</h2>
+
+            <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;font-size:.875rem;color:#856404;">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                Vous pouvez modifier cette commande tant qu'elle est en statut <strong>En attente</strong>.
+                Une fois confirmée par notre équipe, aucune modification n'est possible.
+            </div>
+
+            {{ form_start(form, {action: path('client_commande_modifier', {id: commande.id})}) }}
+
+            <div class="auth-field">
+                <label class="auth-field__label">Menu souhaité</label>
+                {{ form_widget(form.menu, {attr: {class: 'auth-field__input'}}) }}
+                {{ form_errors(form.menu) }}
+            </div>
+
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label">Nombre de personnes</label>
+                    {{ form_widget(form.nombrePersonne, {attr: {class: 'auth-field__input'}}) }}
+                    {{ form_errors(form.nombrePersonne) }}
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label">Mode de contact préféré</label>
+                    {{ form_widget(form.modeContact, {attr: {class: 'auth-field__input'}}) }}
+                    {{ form_errors(form.modeContact) }}
+                </div>
+            </div>
+
+            <hr style="border-color:var(--veg-secondary);margin:1.5rem 0;">
+            <h3 class="account-card__title" style="font-size:1rem;margin-bottom:1rem;">
+                <i class="bi bi-calendar-event me-2" style="color:var(--veg-primary);"></i>Informations de l'événement
+            </h3>
+
+            <div class="auth-row">
+                <div class="auth-field">
+                    <label class="auth-field__label">Date de la prestation</label>
+                    {{ form_widget(form.datePrestation, {attr: {class: 'auth-field__input'}}) }}
+                    {{ form_errors(form.datePrestation) }}
+                </div>
+                <div class="auth-field">
+                    <label class="auth-field__label">Heure de livraison</label>
+                    {{ form_widget(form.heureLivraison, {attr: {class: 'auth-field__input'}}) }}
+                    {{ form_errors(form.heureLivraison) }}
+                </div>
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label">Adresse de livraison</label>
+                {{ form_widget(form.adresseLivraison, {attr: {class: 'auth-field__input', placeholder: '12 rue des Vignes'}}) }}
+                {{ form_errors(form.adresseLivraison) }}
+            </div>
+
+            <div class="auth-field">
+                <label class="auth-field__label">Ville</label>
+                {{ form_widget(form.villeLivraison, {attr: {class: 'auth-field__input', placeholder: 'Bordeaux'}}) }}
+                {{ form_errors(form.villeLivraison) }}
+            </div>
+
+            <div class="auth-field">
+                {{ form_widget(form.pretMateriel) }}
+                <label class="auth-field__label" style="display:inline;margin-left:.5rem;">
+                    Prêt de matériel (tables, chaises, etc.)
+                </label>
+                {{ form_errors(form.pretMateriel) }}
+            </div>
+
+            <div id="recap-prix" style="background:var(--veg-secondary);border-radius:10px;padding:1rem 1.25rem;margin:1rem 0;font-size:.875rem;color:var(--veg-dark);">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                Livraison : <strong>5 € de base + 0,59 € / km</strong> si hors Bordeaux.
+                Réduction <strong>10%</strong> si +5 personnes au-delà du minimum du menu.
+                <div id="recap-detail" style="display:none;margin-top:.6rem;padding-top:.6rem;border-top:1px solid #d4b8bf;">
+                    <div style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;">
+                        <span>🍽 Menu : <strong id="r-menu">—</strong></span>
+                        <span>🚚 Livraison : <strong id="r-livraison">—</strong></span>
+                        <span id="r-reduction-wrap" style="display:none;">🎁 Réduction : <strong id="r-reduction" style="color:#198754;">—</strong></span>
+                        <span>💶 <strong>Total estimé : <span id="r-total" style="color:var(--veg-dark);font-size:1rem;">—</span></strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account-card__actions" style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <button type="submit" class="auth-btn" style="max-width:280px;">
+                    <i class="bi bi-floppy-fill"></i> Enregistrer les modifications
+                </button>
+                <a href="{{ path('client_dashboard') }}"
+                   class="auth-btn"
+                   style="max-width:180px;background:transparent;color:var(--veg-dark);border:2px solid var(--veg-secondary);text-decoration:none;">
+                    Retour
+                </a>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</section>
+
+<script>
+(function () {
+    const adresseInput = document.querySelector('[name="commande[adresseLivraison]"]');
+    const villeInput   = document.querySelector('[name="commande[villeLivraison]"]');
+    const menuSelect   = document.querySelector('[name="commande[menu]"]');
+    const nbInput      = document.querySelector('[name="commande[nombrePersonne]"]');
+    const detail       = document.getElementById('recap-detail');
+
+    if (!villeInput) return;
+
+    let timer = null;
+
+    function fmt(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+
+    function mettreAJour() {
+        const ville   = villeInput.value.trim();
+        const adresse = adresseInput ? adresseInput.value.trim() : '';
+        const menuId  = menuSelect ? menuSelect.value : '';
+        const nb      = nbInput ? parseInt(nbInput.value) || 0 : 0;
+
+        if (!ville) { detail.style.display = 'none'; return; }
+
+        const params = new URLSearchParams({ adresse, ville, menuId, nbPersonnes: nb });
+        fetch('/api/livraison-prix?' + params)
+            .then(r => r.json())
+            .then(data => {
+                if (data.prixLivraison === null) return;
+                document.getElementById('r-livraison').textContent = fmt(data.prixLivraison);
+                if (data.prixMenu !== null) {
+                    document.getElementById('r-menu').textContent = fmt(data.prixMenu);
+                    document.getElementById('r-total').textContent = fmt(data.total);
+                    const redWrap = document.getElementById('r-reduction-wrap');
+                    if (data.prixReduction > 0) {
+                        document.getElementById('r-reduction').textContent = '- ' + fmt(data.prixReduction);
+                        redWrap.style.display = 'inline';
+                    } else {
+                        redWrap.style.display = 'none';
+                    }
+                }
+                detail.style.display = 'block';
+            })
+            .catch(() => {});
+    }
+
+    function debounce() { clearTimeout(timer); timer = setTimeout(mettreAJour, 700); }
+
+    villeInput.addEventListener('input', debounce);
+    if (adresseInput) adresseInput.addEventListener('input', debounce);
+    if (menuSelect)   menuSelect.addEventListener('change', mettreAJour);
+    if (nbInput)      nbInput.addEventListener('input', debounce);
+
+    // Afficher d'emblée pour les valeurs déjà remplies
+    mettreAJour();
+})();
+</script>
+{% endblock %}
