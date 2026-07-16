@@ -1,0 +1,7 @@
+# Overrides automatiquement chargés par docker compose en environnement local
+# Permet d'activer le profiler Symfony en dev sans modifier compose.yaml
+services:
+  php:
+    environment:
+      APP_ENV: dev
+      XDEBUG_MODE: "off"

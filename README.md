@@ -28,13 +28,32 @@ L'espace employé et l'espace administrateur permettent de gérer l'ensemble du 
 
 ## Installation locale
 
-### Prérequis
-- PHP 8.2+
-- MySQL 8
-- MongoDB (optionnel, pour les stats)
-- Composer
+### Méthode 1 — Docker (recommandée)
 
-### Étapes
+**Prérequis** : Docker Desktop installé et démarré.
+
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/TON_USER/vite-et-gourmand.git
+cd vite-et-gourmand
+
+# 2. Lancer les conteneurs (PHP 8.3 + MySQL 8 + MongoDB 7)
+docker compose up -d
+
+# 3. Initialiser la base de données (migrations + fixtures)
+docker compose exec php bash docker-init.sh
+```
+
+Accéder à l'application : **http://localhost:8081**
+
+> MySQL est exposé sur le port **3307** (pour ne pas conflicder avec un MySQL local).
+> MongoDB est exposé sur le port **27018**.
+
+---
+
+### Méthode 2 — Installation manuelle
+
+**Prérequis** : PHP 8.2+, MySQL 8, MongoDB, Composer.
 
 ```bash
 # 1. Cloner le dépôt
@@ -174,6 +193,36 @@ vite-et-gourmand/
 | `en_attente_retour_materiel` | En attente du retour du matériel |
 | `terminee` | Terminée — invitation avis envoyée au client |
 | `annulee` | Annulée (par client ou employé) |
+
+---
+
+## Commandes Docker utiles
+
+```bash
+# Démarrer les conteneurs en arrière-plan
+docker compose up -d
+
+# Arrêter les conteneurs
+docker compose down
+
+# Voir les logs PHP
+docker compose logs php -f
+
+# Ouvrir un shell dans le conteneur PHP
+docker compose exec php bash
+
+# Rejouer les migrations
+docker compose exec php php bin/console doctrine:migrations:migrate --no-interaction
+
+# Réinitialiser les données de test
+docker compose exec php php bin/console doctrine:fixtures:load --no-interaction
+
+# Vider le cache
+docker compose exec php php bin/console cache:clear
+
+# Tout réinitialiser (supprime les volumes MySQL et MongoDB)
+docker compose down -v && docker compose up -d
+```
 
 ---
 

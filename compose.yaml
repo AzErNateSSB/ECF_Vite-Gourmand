@@ -1,0 +1,57 @@
+services:
+
+  php:
+    build: .
+    container_name: vitegourmand_php
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor   # vendor géré dans le conteneur
+    environment:
+      APP_ENV: dev
+      APP_SECRET: ${APP_SECRET:-changeme_dev_secret_32chars00}
+      DATABASE_URL: mysql://root:secret@db:3306/vite_et_gourmand?serverVersion=8.0&charset=utf8mb4
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: vite_et_gourmand_stats
+      MESSENGER_TRANSPORT_DSN: sync://
+      MAILER_DSN: null://null
+      MAILER_FROM_ADDRESS: noreply@vitegourmand.fr
+      MAILER_FROM_NAME: "Vite & Gourmand"
+      DEFAULT_URI: http://localhost:8081
+    depends_on:
+      db:
+        condition: service_healthy
+      mongo:
+        condition: service_started
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: vitegourmand_db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: vite_et_gourmand
+    ports:
+      - "3307:3306"   # 3307 pour ne pas entrer en conflit avec MySQL local
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-usecret", "--password=secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    container_name: vitegourmand_mongo
+    ports:
+      - "27018:27017"   # 27018 pour ne pas entrer en conflit avec MongoDB local
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  mongo_data:
