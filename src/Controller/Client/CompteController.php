@@ -58,7 +58,7 @@ class CompteController extends AbstractController
 
         $em->flush();
 
-        $this->addFlash('success', 'Vos informations ont été mises à jour.');
+        $this->addFlash('success', 'Profil mis à jour.');
         return $this->redirectToRoute('client_dashboard');
     }
 
@@ -93,7 +93,7 @@ class CompteController extends AbstractController
         $user->setPassword($hasher->hashPassword($user, $new));
         $em->flush();
 
-        $this->addFlash('success', 'Mot de passe mis à jour avec succès.');
+        $this->addFlash('success', 'Mot de passe modifié.');
         return $this->redirectToRoute('client_dashboard');
     }
 
@@ -133,7 +133,7 @@ class CompteController extends AbstractController
         $em->persist($avis);
         $em->flush();
 
-        $this->addFlash('success', 'Votre avis a été soumis et sera publié après modération.');
+        $this->addFlash('success', 'Avis soumis, en attente de modération.');
         return $this->redirectToRoute('client_dashboard');
     }
 
@@ -193,11 +193,10 @@ class CompteController extends AbstractController
                 $mailer->sendConfirmationCommande($commande);
             } catch (\Throwable) {}
 
-            $msg = 'Votre commande #' . $commande->getNumeroCommande() . ' a bien été enregistrée.';
+            $msg = 'Commande ' . $commande->getNumeroCommande() . ' enregistrée.';
             if ($prixReduction > 0) {
-                $msg .= ' Une réduction de ' . number_format($prixReduction, 2, ',', ' ') . ' € (10%) a été appliquée !';
+                $msg .= ' Réduction 10 % appliquée (' . number_format($prixReduction, 2, ',', ' ') . ' €).';
             }
-            $msg .= ' Un email de confirmation vous a été envoyé.';
             $this->addFlash('success', $msg);
             return $this->redirectToRoute('client_dashboard');
         }

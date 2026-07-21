@@ -1,12 +1,10 @@
-{% extends 'client/layout.html.twig' %}
+﻿{% extends 'client/layout.html.twig' %}
 
 {% block title %}Commande {{ commande.numeroCommande }} — Vite & Gourmand{% endblock %}
 
 {% block client_content %}
 <section class="account-page">
     <div class="container py-5">
-
-        {# ── EN-TÊTE ─────────────────────────────────────────────────────── #}
         <div class="account-header" style="margin-bottom:2rem;">
             <div class="account-header__avatar">
                 <i class="bi bi-bag-fill" style="font-size:1.4rem;"></i>
@@ -27,8 +25,6 @@
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-
-            {# ── DÉTAILS ─────────────────────────────────────────────────── #}
             <div class="account-card" style="grid-column:1;">
                 <h2 class="account-card__title">Détails de la commande</h2>
 
@@ -61,8 +57,6 @@
             </div>
 
             <div style="grid-column:2;display:flex;flex-direction:column;gap:1.5rem;">
-
-                {# ── RÉCAPITULATIF FINANCIER ────────────────────────────── #}
                 <div class="account-card">
                     <h2 class="account-card__title">Récapitulatif financier</h2>
 
@@ -87,8 +81,6 @@
                         </div>
                     </div>
                 </div>
-
-                {# ── STATUT ─────────────────────────────────────────────── #}
                 <div class="account-card">
                     <h2 class="account-card__title">Suivi de commande</h2>
 
@@ -137,8 +129,6 @@
 
             </div>
         </div>
-
-        {# ── SUIVI HISTORIQUE ─────────────────────────────────────────── #}
         {% if commande.suiviCommandes is defined and commande.suiviCommandes|length > 0 %}
         <div class="account-card" style="margin-top:1.5rem;">
             <h2 class="account-card__title">Historique du suivi</h2>

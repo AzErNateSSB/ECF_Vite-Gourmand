@@ -1,12 +1,10 @@
-{% extends 'client/layout.html.twig' %}
+﻿{% extends 'client/layout.html.twig' %}
 
 {% block title %}Mon compte — Vite & Gourmand{% endblock %}
 
 {% block client_content %}
 <section class="account-page">
     <div class="container py-5">
-
-        {# ── EN-TÊTE COMPTE ──────────────────────────────────────────── #}
         <div class="account-header">
             <div class="account-header__avatar">
                 {{ app.user.prenom|slice(0,1)|upper }}{{ app.user.nom|slice(0,1)|upper }}
@@ -16,8 +14,6 @@
                 <p class="account-header__email">{{ app.user.email }}</p>
             </div>
         </div>
-
-        {# ── ONGLETS ─────────────────────────────────────────────────── #}
         <div class="account-tabs" id="account-tabs">
             <button class="account-tabs__btn active" data-tab="profil">
                 <i class="bi bi-person-fill"></i> Mon profil
@@ -29,8 +25,6 @@
                 <i class="bi bi-star-fill"></i> Mes avis
             </button>
         </div>
-
-        {# ── ONGLET PROFIL ────────────────────────────────────────────── #}
         <div class="account-panel active" id="tab-profil">
 
             <div class="account-card">
@@ -142,8 +136,6 @@
             </div>
 
         </div>
-
-        {# ── ONGLET COMMANDES ─────────────────────────────────────────── #}
         <div class="account-panel" id="tab-commandes" style="display:none;">
             <div class="account-card">
                 <h2 class="account-card__title">Mes commandes</h2>
@@ -241,8 +233,6 @@
                 {% endif %}
             </div>
         </div>
-
-        {# ── ONGLET AVIS ─────────────────────────────────────────────── #}
         <div class="account-panel" id="tab-avis" style="display:none;">
             <div class="account-card">
                 <h2 class="account-card__title">Laisser un avis</h2>
@@ -329,8 +319,6 @@
 
     </div>
 </section>
-
-{# ── MODAL ANNULATION ─────────────────────────────────────────────────────── #}
 <div id="modal-annulation" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:16px;padding:2rem;max-width:420px;width:90%;box-shadow:0 8px 32px rgba(128,0,32,.15);">
         <h3 style="font-family:'Aclonica',sans-serif;color:#800020;margin:0 0 .5rem;">Annuler la commande</h3>

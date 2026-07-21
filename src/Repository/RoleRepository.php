@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Repository;
 
@@ -19,18 +19,6 @@ class RoleRepository extends ServiceEntityRepository
 //    /**
 //     * @return Role[] Returns an array of Role objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
 //    public function findOneBySomeField($value): ?Role
 //    {
 //        return $this->createQueryBuilder('r')

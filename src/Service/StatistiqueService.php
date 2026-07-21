@@ -4,12 +4,6 @@ namespace App\Service;
 
 use App\Entity\Commande;
 
-/**
- * Service de statistiques MongoDB.
- * Utilise l'extension PHP mongodb directement (sans ODM).
- * En cas d'indisponibilité de l'extension ou du serveur,
- * toutes les méthodes dégradent gracieusement sans faire planter l'app.
- */
 class StatistiqueService
 {
     private mixed $collection = null;
@@ -32,14 +26,12 @@ class StatistiqueService
 
         try {
             $client = new \MongoDB\Driver\Manager($this->mongoUri);
-            // Ping pour vérifier la connexion
             $command = new \MongoDB\Driver\Command(['ping' => 1]);
             $client->executeCommand('admin', $command);
 
             $this->collection = $client;
             $this->disponible = true;
         } catch (\Exception $e) {
-            // MongoDB indisponible — mode dégradé silencieux
         }
     }
 
@@ -73,7 +65,6 @@ class StatistiqueService
                 $bulk
             );
         } catch (\Exception $e) {
-            // Échec silencieux — ne pas bloquer la commande
         }
     }
 
@@ -97,7 +88,6 @@ class StatistiqueService
         try {
             $ns = $this->mongoDb . '.statistiques_commandes';
 
-            // Total commandes
             $cmd = new \MongoDB\Driver\Command([
                 'count' => 'statistiques_commandes',
                 'query' => ['evenement' => 'creation'],
@@ -105,7 +95,6 @@ class StatistiqueService
             $res = $this->collection->executeCommand($this->mongoDb, $cmd);
             $total = $res->toArray()[0]->n ?? 0;
 
-            // Agrégations financières
             $pipeline = [
                 ['$match' => ['evenement' => 'creation']],
                 ['$group' => [
@@ -118,7 +107,6 @@ class StatistiqueService
             $cmd = new \MongoDB\Driver\Command(['aggregate' => 'statistiques_commandes', 'pipeline' => $pipeline, 'cursor' => new \stdClass()]);
             $financier = $this->collection->executeCommand($this->mongoDb, $cmd)->toArray()[0] ?? null;
 
-            // Top menus
             $pipelineMenus = [
                 ['$match' => ['evenement' => 'creation']],
                 ['$group' => ['_id' => '$menu_titre', 'count' => ['$sum' => 1]]],
@@ -128,7 +116,6 @@ class StatistiqueService
             $cmd = new \MongoDB\Driver\Command(['aggregate' => 'statistiques_commandes', 'pipeline' => $pipelineMenus, 'cursor' => new \stdClass()]);
             $topMenus = $this->collection->executeCommand($this->mongoDb, $cmd)->toArray();
 
-            // Top villes
             $pipelineVilles = [
                 ['$match' => ['evenement' => 'creation', 'ville' => ['$ne' => '']]],
                 ['$group' => ['_id' => '$ville', 'count' => ['$sum' => 1]]],
@@ -138,7 +125,6 @@ class StatistiqueService
             $cmd = new \MongoDB\Driver\Command(['aggregate' => 'statistiques_commandes', 'pipeline' => $pipelineVilles, 'cursor' => new \stdClass()]);
             $topVilles = $this->collection->executeCommand($this->mongoDb, $cmd)->toArray();
 
-            // Par mois
             $pipelineMois = [
                 ['$match' => ['evenement' => 'creation']],
                 ['$group' => [

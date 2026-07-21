@@ -59,7 +59,7 @@ class UtilisateurController extends AbstractController
             $mailer->sendNouveauCompteEmploye($employe, $plainPassword);
         } catch (\Throwable) {}
 
-        $this->addFlash('success', "Compte employé créé pour {$employe->getPrenom()} {$employe->getNom()}. Un email avec les identifiants a été envoyé.");
+        $this->addFlash('success', "Compte créé pour {$employe->getPrenom()} {$employe->getNom()}.");
         return $this->redirectToRoute('admin_utilisateur_index');
     }
 

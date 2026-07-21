@@ -8,7 +8,6 @@
 
 <main id="veg-main">
 
-{# ── HERO 1 : Présentation ────────────────────────────────────────────────── #}
 <article class="hero" style="background-image:url('{{ asset('img/Plats.png') }}');">
     <div class="hero-overlay"></div>
     <div class="container h-100">
@@ -37,7 +36,6 @@
     <span></span><i class="bi bi-flower1"></i><span></span>
 </div>
 
-{# ── HERO 2 : L'équipe ────────────────────────────────────────────────────── #}
 <article class="hero hero--right" style="background-image:url('{{ asset('img/Equipe.png') }}');background-position:center 20%;">
     <div class="hero-overlay hero-overlay--right"></div>
     <div class="container h-100">
@@ -67,7 +65,6 @@
     <span></span><i class="bi bi-flower1"></i><span></span>
 </div>
 
-{# ── AVIS ─────────────────────────────────────────────────────────────────── #}
 <article class="avis-section">
     <div class="container">
         <div class="text-center mb-5">
@@ -93,7 +90,6 @@
                         </div>
                         {% endfor %}
                     {% else %}
-                        {# Avis d'exemple tant qu'aucun avis n'est publié #}
                         {% set avis_list = [
                             { stars: '★★★★★', quote: '« Service impeccable du début à la fin. Les plats étaient raffinés, parfaitement présentés et délicieux. Nos invités ont encore les étoiles dans les yeux ! »', author: 'Sophie M.', event: 'Mariage — 120 convives' },
                             { stars: '★★★★★', quote: '« Une prestation haut de gamme pour notre séminaire d\'entreprise. L\'équipe a su s\'adapter à nos contraintes et proposer un buffet inventif et généreux. »', author: 'Thomas R.', event: 'Séminaire — 80 personnes' },

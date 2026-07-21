@@ -24,7 +24,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // ── RÔLES ────────────────────────────────────────────────────────────
         $roleAdmin = new Role();
         $roleAdmin->setLibelle('administrateur');
         $manager->persist($roleAdmin);
@@ -37,7 +36,6 @@ class AppFixtures extends Fixture
         $roleUser->setLibelle('utilisateur');
         $manager->persist($roleUser);
 
-        // ── THÈMES ───────────────────────────────────────────────────────────
         $themes = [];
         foreach (['Noël', 'Pâques', 'Classique', 'Événement'] as $libelle) {
             $theme = new Theme();
@@ -46,7 +44,6 @@ class AppFixtures extends Fixture
             $themes[$libelle] = $theme;
         }
 
-        // ── RÉGIMES ──────────────────────────────────────────────────────────
         $regimes = [];
         foreach (['Classique', 'Végétarien', 'Vegan', 'Sans gluten', 'Sans lactose', 'Halal'] as $libelle) {
             $regime = new Regime();
@@ -55,7 +52,6 @@ class AppFixtures extends Fixture
             $regimes[$libelle] = $regime;
         }
 
-        // ── ALLERGÈNES (14 réglementaires EU) ────────────────────────────────
         $allergenes = [];
         foreach ([
             'Gluten', 'Crustacés', 'Œufs', 'Poissons', 'Arachides',
@@ -68,7 +64,6 @@ class AppFixtures extends Fixture
             $allergenes[$libelle] = $allergene;
         }
 
-        // ── HORAIRES (1=Lundi … 7=Dimanche) ──────────────────────────────────
         foreach ([
             1 => ['09:00', '18:00', false],
             2 => ['09:00', '18:00', false],
@@ -86,9 +81,6 @@ class AppFixtures extends Fixture
             $manager->persist($horaire);
         }
 
-        // ── UTILISATEURS ─────────────────────────────────────────────────────
-
-        // Administrateur (José) — mot de passe : Admin@2024!
         $admin = new Utilisateur();
         $admin->setEmail('jose@vitegourmand.fr');
         $admin->setPassword($this->hasher->hashPassword($admin, 'Admin@2024!'));
@@ -102,7 +94,6 @@ class AppFixtures extends Fixture
         $admin->setRole($roleAdmin);
         $manager->persist($admin);
 
-        // Employé (Julie) — mot de passe : Employe@2024!
         $employe = new Utilisateur();
         $employe->setEmail('julie@vitegourmand.fr');
         $employe->setPassword($this->hasher->hashPassword($employe, 'Employe@2024!'));
@@ -116,7 +107,6 @@ class AppFixtures extends Fixture
         $employe->setRole($roleEmploye);
         $manager->persist($employe);
 
-        // Utilisateur de test — mot de passe : Client@2024!
         $user = new Utilisateur();
         $user->setEmail('client@test.fr');
         $user->setPassword($this->hasher->hashPassword($user, 'Client@2024!'));
@@ -130,7 +120,6 @@ class AppFixtures extends Fixture
         $user->setRole($roleUser);
         $manager->persist($user);
 
-        // ── PLATS ─────────────────────────────────────────────────────────────
         $plats = [];
         foreach ([
             ['Foie gras maison sur toast brioché',     'entree',  ['Gluten', 'Œufs', 'Lait']],
@@ -153,7 +142,6 @@ class AppFixtures extends Fixture
             $plats[] = $plat;
         }
 
-        // ── MENUS ─────────────────────────────────────────────────────────────
         $menu1 = new Menu();
         $menu1->setTitre('Menu Festif de Noël');
         $menu1->setDescription('Un repas chaleureux pour célébrer les fêtes en famille avec des produits de saison.');
@@ -219,7 +207,6 @@ class AppFixtures extends Fixture
         $image3->setMenu($menu3);
         $manager->persist($image3);
 
-        // ── COMMANDES DE TEST ─────────────────────────────────────────────────
         $commandeData = [
             ['CMD-001', $menu1, 20, '2026-07-26', '503.15', 'en_attente'],
             ['CMD-002', $menu2, 25, '2026-07-30', '563.00', 'confirmee'],

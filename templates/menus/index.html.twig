@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}Nos Menus{% endblock %}
 
@@ -14,8 +14,6 @@
             <span></span><i class="bi bi-flower1"></i><span></span>
         </div>
     </div>
-
-    {# ── BARRE DE FILTRES ─────────────────────────────────────────────────── #}
     <div class="menus-filter-sticky">
         <div class="container">
             <div class="menus-filter">
@@ -102,8 +100,6 @@
             </div>
         </div>
     </div>
-
-    {# ── GRILLE ───────────────────────────────────────────────────────────── #}
     <div class="container pb-5 pt-4">
         <div class="row g-4 justify-content-center" id="menus-grid">
         {% if menus is empty %}

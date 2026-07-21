@@ -58,20 +58,17 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         $this->commandes = new ArrayCollection();
     }
 
-    // Requis par UserInterface — identifiant unique de l'utilisateur
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    // Requis par UserInterface — rôles au format Symfony (tableau de strings)
     public function getRoles(): array
     {
         $libelle = $this->role?->getLibelle() ?? 'utilisateur';
         return ['ROLE_' . strtoupper($libelle)];
     }
 
-    // Requis par UserInterface — efface les données sensibles temporaires
     public function eraseCredentials(): void {}
 
     public function getId(): ?int

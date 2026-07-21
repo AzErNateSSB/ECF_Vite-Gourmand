@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
         <style>
-            /* ── VARIABLES ───────────────────────────────── */
+            /* VARIABLES*/
             :root {
                 --veg-primary:    #BE7D8D;
                 --veg-secondary:  #E8D1D7;
@@ -27,7 +27,7 @@
                 --color-bg-dark:   #800020;
             }
 
-            /* ── BASE ────────────────────────────────────── */
+            /* BASE*/
             html, body { min-height: 100%; }
             body {
                 font-family: var(--veg-font-body);
@@ -40,17 +40,17 @@
             h1, h2, h3, .font-headline { font-family: var(--veg-font-title); }
             p { font-family: var(--veg-font-body); font-size: 18px; }
 
-            /* ── LOGO ────────────────────────────────────── */
+            /* LOGO*/
             .logo { height: 75px; width: auto; }
 
-            /* ── NAVBAR ──────────────────────────────────── */
+            /* NAVBAR*/
             /* The SPA uses Bootstrap's bg-dark with $dark=#800020 */
             .navbar-veg, .navbar.bg-dark { background-color: var(--veg-dark) !important; }
             .nav-link { font-family: 'Aclonica', sans-serif; }
             .nav-link--signout { color: rgba(190,125,141,.85) !important; }
             .nav-link--signout:hover { color: #BE7D8D !important; }
 
-            /* ── MENUS FILTRES ───────────────────────────── */
+            /* MENUS FILTRES*/
             .menus-filter-sticky{position:sticky;top:101px;z-index:100;background-color:#E8D1D7;padding:.25rem 0 0}
             .menus-filter{background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(128,0,32,.08);padding:1rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
             .menus-filter__row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.25rem}
@@ -79,7 +79,7 @@
             .sort-btn{background:none;border:1.5px solid rgba(128,0,32,.3);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#800020;font-size:1.1rem;cursor:pointer;transition:all .15s}
             .sort-btn:hover,.sort-btn.active{background:#800020;color:#fff;border-color:#800020}
 
-            /* ── FOOTER ──────────────────────────────────── */
+            /* FOOTER*/
             footer.footer, .footer-veg {
                 background-color: var(--veg-dark);
                 color: #fff;
@@ -98,7 +98,7 @@
             .footer-link { color: #d4a7b3; text-decoration: underline; font-size: .9rem; transition: color .15s; }
             .footer-link:hover { color: #fff; }
 
-            /* ── BUTTONS ─────────────────────────────────── */
+            /* BUTTONS*/
             .btn-primary-veg {
                 background-color: var(--veg-primary);
                 color: #fff; border: none;
@@ -116,7 +116,7 @@
             .link-veg { color: var(--veg-primary); text-decoration: underline; }
             .link-veg:hover { color: var(--veg-dark); }
 
-            /* ── HERO ────────────────────────────────────── */
+            /* HERO*/
             .hero {
                 position: relative; min-height: 480px;
                 background-size: cover; background-position: center; background-repeat: no-repeat;
@@ -140,7 +140,7 @@
             .hero--right .hero-content { margin-left: auto; text-align: right; }
             @media (max-width: 575.98px) { .hero--right .hero-content { margin-left: 0; text-align: center; } }
 
-            /* ── HERO SEPARATOR ──────────────────────────── */
+            /* HERO SEPARATOR*/
             .hero-separator {
                 background-color: var(--veg-dark);
                 display: flex; align-items: center; justify-content: center; gap: 1rem; padding: .9rem 2rem;
@@ -149,7 +149,7 @@
             .hero-separator span:last-child { background: linear-gradient(to left, transparent, rgba(232,209,215,.5)); }
             .hero-separator i { font-size: 1.2rem; color: var(--veg-secondary); opacity: .8; }
 
-            /* ── AVIS ────────────────────────────────────── */
+            /* AVIS*/
             .avis-section { background-color: var(--veg-secondary); padding: 4rem 0 5rem; }
             .avis-section__title { font-family: var(--veg-font-title); font-size: clamp(1.6rem,3vw,2.2rem); color: var(--veg-dark); margin-bottom: 0; }
             .avis-section__controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
@@ -170,7 +170,7 @@
             .avis-indicators button { width: 8px !important; height: 8px !important; border-radius: 50% !important; background-color: var(--veg-dark) !important; opacity: .3 !important; border: none !important; flex-shrink: 0; }
             .avis-indicators button.active { opacity: 1 !important; }
 
-            /* ── AUTH PAGES (login / signup) ─────────────── */
+            /* AUTH PAGES (login / signup)*/
             .auth-page { min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: var(--veg-secondary); }
             .auth-card { background: #fff; border-radius: 16px; box-shadow: 0 8px 40px rgba(128,0,32,.12); padding: 2.5rem 2rem; width: 100%; max-width: 440px; margin-left: auto; margin-right: auto; }
             .auth-card--wide { max-width: 600px; }
@@ -216,7 +216,7 @@
             .auth-password-rules li.ok { color: #2e7d32; }
             .auth-password-rules li.ok i { color: #2e7d32; }
 
-            /* ── CONTACT PAGE ────────────────────────────── */
+            /* CONTACT PAGE*/
             .contact-page { background: var(--veg-secondary); min-height: 100%; }
             .contact-page__intro { color: rgba(128,0,32,.65); font-size: .95rem; margin-bottom: 1.75rem; line-height: 1.6; }
             .contact-textarea { resize: vertical; min-height: 140px; font-family: var(--veg-font-body); }
@@ -232,7 +232,7 @@
             .contact-info__item strong { font-size: .85rem; color: var(--veg-dark); }
             .contact-info__item span { font-size: .82rem; color: rgba(128,0,32,.6); }
 
-            /* ── MENTIONS LÉGALES ────────────────────────── */
+            /* MENTIONS LÉGALES*/
             .mentions-page { background: var(--veg-secondary); flex: 1; }
             .mentions-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(128,0,32,.08); padding: 2.5rem 3rem; max-width: 800px; margin: 0 auto; }
             .mentions-card__title { font-family: var(--veg-font-title); font-size: 1.8rem; color: var(--veg-dark); margin-bottom: .25rem; }
@@ -246,7 +246,7 @@
             .mentions-list { padding-left: 1.25rem; margin: .5rem 0 1rem; }
             .mentions-list li { margin-bottom: .35rem; }
 
-            /* ── MON COMPTE (account) ────────────────────── */
+            /* MON COMPTE (account)*/
             .account-page { background: var(--veg-secondary); min-height: 100%; }
             .account-header { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem; max-width: 720px; margin-left: auto; margin-right: auto; }
             .account-header__avatar { width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--veg-dark); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--veg-font-title); font-size: 1.3rem; flex-shrink: 0; }
@@ -265,7 +265,7 @@
             .account-panel { display: none; }
             .account-panel.active { display: block; }
 
-            /* ── COMMANDE ITEMS ──────────────────────────── */
+            /* COMMANDE ITEMS*/
             .commande-item { border: 1px solid rgba(190,125,141,.2); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
             .commande-item:last-child { margin-bottom: 0; }
             .commande-item__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .6rem; gap: .5rem; }
@@ -282,12 +282,12 @@
             .commande-item__body i { margin-right: .35rem; color: var(--veg-primary); }
             .commande-item__body strong { color: var(--veg-dark); }
 
-            /* ── AVIS STARS ──────────────────────────────── */
+            /* AVIS STARS*/
             .avis-stars-input { display: flex; gap: .3rem; margin-top: .4rem; }
             .avis-star { background: none; border: none; font-size: 1.6rem; color: rgba(128,0,32,.25); cursor: pointer; padding: 0; line-height: 1; transition: color .1s; }
             .avis-star.active, .avis-star:hover { color: var(--veg-primary); }
 
-            /* ── 404 ─────────────────────────────────────── */
+            /* 404*/
             .not-found-page { background: var(--veg-secondary); flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1rem; }
             .not-found-card { background: #fff; border-radius: 1rem; padding: 3rem 2.5rem; text-align: center; max-width: 480px; width: 100%; box-shadow: 0 4px 24px rgba(128,0,32,.10); }
             .not-found-code { font-size: 6rem; font-weight: 700; line-height: 1; color: var(--veg-primary); font-family: var(--veg-font-title); letter-spacing: -4px; margin-bottom: .5rem; }
@@ -295,7 +295,7 @@
             .not-found-text { color: rgba(128,0,32,.65); font-size: .95rem; margin-bottom: 2rem; }
             .not-found-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-            /* ── MENU CARDS (public) ─────────────────────── */
+            /* MENU CARDS (public)*/
             .menus-page { background-color: var(--veg-secondary); min-height: 100vh; }
             .menus-page__header { padding: 3.5rem 1rem .5rem; }
             .menus-page__title { font-family: var(--veg-font-title); font-size: clamp(2.4rem,5vw,3.5rem); color: var(--veg-dark); margin-bottom: .5rem; }
@@ -333,14 +333,14 @@
             .menu-tag--paques { background: #f3e5f5; color: #7b1fa2; }
             .menu-tag--ete { background: #fff9c4; color: #f9a825; }
 
-            /* ── CAROUSEL ARROWS COLOR ───────────────────── */
+            /* CAROUSEL ARROWS COLOR*/
             .carousel-control-prev-icon,
             .carousel-control-next-icon {
                 filter: invert(12%) sepia(92%) saturate(2500%) hue-rotate(330deg);
             }
             .carousel-control-prev, .carousel-control-next { width: auto; }
 
-            /* ── MISC ────────────────────────────────────── */
+            /* MISC*/
             .bg-secondary-veg { background-color: var(--veg-secondary); }
             .bg-dark-veg { background-color: var(--veg-dark); }
             .section-title { font-family: var(--veg-font-title); color: var(--veg-dark); margin-bottom: 1.5rem; }

@@ -24,7 +24,6 @@ class SecurityController extends AbstractController
     #[Route('/deconnexion', name: 'app_logout')]
     public function logout(): void
     {
-        // Symfony intercepte cette route automatiquement — le corps ne s'exécute jamais
         throw new \LogicException('This method should never be reached.');
     }
 }
