@@ -25,9 +25,10 @@
 # Secrets production locaux
 /.env.production
 
-# IDE
+# IDE / outils locaux
 /.idea/
 /.vscode/
+/.claude/
 *.swp
 
 # OS
