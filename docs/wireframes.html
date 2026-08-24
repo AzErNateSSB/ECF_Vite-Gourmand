@@ -1,0 +1,540 @@
+<title>Wireframes Vite & Gourmand</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #F5F5F5;
+  --surface: #fff;
+  --border: #C8C8C8;
+  --border-light: #E0E0E0;
+  --text: #1A1A1A;
+  --muted: #888;
+  --placeholder: #D0D0D0;
+  --placeholder-dark: #BABABA;
+  --accent: #800020;
+  --accent-light: #E8D1D7;
+  --accent-mid: #BE7D8D;
+  --label: #555;
+  --nav-bg: #2A2A2A;
+  --mobile-frame: #1A1A1A;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111;
+    --surface: #1E1E1E;
+    --border: #444;
+    --border-light: #333;
+    --text: #E8E8E8;
+    --muted: #888;
+    --placeholder: #383838;
+    --placeholder-dark: #4A4A4A;
+    --label: #AAA;
+    --nav-bg: #0A0A0A;
+    --mobile-frame: #333;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111;
+  --surface: #1E1E1E;
+  --border: #444;
+  --border-light: #333;
+  --text: #E8E8E8;
+  --muted: #888;
+  --placeholder: #383838;
+  --placeholder-dark: #4A4A4A;
+  --label: #AAA;
+  --nav-bg: #0A0A0A;
+  --mobile-frame: #333;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+
+/* TOP BAR */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+.topbar__title{font-weight:700;font-size:.95rem;color:var(--accent);margin-right:auto;}
+.mode-btn{display:flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-size:.82rem;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500;transition:all .15s;}
+.mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.page-tabs{display:flex;gap:.35rem;flex-wrap:wrap;}
+.page-tab{padding:.35rem .8rem;border-radius:6px;border:1.5px solid var(--border);background:transparent;color:var(--label);font-size:.78rem;font-family:'Inter',sans-serif;cursor:pointer;transition:all .15s;}
+.page-tab.active{background:var(--accent-light);color:var(--accent);border-color:var(--accent-mid);font-weight:600;}
+
+/* CANVAS */
+.canvas{padding:2rem;display:flex;justify-content:center;align-items:flex-start;min-height:calc(100vh - 60px);}
+
+/* DESKTOP FRAME */
+.desktop-frame{width:100%;max-width:860px;background:var(--surface);border:2px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.10);}
+.desktop-titlebar{background:var(--border-light);padding:.45rem .8rem;display:flex;align-items:center;gap:.4rem;}
+.dot{width:11px;height:11px;border-radius:50%;}
+.dot-r{background:#FF5F57;}.dot-y{background:#FFBD2E;}.dot-g{background:#28CA42;}
+.url-bar{flex:1;background:var(--placeholder);border-radius:4px;height:20px;margin:0 .5rem;max-width:320px;display:flex;align-items:center;padding:0 8px;}
+.url-bar span{font-size:.7rem;color:var(--muted);}
+
+/* MOBILE FRAME */
+.mobile-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.mobile-label{font-size:.75rem;color:var(--muted);font-weight:500;}
+.mobile-frame{width:340px;background:var(--mobile-frame);border-radius:36px;padding:12px 8px;box-shadow:0 6px 28px rgba(0,0,0,.25);}
+.mobile-notch{width:100px;height:24px;background:var(--mobile-frame);border-radius:0 0 14px 14px;margin:0 auto 4px;position:relative;z-index:1;}
+.mobile-screen{background:var(--surface);border-radius:26px;overflow:hidden;min-height:580px;}
+
+/* WIREFRAME ATOMS */
+.wf-nav{background:var(--nav-bg);height:48px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.wf-nav__logo{width:90px;height:16px;background:#555;border-radius:3px;}
+.wf-nav__links{display:flex;gap:8px;margin-left:auto;}
+.wf-nav__link{width:50px;height:10px;background:#555;border-radius:2px;}
+.wf-nav__btn{width:70px;height:26px;background:#800020;border-radius:13px;}
+
+.wf-hero{background:var(--placeholder);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 2rem;gap:14px;text-align:center;}
+.wf-hero__title{width:55%;height:22px;background:var(--placeholder-dark);border-radius:4px;}
+.wf-hero__sub{width:70%;height:13px;background:var(--placeholder);border-radius:3px;}
+.wf-hero__sub2{width:55%;height:13px;background:var(--placeholder);border-radius:3px;}
+.wf-hero__btn{width:130px;height:36px;background:#800020;border-radius:18px;margin-top:6px;}
+
+.wf-section-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:10px 16px 4px;font-weight:600;}
+
+.wf-card-row{display:flex;gap:10px;padding:0 16px 16px;flex-wrap:wrap;}
+.wf-card{flex:1;min-width:120px;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
+.wf-card__img{height:70px;background:var(--placeholder);}
+.wf-card__body{padding:8px;}
+.wf-card__title{height:11px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:5px;}
+.wf-card__line{height:9px;background:var(--placeholder);border-radius:2px;margin-bottom:4px;}
+.wf-card__line--short{width:60%;}
+.wf-card__tag{display:inline-block;width:44px;height:14px;background:var(--accent-light);border-radius:3px;margin-bottom:4px;}
+.wf-card__price{height:14px;width:70%;background:var(--placeholder-dark);border-radius:3px;margin-top:6px;}
+.wf-card__btn{height:26px;background:#800020;border-radius:6px;margin-top:6px;}
+
+.wf-filter-bar{border:1.5px solid var(--border);border-radius:8px;margin:0 16px 14px;padding:10px;}
+.wf-filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.wf-chip{height:24px;border-radius:12px;border:1.5px solid var(--border-light);background:var(--placeholder);}
+.wf-chip--sm{width:70px;}
+.wf-chip--md{width:90px;}
+
+.wf-form{padding:16px;}
+.wf-form__label{height:9px;width:60px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:5px;}
+.wf-form__input{height:34px;border:1.5px solid var(--border);border-radius:6px;margin-bottom:12px;background:var(--surface);}
+.wf-form__input--select{height:34px;border:1.5px solid var(--border);border-radius:6px;margin-bottom:12px;background:var(--placeholder);}
+.wf-form__row{display:flex;gap:8px;}
+.wf-form__row > div{flex:1;}
+.wf-form__btn{height:38px;background:#800020;border-radius:19px;margin-top:4px;}
+.wf-form__btn--outline{height:38px;border:2px solid var(--accent-mid);border-radius:19px;margin-top:4px;background:transparent;}
+
+.wf-block{margin:0 16px 12px;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
+.wf-block__head{height:34px;background:var(--placeholder-dark);}
+.wf-block__row{height:30px;border-top:1px solid var(--border-light);background:var(--surface);display:flex;align-items:center;padding:0 10px;gap:8px;}
+.wf-block__dot{width:8px;height:8px;border-radius:50%;background:var(--placeholder-dark);flex-shrink:0;}
+.wf-block__line{height:9px;border-radius:2px;background:var(--placeholder);}
+.wf-block__badge{width:52px;height:18px;background:var(--accent-light);border-radius:9px;margin-left:auto;flex-shrink:0;}
+
+.wf-stat-row{display:flex;gap:10px;padding:0 16px 14px;}
+.wf-stat{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px;text-align:center;}
+.wf-stat__num{height:18px;background:var(--accent);border-radius:4px;margin-bottom:5px;}
+.wf-stat__label{height:9px;background:var(--placeholder);border-radius:2px;}
+
+.wf-footer{background:var(--nav-bg);height:46px;margin-top:auto;}
+
+/* Mobile nav bottom */
+.wf-bottom-nav{height:50px;background:var(--surface);border-top:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-around;}
+.wf-bottom-nav__item{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.wf-bottom-nav__icon{width:20px;height:20px;background:var(--placeholder-dark);border-radius:3px;}
+.wf-bottom-nav__icon--active{background:#800020;}
+.wf-bottom-nav__dot{width:34px;height:8px;background:var(--placeholder);border-radius:2px;}
+.wf-bottom-nav__dot--active{background:var(--accent-mid);}
+
+.wf-divider{border:none;border-top:1px solid var(--border-light);margin:4px 0;}
+
+/* Annotation callouts */
+.wf-anno{font-size:.65rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 16px;}
+
+/* page visibility */
+.page{display:none;}
+.page.active{display:block;}
+.view-desktop .desktop-view{display:block;}
+.view-desktop .mobile-view{display:none;}
+.view-mobile .mobile-view{display:flex;}
+.view-mobile .desktop-view{display:none;}
+</style>
+
+<div class="topbar">
+  <span class="topbar__title">Wireframes — Vite &amp; Gourmand</span>
+  <button class="mode-btn active" id="btn-desktop" onclick="setMode('desktop')">🖥 Desktop</button>
+  <button class="mode-btn" id="btn-mobile" onclick="setMode('mobile')">📱 Mobile</button>
+  <div class="page-tabs">
+    <button class="page-tab active" onclick="setPage('home')">Accueil</button>
+    <button class="page-tab" onclick="setPage('menus')">Menus</button>
+    <button class="page-tab" onclick="setPage('commande')">Commande</button>
+    <button class="page-tab" onclick="setPage('auth')">Connexion</button>
+    <button class="page-tab" onclick="setPage('client')">Dashboard client</button>
+    <button class="page-tab" onclick="setPage('admin')">Dashboard admin</button>
+  </div>
+</div>
+
+<div class="canvas" id="canvas">
+
+<!-- ===== DESKTOP VIEWS ===== -->
+<div class="desktop-view" style="width:100%;max-width:860px;">
+
+  <!-- HOME desktop -->
+  <div class="page active desktop-frame" id="d-home">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr</span></div></div>
+    <div class="wf-nav"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div><div class="wf-nav__btn" style="margin-left:10px;"></div></div>
+    <div class="wf-hero" style="min-height:220px;">
+      <div class="wf-hero__title" style="width:45%;height:28px;"></div>
+      <div class="wf-hero__sub"></div><div class="wf-hero__sub2"></div>
+      <div class="wf-hero__btn"></div>
+    </div>
+    <div class="wf-section-label">Nos menus du moment</div>
+    <div class="wf-card-row" style="padding:0 16px 16px;">
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div></div></div>
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div></div></div>
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div></div></div>
+    </div>
+    <div class="wf-section-label">Pourquoi nous choisir ?</div>
+    <div class="wf-card-row" style="padding:0 16px 16px;">
+      <div class="wf-card" style="text-align:center;padding:12px;"><div style="width:36px;height:36px;background:var(--placeholder-dark);border-radius:50%;margin:0 auto 8px;"></div><div class="wf-card__title" style="width:80%;margin:0 auto 4px;"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short" style="margin:0 auto;"></div></div>
+      <div class="wf-card" style="text-align:center;padding:12px;"><div style="width:36px;height:36px;background:var(--placeholder-dark);border-radius:50%;margin:0 auto 8px;"></div><div class="wf-card__title" style="width:80%;margin:0 auto 4px;"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short" style="margin:0 auto;"></div></div>
+      <div class="wf-card" style="text-align:center;padding:12px;"><div style="width:36px;height:36px;background:var(--placeholder-dark);border-radius:50%;margin:0 auto 8px;"></div><div class="wf-card__title" style="width:80%;margin:0 auto 4px;"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short" style="margin:0 auto;"></div></div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+  <!-- MENUS desktop -->
+  <div class="page desktop-frame" id="d-menus">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr/menus</span></div></div>
+    <div class="wf-nav"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div><div class="wf-nav__btn" style="margin-left:10px;"></div></div>
+    <div style="padding:14px 16px 8px;"><div style="height:20px;width:120px;background:var(--placeholder-dark);border-radius:4px;"></div></div>
+    <div class="wf-filter-bar">
+      <div class="wf-section-label" style="padding:0 0 6px;">Filtres</div>
+      <div class="wf-filter-chips">
+        <div class="wf-chip wf-chip--sm"></div><div class="wf-chip wf-chip--md"></div><div class="wf-chip wf-chip--md"></div><div class="wf-chip wf-chip--sm"></div>
+        <div class="wf-chip wf-chip--md"></div><div class="wf-chip wf-chip--sm"></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;align-items:center;">
+        <div style="flex:1;"><div style="height:9px;width:50px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:4px;"></div><div style="height:6px;background:var(--accent-mid);border-radius:3px;"></div></div>
+        <div style="flex:1;"><div style="height:9px;width:50px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:4px;"></div><div style="height:6px;background:var(--accent-mid);border-radius:3px;"></div></div>
+        <div style="display:flex;gap:6px;"><div style="width:28px;height:28px;border-radius:6px;background:var(--placeholder);"></div><div style="width:28px;height:28px;border-radius:6px;background:var(--placeholder);"></div></div>
+      </div>
+    </div>
+    <div class="wf-card-row">
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div><div class="wf-card__btn"></div></div></div>
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div><div class="wf-card__btn"></div></div></div>
+      <div class="wf-card"><div class="wf-card__img"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price"></div><div class="wf-card__btn"></div></div></div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+  <!-- COMMANDE desktop -->
+  <div class="page desktop-frame" id="d-commande">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr/commande/new</span></div></div>
+    <div class="wf-nav"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div></div>
+    <div style="display:flex;gap:16px;padding:16px;">
+      <div style="flex:2;">
+        <div style="height:18px;width:160px;background:var(--placeholder-dark);border-radius:4px;margin-bottom:14px;"></div>
+        <div class="wf-form">
+          <div class="wf-form__label"></div><div class="wf-form__input--select"></div>
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div class="wf-form__row"><div><div class="wf-form__label"></div><div class="wf-form__input"></div></div><div><div class="wf-form__label"></div><div class="wf-form__input"></div></div></div>
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div class="wf-form__row" style="margin-top:8px;"><div class="wf-form__btn--outline"></div><div class="wf-form__btn"></div></div>
+        </div>
+      </div>
+      <div style="flex:1;border:1.5px solid var(--border);border-radius:10px;padding:14px;height:fit-content;">
+        <div style="height:13px;width:80px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:10px;"></div>
+        <div style="height:11px;background:var(--placeholder);border-radius:2px;margin-bottom:6px;"></div>
+        <div style="height:11px;width:70%;background:var(--placeholder);border-radius:2px;margin-bottom:6px;"></div>
+        <hr class="wf-divider" style="margin:10px 0;">
+        <div style="height:18px;background:var(--placeholder-dark);border-radius:3px;"></div>
+      </div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+  <!-- AUTH desktop -->
+  <div class="page desktop-frame" id="d-auth">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr/connexion</span></div></div>
+    <div class="wf-nav"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div></div>
+    <div style="display:flex;justify-content:center;padding:32px 16px;">
+      <div style="width:380px;border:1.5px solid var(--border);border-radius:12px;padding:24px;">
+        <div style="height:20px;width:130px;background:var(--placeholder-dark);border-radius:4px;margin:0 auto 6px;"></div>
+        <div style="height:11px;width:200px;background:var(--placeholder);border-radius:2px;margin:0 auto 20px;"></div>
+        <div class="wf-form">
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div style="height:11px;width:130px;background:var(--placeholder);border-radius:2px;margin-bottom:10px;margin-left:auto;"></div>
+          <div class="wf-form__btn"></div>
+        </div>
+        <hr class="wf-divider" style="margin:14px 0;">
+        <div style="height:11px;width:180px;background:var(--placeholder);border-radius:2px;margin:0 auto;"></div>
+      </div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+  <!-- CLIENT DASHBOARD desktop -->
+  <div class="page desktop-frame" id="d-client">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr/client/dashboard</span></div></div>
+    <div class="wf-nav"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div><div style="width:30px;height:30px;border-radius:50%;background:#555;margin-left:10px;"></div></div>
+    <div style="display:flex;gap:0;">
+      <!-- sidebar -->
+      <div style="width:160px;border-right:1.5px solid var(--border);padding:14px 0;flex-shrink:0;min-height:440px;">
+        <div style="display:flex;flex-direction:column;gap:4px;padding:0 8px;">
+          <div style="height:32px;background:var(--accent);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;margin-top:8px;"></div>
+        </div>
+      </div>
+      <!-- content -->
+      <div style="flex:1;padding:14px;">
+        <div class="wf-stat-row">
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+        </div>
+        <div class="wf-section-label" style="padding:0 0 6px;">Mes commandes</div>
+        <div class="wf-block" style="margin:0 0 12px;">
+          <div class="wf-block__head"></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+  <!-- ADMIN DASHBOARD desktop -->
+  <div class="page desktop-frame" id="d-admin">
+    <div class="desktop-titlebar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><div class="url-bar"><span>viteetgourmand.fr/admin/dashboard</span></div></div>
+    <div class="wf-nav" style="background:#540015;"><div class="wf-nav__logo"></div><div class="wf-nav__links"><div class="wf-nav__link"></div><div class="wf-nav__link"></div><div class="wf-nav__link"></div></div></div>
+    <div style="display:flex;gap:0;">
+      <div style="width:160px;border-right:1.5px solid var(--border);padding:14px 0;flex-shrink:0;min-height:440px;">
+        <div style="display:flex;flex-direction:column;gap:4px;padding:0 8px;">
+          <div style="height:32px;background:var(--accent);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;"></div>
+          <div style="height:32px;background:var(--placeholder);border-radius:6px;margin-top:8px;"></div>
+        </div>
+      </div>
+      <div style="flex:1;padding:14px;">
+        <div class="wf-stat-row">
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+        </div>
+        <div class="wf-section-label" style="padding:0 0 6px;">Commandes en cours</div>
+        <div class="wf-block" style="margin:0 0 12px;">
+          <div class="wf-block__head"></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="width:120px;"></div><div class="wf-block__line" style="width:80px;margin-left:8px;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="width:120px;"></div><div class="wf-block__line" style="width:80px;margin-left:8px;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="width:120px;"></div><div class="wf-block__line" style="width:80px;margin-left:8px;"></div><div class="wf-block__badge" style="background:var(--accent);"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="width:120px;"></div><div class="wf-block__line" style="width:80px;margin-left:8px;"></div><div class="wf-block__badge"></div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">
+          <div style="height:32px;width:110px;background:var(--accent);border-radius:6px;"></div>
+          <div style="height:32px;width:110px;background:var(--placeholder);border-radius:6px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-footer"></div>
+  </div>
+
+</div><!-- /desktop-view -->
+
+<!-- ===== MOBILE VIEWS ===== -->
+<div class="mobile-view" style="display:none;flex-direction:column;align-items:center;gap:1.5rem;">
+
+  <!-- HOME mobile -->
+  <div class="page active mobile-wrap" id="m-home">
+    <div class="mobile-label">375 × 812 — Accueil</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;"><div class="wf-nav__logo" style="width:70px;"></div><div style="width:28px;height:20px;background:#555;border-radius:3px;margin-left:auto;"></div></div>
+        <div class="wf-hero" style="min-height:160px;padding:1.5rem 1rem;">
+          <div class="wf-hero__title" style="width:80%;"></div>
+          <div class="wf-hero__sub" style="width:90%;"></div>
+          <div class="wf-hero__btn" style="width:140px;"></div>
+        </div>
+        <div class="wf-section-label">Nos menus</div>
+        <div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;">
+          <div class="wf-card" style="display:flex;"><div class="wf-card__img" style="width:80px;height:70px;flex-shrink:0;"></div><div class="wf-card__body" style="flex:1;"><div class="wf-card__title"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price" style="width:50%;"></div></div></div>
+          <div class="wf-card" style="display:flex;"><div class="wf-card__img" style="width:80px;height:70px;flex-shrink:0;"></div><div class="wf-card__body" style="flex:1;"><div class="wf-card__title"></div><div class="wf-card__line wf-card__line--short"></div><div class="wf-card__price" style="width:50%;"></div></div></div>
+        </div>
+        <div class="wf-bottom-nav">
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon wf-bottom-nav__icon--active"></div><div class="wf-bottom-nav__dot wf-bottom-nav__dot--active"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENUS mobile -->
+  <div class="page mobile-wrap" id="m-menus">
+    <div class="mobile-label">375 × 812 — Menus</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;"><div class="wf-nav__logo" style="width:70px;"></div><div style="width:28px;height:20px;background:#555;border-radius:3px;margin-left:auto;"></div></div>
+        <div style="padding:8px 12px;"><div class="wf-filter-chips"><div class="wf-chip wf-chip--sm"></div><div class="wf-chip wf-chip--md"></div><div class="wf-chip wf-chip--sm"></div><div class="wf-chip wf-chip--md"></div></div></div>
+        <div style="padding:0 12px;display:flex;flex-direction:column;gap:8px;">
+          <div class="wf-card"><div class="wf-card__img" style="height:130px;"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line"></div><div class="wf-card__price"></div><div class="wf-card__btn"></div></div></div>
+          <div class="wf-card"><div class="wf-card__img" style="height:130px;"></div><div class="wf-card__body"><div class="wf-card__title"></div><div class="wf-card__tag"></div><div class="wf-card__line"></div><div class="wf-card__price"></div><div class="wf-card__btn"></div></div></div>
+        </div>
+        <div class="wf-bottom-nav">
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon wf-bottom-nav__icon--active"></div><div class="wf-bottom-nav__dot wf-bottom-nav__dot--active"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMANDE mobile -->
+  <div class="page mobile-wrap" id="m-commande">
+    <div class="mobile-label">375 × 812 — Commande</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;"><div class="wf-nav__logo" style="width:70px;"></div></div>
+        <div class="wf-form" style="padding:12px;">
+          <div style="height:16px;width:150px;background:var(--placeholder-dark);border-radius:3px;margin-bottom:12px;"></div>
+          <div class="wf-form__label"></div><div class="wf-form__input--select"></div>
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div class="wf-form__label"></div><div class="wf-form__input"></div>
+          <div style="border:1.5px solid var(--border);border-radius:8px;padding:10px;margin-bottom:12px;">
+            <div style="height:11px;width:70px;background:var(--placeholder-dark);border-radius:2px;margin-bottom:6px;"></div>
+            <div style="height:14px;background:var(--placeholder-dark);border-radius:3px;"></div>
+          </div>
+          <div class="wf-form__btn"></div>
+        </div>
+        <div class="wf-bottom-nav">
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon wf-bottom-nav__icon--active"></div><div class="wf-bottom-nav__dot wf-bottom-nav__dot--active"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH mobile -->
+  <div class="page mobile-wrap" id="m-auth">
+    <div class="mobile-label">375 × 812 — Connexion</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;"><div class="wf-nav__logo" style="width:70px;"></div></div>
+        <div style="padding:24px 16px;">
+          <div style="height:20px;width:160px;background:var(--placeholder-dark);border-radius:4px;margin:0 auto 6px;"></div>
+          <div style="height:11px;width:200px;background:var(--placeholder);border-radius:2px;margin:0 auto 20px;"></div>
+          <div class="wf-form" style="padding:0;">
+            <div class="wf-form__label"></div><div class="wf-form__input"></div>
+            <div class="wf-form__label"></div><div class="wf-form__input"></div>
+            <div style="height:11px;width:110px;background:var(--placeholder);border-radius:2px;margin-bottom:12px;margin-left:auto;"></div>
+            <div class="wf-form__btn"></div>
+          </div>
+          <hr class="wf-divider" style="margin:14px 0;">
+          <div style="height:11px;width:170px;background:var(--placeholder);border-radius:2px;margin:0 auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT mobile -->
+  <div class="page mobile-wrap" id="m-client">
+    <div class="mobile-label">375 × 812 — Dashboard client</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;"><div class="wf-nav__logo" style="width:70px;"></div><div style="width:28px;height:28px;border-radius:50%;background:#555;margin-left:auto;"></div></div>
+        <div class="wf-stat-row" style="padding:10px 10px 6px;">
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+        </div>
+        <div class="wf-section-label">Mes commandes</div>
+        <div class="wf-block" style="margin:0 10px 10px;">
+          <div class="wf-block__head"></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge" style="background:var(--accent);"></div></div>
+        </div>
+        <div class="wf-bottom-nav">
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon wf-bottom-nav__icon--active"></div><div class="wf-bottom-nav__dot wf-bottom-nav__dot--active"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN mobile -->
+  <div class="page mobile-wrap" id="m-admin">
+    <div class="mobile-label">375 × 812 — Dashboard admin</div>
+    <div class="mobile-frame">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <div class="wf-nav" style="height:44px;padding:0 14px;background:#540015;"><div class="wf-nav__logo" style="width:70px;"></div><div style="width:28px;height:20px;background:#888;border-radius:3px;margin-left:auto;"></div></div>
+        <div class="wf-stat-row" style="padding:10px 10px 6px;">
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+          <div class="wf-stat"><div class="wf-stat__num"></div><div class="wf-stat__label"></div></div>
+        </div>
+        <div class="wf-section-label">Commandes</div>
+        <div class="wf-block" style="margin:0 10px 8px;">
+          <div class="wf-block__head"></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge" style="background:var(--accent);"></div></div>
+          <div class="wf-block__row"><div class="wf-block__dot"></div><div class="wf-block__line" style="flex:1;"></div><div class="wf-block__badge"></div></div>
+        </div>
+        <div style="padding:0 10px;display:flex;gap:6px;">
+          <div style="height:30px;flex:1;background:var(--accent);border-radius:6px;"></div>
+          <div style="height:30px;flex:1;background:var(--placeholder);border-radius:6px;"></div>
+        </div>
+        <div class="wf-bottom-nav">
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon wf-bottom-nav__icon--active"></div><div class="wf-bottom-nav__dot wf-bottom-nav__dot--active"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+          <div class="wf-bottom-nav__item"><div class="wf-bottom-nav__icon"></div><div class="wf-bottom-nav__dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /mobile-view -->
+
+</div><!-- /canvas -->
+
+<script>
+let currentMode = 'desktop';
+let currentPage = 'home';
+
+function setMode(mode){
+  currentMode = mode;
+  document.getElementById('btn-desktop').classList.toggle('active', mode==='desktop');
+  document.getElementById('btn-mobile').classList.toggle('active', mode==='mobile');
+  document.querySelector('.desktop-view').style.display = mode==='desktop' ? 'block' : 'none';
+  document.querySelector('.mobile-view').style.display = mode==='mobile' ? 'flex' : 'none';
+  renderPage();
+}
+
+function setPage(page){
+  currentPage = page;
+  document.querySelectorAll('.page-tab').forEach((t,i)=>{
+    const pages = ['home','menus','commande','auth','client','admin'];
+    t.classList.toggle('active', pages[i]===page);
+  });
+  renderPage();
+}
+
+function renderPage(){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const prefix = currentMode==='desktop' ? 'd' : 'm';
+  const el = document.getElementById(prefix+'-'+currentPage);
+  if(el) el.classList.add('active');
+}
+</script>
