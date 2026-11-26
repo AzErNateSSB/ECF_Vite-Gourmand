@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dossier Projet — Vite &amp; Gourmand</title>
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --rouge:   #800020;
+  --rose:    #BE7D8D;
+  --clair:   #E8D1D7;
+  --texte:   #1a1a1a;
+  --gris:    #6b7280;
+  --bordure: #e5e7eb;
+  --fond:    #ffffff;
+}
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.65;
+  color: var(--texte);
+  background: var(--fond);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ── PRINT ────────────────────────────────────────────────────────────── */
+@media print {
+  body { max-width: 100%; padding: 0; font-size: 10pt; }
+  .no-print { display: none !important; }
+  .saut { page-break-before: always; }
+  pre, table, figure { page-break-inside: avoid; }
+  a { color: inherit; text-decoration: none; }
+  @page { size: A4; margin: 18mm 15mm 18mm 20mm; }
+}
+
+/* ── COUVERTURE ───────────────────────────────────────────────────────── */
+.cover {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 85vh; text-align: center; gap: 1rem;
+}
+.cover-logo { font-size: 3rem; }
+.cover-title { font-size: 2.4rem; font-weight: 800; color: var(--rouge); }
+.cover-sub { font-size: 1.1rem; color: var(--gris); }
+.cover-divider { width: 60px; height: 4px; background: var(--rouge); border-radius: 2px; margin: .8rem auto; }
+.cover-meta { font-size: .95rem; line-height: 2.2; color: #444; }
+.cover-meta strong { color: var(--texte); }
+.cover-badge {
+  margin-top: 1.5rem; display: inline-block;
+  background: #fff5f7; border: 1.5px solid var(--clair); border-radius: 8px;
+  padding: 10px 24px; font-size: .85rem; color: var(--rouge); font-weight: 600;
+}
+
+/* ── SOMMAIRE ─────────────────────────────────────────────────────────── */
+.toc-titre { font-size: 1.3rem; font-weight: 700; color: var(--rouge); margin-bottom: 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--clair); }
+.toc { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; border-bottom: 1px dotted var(--bordure); font-size: .95rem; }
+.toc li.h1 { font-weight: 700; color: var(--rouge); margin-top: .8rem; }
+.toc li.h2 { padding-left: 1.2rem; }
+.toc li.h3 { padding-left: 2.2rem; color: var(--gris); font-size: .85rem; }
+.toc-p { font-weight: 600; color: #374151; white-space: nowrap; margin-left: .5rem; }
+
+/* ── TITRES DE SECTION ────────────────────────────────────────────────── */
+.section-part { background: var(--rouge); color: white; font-size: 1.1rem; font-weight: 700; padding: 8px 16px; border-radius: 5px; margin: 0 0 1.2rem; }
+h2 { font-size: 1.1rem; font-weight: 700; color: var(--rouge); border-left: 4px solid var(--rose); padding-left: 10px; margin: 1.6rem 0 .6rem; }
+h3 { font-size: .95rem; font-weight: 600; color: var(--texte); margin: 1.1rem 0 .4rem; }
+p { margin: 0 0 .6rem; }
+ul, ol { margin: .4rem 0 .7rem 1.3rem; }
+li { margin-bottom: .2rem; }
+
+/* ── CODE ─────────────────────────────────────────────────────────────── */
+pre {
+  background: #f8f8f8; border: 1px solid var(--bordure);
+  border-left: 3px solid var(--rouge); border-radius: 4px;
+  padding: 10px 14px; font-size: 8.5pt; font-family: 'Consolas','Courier New',monospace;
+  line-height: 1.5; overflow-x: auto; margin: .6rem 0;
+  white-space: pre; tab-size: 4;
+}
+code { background: #f1f5f9; border-radius: 3px; padding: 1px 5px; font-size: 8.5pt; font-family: 'Consolas','Courier New',monospace; color: #9b1c1c; }
+
+/* ── TABLEAUX ─────────────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; margin: .6rem 0; font-size: .88rem; }
+th { background: var(--rouge); color: white; padding: 6px 10px; text-align: left; font-weight: 600; }
+td { padding: 5px 10px; border-bottom: 1px solid var(--bordure); }
+tr:nth-child(even) td { background: #fdf8f9; }
+
+/* ── BOÎTES ───────────────────────────────────────────────────────────── */
+.info  { background: #fff5f7; border: 1px solid var(--clair); border-left: 4px solid var(--rouge); border-radius: 4px; padding: 8px 12px; margin: .6rem 0; font-size: .88rem; }
+.warn  { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #f59e0b; border-radius: 4px; padding: 8px 12px; margin: .6rem 0; font-size: .88rem; }
+.comp  { display: inline-block; background: #fff5f7; color: var(--rouge); border: 1px solid var(--clair); border-radius: 4px; padding: 2px 10px; font-size: .78rem; font-weight: 600; margin-bottom: .4rem; }
+
+/* ── FIGURES / MAQUETTES ──────────────────────────────────────────────── */
+figure { margin: .8rem 0; }
+figcaption { font-size: .8rem; color: var(--gris); text-align: center; margin-top: .3rem; font-style: italic; }
+.maquettes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: .8rem 0; }
+.maquettes-grid figure img,
+.maquettes-grid figure svg { width: 100%; height: auto; border: 1px solid var(--bordure); border-radius: 4px; }
+.maquettes-mono figure img,
+.maquettes-mono figure svg { width: 100%; max-width: 320px; height: auto; border: 1px solid var(--bordure); border-radius: 4px; }
+
+/* ── FOOTER ───────────────────────────────────────────────────────────── */
+.pied { margin-top: 3rem; padding-top: .8rem; border-top: 1px solid var(--bordure); font-size: .78rem; color: #9ca3af; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     PAGE DE GARDE
+══════════════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">🍽️</div>
+  <div class="cover-title">Vite &amp; Gourmand</div>
+  <div class="cover-sub">Dossier Projet — 2<sup>e</sup> dépôt</div>
+  <div class="cover-sub" style="font-size:.95rem;color:#aaa;">Titre professionnel Développeur Web et Web Mobile</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <strong>Candidat :</strong> Victor POUILLON<br/>
+    <strong>Certification :</strong> RNCP 37674 — DWWM<br/>
+    <strong>Organisme :</strong> Studi<br/>
+    <strong>Année :</strong> 2025
+  </div>
+  <div class="cover-badge">BC01 Développement Front-End &nbsp;|&nbsp; BC02 Développement Back-End</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     SOMMAIRE
+══════════════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<div class="toc-titre">Sommaire</div>
+<ul class="toc">
+  <li class="h1"><span>Présentation du projet</span><span class="toc-p">3</span></li>
+  <li class="h1"><span>BC01 — Développement Front-End</span><span class="toc-p">4</span></li>
+  <li class="h2"><span>C01 — Maquettage des interfaces</span><span class="toc-p">4</span></li>
+  <li class="h3"><span>Wireframes desktop</span><span class="toc-p">4</span></li>
+  <li class="h3"><span>Wireframes mobile</span><span class="toc-p">5</span></li>
+  <li class="h3"><span>Mockups desktop</span><span class="toc-p">6</span></li>
+  <li class="h3"><span>Mockups mobile</span><span class="toc-p">7</span></li>
+  <li class="h2"><span>C02 — Intégration HTML/CSS</span><span class="toc-p">8</span></li>
+  <li class="h3"><span>Balises sémantiques et héritage Twig</span><span class="toc-p">8</span></li>
+  <li class="h3"><span>Media queries mobile-first</span><span class="toc-p">9</span></li>
+  <li class="h2"><span>C03 — Interfaces dynamiques (JavaScript)</span><span class="toc-p">10</span></li>
+  <li class="h3"><span>Script fetch — calcul du prix de livraison</span><span class="toc-p">10</span></li>
+  <li class="h3"><span>Validation de formulaire côté navigateur</span><span class="toc-p">11</span></li>
+  <li class="h3"><span>Insertion sécurisée dans le DOM (anti-XSS)</span><span class="toc-p">11</span></li>
+  <li class="h1"><span>BC02 — Développement Back-End</span><span class="toc-p">12</span></li>
+  <li class="h2"><span>C05 — Modélisation de la base de données</span><span class="toc-p">12</span></li>
+  <li class="h3"><span>Schéma relationnel avec cardinalités</span><span class="toc-p">12</span></li>
+  <li class="h3"><span>Diagramme de cas d'utilisation</span><span class="toc-p">13</span></li>
+  <li class="h3"><span>Diagramme de séquence — commande</span><span class="toc-p">14</span></li>
+  <li class="h2"><span>C06 — Accès aux données</span><span class="toc-p">15</span></li>
+  <li class="h3"><span>Migration Doctrine — création des tables</span><span class="toc-p">15</span></li>
+  <li class="h3"><span>Fixtures — insertion de données de test</span><span class="toc-p">16</span></li>
+  <li class="h3"><span>QueryBuilder paramétré</span><span class="toc-p">17</span></li>
+  <li class="h2"><span>C08 — Déploiement Docker</span><span class="toc-p">18</span></li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     NOTE CORRECTEURS
+══════════════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<div class="warn" style="margin-bottom:1.5rem;">
+  <strong>📋 Note à l'attention des correcteurs</strong><br/>
+  J'ai bien reçu le retour de la correction de la grille de compétences indiquant qu'un deuxième projet professionnel était attendu. Ce second projet fera l'objet du <strong>2e dépôt</strong>.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     PRÉSENTATION
+══════════════════════════════════════════════════════════════════════ -->
+<div class="section-part">Présentation du projet — Vite &amp; Gourmand</div>
+
+<p>Vite &amp; Gourmand est un traiteur bordelais spécialisé dans les événements type mariages ou séminaires. Ce sujet était à la base proposé par Studi pour l'ECF ; j'ai choisi de le réutiliser pour ce dossier professionnel en l'adaptant : j'y ai ajouté Docker pour la conteneurisation, MongoDB pour les stats de navigation, et j'ai refait la gestion des rôles avec Symfony Security pour coller au nouveau référentiel.</p>
+
+<h2>Stack technique</h2>
+<table>
+  <tr><th>Couche</th><th>Technologie</th><th>Version</th></tr>
+  <tr><td>Backend</td><td>PHP / Symfony</td><td>PHP 8.3 / Symfony 7.x</td></tr>
+  <tr><td>ORM</td><td>Doctrine ORM</td><td>3.x</td></tr>
+  <tr><td>Base relationnelle</td><td>MySQL</td><td>8.0</td></tr>
+  <tr><td>Base documentaire</td><td>MongoDB</td><td>7.0 (statistiques)</td></tr>
+  <tr><td>Frontend</td><td>Twig / Bootstrap / Bootstrap Icons</td><td>Bootstrap 5.3</td></tr>
+  <tr><td>JavaScript</td><td>Vanilla JS (ES6+), modules natifs</td><td>—</td></tr>
+  <tr><td>Conteneurisation</td><td>Docker Compose</td><td>—</td></tr>
+</table>
+
+<h2>Profils utilisateurs</h2>
+<table>
+  <tr><th>Profil</th><th>Accès</th><th>Actions principales</th></tr>
+  <tr><td>Visiteur</td><td>Public</td><td>Consulter les menus, contacter le traiteur</td></tr>
+  <tr><td>Client</td><td>Connecté</td><td>Passer une commande, suivre son statut, laisser un avis</td></tr>
+  <tr><td>Employé</td><td>ROLE_EMPLOYE</td><td>Gérer les commandes, traiter les avis</td></tr>
+  <tr><td>Administrateur</td><td>ROLE_ADMIN</td><td>Gérer menus, utilisateurs, horaires, statistiques</td></tr>
+</table>
+
+<h2>Comptes de test</h2>
+<table>
+  <tr><th>Rôle</th><th>Email</th><th>Mot de passe</th></tr>
+  <tr><td>Administrateur</td><td>jose@vitegourmand.fr</td><td>Admin@2024!</td></tr>
+  <tr><td>Employé</td><td>julie@vitegourmand.fr</td><td>Employe@2024!</td></tr>
+  <tr><td>Client</td><td><em>(créé via inscription)</em></td><td>—</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     BC01
+══════════════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<div class="section-part">BC01 — Développement Front-End</div>
+
+<h2>C01 — Maquettage des interfaces utilisateur</h2>
+<span class="comp">Compétence C01 — Maquetter des interfaces utilisateur web ou web mobile</span>
+
+<p>Pour le maquettage j'ai travaillé en deux temps : d'abord des wireframes en gris pour poser la structure sans me perdre dans les couleurs, puis les mockups avec la vraie charte. Je me suis concentré sur les trois pages les plus complexes côté interface : l'accueil, le catalogue des menus et la page de commande.</p>
+
+<h3>Wireframes desktop — basse fidélité</h3>
+<p>Les wireframes sont uniquement en gris — pas de couleurs, pas de typo définitive. Je voulais d'abord valider la répartition des blocs et la navigation avant de me lancer dans le design.</p>
+
+<div class="maquettes-grid">
+  <figure>
+    <img src="maquettes/wireframe_desktop_accueil.svg" alt="Wireframe desktop — Accueil"/>
+    <figcaption>Wireframe desktop — Page d'accueil</figcaption>
+  </figure>
+  <figure>
+    <img src="maquettes/wireframe_desktop_catalogue.svg" alt="Wireframe desktop — Catalogue"/>
+    <figcaption>Wireframe desktop — Catalogue des menus</figcaption>
+  </figure>
+</div>
+<div class="maquettes-grid" style="grid-template-columns:1fr;">
+  <figure>
+    <img src="maquettes/wireframe_desktop_commande.svg" alt="Wireframe desktop — Commande"/>
+    <figcaption>Wireframe desktop — Formulaire de commande (layout 2 colonnes)</figcaption>
+  </figure>
+</div>
+
+<h3>Wireframes mobile — basse fidélité</h3>
+<p>Sur mobile j'ai dû repenser la mise en page : les cards du catalogue passent en colonne unique, les filtres se replient dans un accordéon pour pas surcharger l'écran, et le formulaire de commande qui était en deux colonnes sur desktop devient entièrement vertical.</p>
+
+<div class="maquettes-grid">
+  <figure>
+    <img src="maquettes/wireframe_mobile_accueil.svg" alt="Wireframe mobile — Accueil"/>
+    <figcaption>Wireframe mobile — Accueil</figcaption>
+  </figure>
+  <figure>
+    <img src="maquettes/wireframe_mobile_catalogue.svg" alt="Wireframe mobile — Catalogue"/>
+    <figcaption>Wireframe mobile — Catalogue</figcaption>
+  </figure>
+</div>
+<div style="max-width:260px;margin:.8rem auto;">
+  <figure>
+    <img src="maquettes/wireframe_mobile_commande.svg" alt="Wireframe mobile — Commande"/>
+    <figcaption>Wireframe mobile — Commande</figcaption>
+  </figure>
+</div>
+
+<div class="saut"></div>
+<h3>Mockups desktop — haute fidélité</h3>
+<p>Pour les mockups j'ai choisi un bordeaux <code>#800020</code> comme couleur principale — cohérent avec l'univers traiteur haut de gamme. La police Aclonica en titre donne un côté élégant sans être trop chargé, et j'ai gardé un rose <code>#BE7D8D</code> pour les accents secondaires.</p>
+
+<div class="maquettes-grid">
+  <figure>
+    <img src="maquettes/desktop_accueil.svg" alt="Mockup desktop — Accueil"/>
+    <figcaption>Mockup desktop — Page d'accueil</figcaption>
+  </figure>
+  <figure>
+    <img src="maquettes/desktop_catalogue.svg" alt="Mockup desktop — Catalogue"/>
+    <figcaption>Mockup desktop — Catalogue des menus</figcaption>
+  </figure>
+</div>
+<div class="maquettes-grid" style="grid-template-columns:1fr;">
+  <figure>
+    <img src="maquettes/desktop_commande.svg" alt="Mockup desktop — Commande"/>
+    <figcaption>Mockup desktop — Formulaire de commande</figcaption>
+  </figure>
+</div>
+
+<h3>Mockups mobile — haute fidélité</h3>
+<div class="maquettes-grid">
+  <figure>
+    <img src="maquettes/mobile_accueil.svg" alt="Mockup mobile — Accueil"/>
+    <figcaption>Mockup mobile — Accueil</figcaption>
+  </figure>
+  <figure>
+    <img src="maquettes/mobile_catalogue.svg" alt="Mockup mobile — Catalogue"/>
+    <figcaption>Mockup mobile — Catalogue</figcaption>
+  </figure>
+</div>
+<div style="max-width:260px;margin:.8rem auto;">
+  <figure>
+    <img src="maquettes/mobile_commande.svg" alt="Mockup mobile — Commande"/>
+    <figcaption>Mockup mobile — Formulaire de commande</figcaption>
+  </figure>
+</div>
+
+<!-- ═══ C02 ══════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<h2>C02 — Réalisation des interfaces statiques</h2>
+<span class="comp">Compétence C02 — Réaliser des interfaces utilisateur statiques web ou web mobile</span>
+
+<h3>Balises sémantiques et héritage Twig</h3>
+<p>J'ai centralisé tout le HTML commun dans <code>base.html.twig</code>. Chaque page étend ce template et n'écrit que son contenu dans les blocs <code>title</code> et <code>body</code>. J'ai mis le <code>&lt;header&gt;</code> avec la nav, le <code>&lt;main&gt;</code> pour le contenu principal, et le <code>&lt;footer&gt;</code> — les balises sémantiques de base. Le bloc <code>javascripts</code> permet aux pages qui en ont besoin d'ajouter leurs propres scripts sans les charger partout.</p>
+
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;{% block title %}Vite &amp; Gourmand{% endblock %} — Traiteur Bordeaux&lt;/title&gt;
+  &lt;!-- Fonts, Bootstrap 5.3, Bootstrap Icons --&gt;
+  {% block stylesheets %}{% endblock %}
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Navigation principale ─────────────────────── --&gt;
+&lt;header&gt;
+  &lt;nav class="navbar navbar-expand-lg navbar-veg" aria-label="Navigation principale"&gt;
+    &lt;div class="container"&gt;
+      &lt;a class="navbar-brand" href="{{ path('app_home') }}"&gt;
+        &lt;img src="/images/logo.svg" alt="Vite &amp; Gourmand" class="logo"&gt;
+      &lt;/a&gt;
+      &lt;button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false"
+              aria-label="Ouvrir le menu"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class="collapse navbar-collapse" id="navMenu"&gt;
+        &lt;ul class="navbar-nav ms-auto"&gt;
+          &lt;li class="nav-item"&gt;
+            &lt;a class="nav-link" href="{{ path('app_menus') }}"&gt;Nos menus&lt;/a&gt;
+          &lt;/li&gt;
+          {% if app.user %}
+            &lt;li class="nav-item"&gt;
+              &lt;a class="nav-link" href="{{ path('app_commande_new') }}"&gt;Commander&lt;/a&gt;
+            &lt;/li&gt;
+          {% endif %}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;!-- Contenu principal ───────────────────────────── --&gt;
+&lt;main id="veg-main"&gt;
+  {% for type, messages in app.flashes %}
+    &lt;div role="alert" class="alert alert-{{ type }}"&gt;
+      {% for msg in messages %}{{ msg }}{% endfor %}
+    &lt;/div&gt;
+  {% endfor %}
+  {% block body %}{% endblock %}
+&lt;/main&gt;
+
+&lt;!-- Pied de page ────────────────────────────────── --&gt;
+&lt;footer class="footer-veg"&gt;
+  &lt;div class="container"&gt;
+    &lt;p&gt;&amp;copy; 2025 Vite &amp; Gourmand — Traiteur Bordeaux&lt;/p&gt;
+    &lt;nav aria-label="Liens légaux"&gt;
+      &lt;a href="{{ path('app_mentions') }}"&gt;Mentions légales&lt;/a&gt;
+      &lt;a href="{{ path('app_contact') }}"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+{% block javascripts %}{% endblock %}
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<div class="info">
+  J'avais oublié le <code>role="alert"</code> sur les flash messages lors de mon ECF et j'avais eu un retour là-dessus. Cette fois je l'ai bien remis : ça permet aux lecteurs d'écran d'annoncer les messages de succès ou d'erreur quand ils apparaissent.
+</div>
+
+<h3>Media queries — approche mobile-first</h3>
+<p>Bootstrap est mobile-first donc j'ai suivi la même logique pour mes styles custom : d'abord les règles de base pour mobile, puis les <code>@media</code> pour les écrans plus larges. Par exemple sur la section hero, l'image est masquée sur mobile pour alléger la page et réapparaît à partir de 992 px :</p>
+
+<pre>/* ── Variables CSS globales ───────────────────── */
+:root {
+  --veg-primary:   #BE7D8D;
+  --veg-dark:      #800020;
+  --veg-secondary: #E8D1D7;
+}
+
+/* ── Style de base (mobile en premier) ─────────── */
+.hero-content {
+  padding: 2rem 1rem;
+  text-align: center;    /* centré par défaut sur mobile */
+}
+
+.hero-image {
+  display: none;         /* image masquée sur mobile pour alléger */
+}
+
+/* ── Tablette et plus (≥ 768 px) ───────────────── */
+@media (min-width: 768px) {
+  .hero-content {
+    text-align: left;    /* texte aligné à gauche sur desktop */
+    padding: 4rem 2rem;
+  }
+}
+
+/* ── Grand écran (≥ 992 px) ────────────────────── */
+@media (min-width: 992px) {
+  .hero-image {
+    display: block;      /* image réapparaît sur desktop */
+  }
+}
+
+/* ── Ajustement spécifique petits mobiles (< 576 px) */
+@media (max-width: 575.98px) {
+  .hero .hero-content { text-align: center; }
+  .menus-filter { flex-direction: column; }
+}</pre>
+
+<!-- ═══ C03 ══════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<h2>C03 — Développement des interfaces dynamiques</h2>
+<span class="comp">Compétence C03 — Développer la partie dynamique des interfaces utilisateur</span>
+
+<h3>Script fetch — calcul dynamique du prix de livraison</h3>
+<p>Sur la page de commande j'avais besoin que le récapitulatif de prix se mette à jour en temps réel, sans recharger la page. J'ai créé un endpoint Symfony <code>/api/livraison-prix</code> et j'appelle ça en <code>fetch</code> avec un debounce de 700 ms pour éviter de spammer l'API à chaque frappe clavier.</p>
+
+<pre>// assets/js/commande-prix.js
+// Mise à jour dynamique du récapitulatif de prix via fetch
+
+(function () {
+  // 1. Sélection des champs du formulaire
+  const adresseInput = document.querySelector('[name="commande[adresseLivraison]"]');
+  const villeInput   = document.querySelector('[name="commande[villeLivraison]"]');
+  const menuSelect   = document.querySelector('[name="commande[menu]"]');
+  const nbInput      = document.querySelector('[name="commande[nombrePersonne]"]');
+  const detail       = document.getElementById('recap-detail');
+
+  // Si la page ne contient pas ce formulaire, on sort
+  if (!villeInput) return;
+
+  let timer = null;
+
+  // 2. Formatage monétaire : 12.5 → "12,50 €"
+  function fmt(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+
+  // 3. Appel fetch vers l'API avec les paramètres du formulaire
+  function mettreAJour() {
+    const ville   = villeInput.value.trim();
+    const adresse = adresseInput ? adresseInput.value.trim() : '';
+    const menuId  = menuSelect ? menuSelect.value : '';
+    const nb      = nbInput ? parseInt(nbInput.value) || 0 : 0;
+
+    if (!ville) { detail.style.display = 'none'; return; }
+
+    // Construction des paramètres de la requête GET
+    const params = new URLSearchParams({ adresse, ville, menuId, nbPersonnes: nb });
+
+    fetch('/api/livraison-prix?' + params)
+      .then(r => r.json())
+      .then(data => {
+        // 4. Injection sécurisée des prix via textContent (pas innerHTML)
+        if (data.prixLivraison === null) return;
+        document.getElementById('r-livraison').textContent = fmt(data.prixLivraison);
+        if (data.prixMenu !== null) {
+          document.getElementById('r-menu').textContent  = fmt(data.prixMenu);
+          document.getElementById('r-total').textContent = fmt(data.total);
+          const redWrap = document.getElementById('r-reduction-wrap');
+          if (data.prixReduction > 0) {
+            document.getElementById('r-reduction').textContent = '- ' + fmt(data.prixReduction);
+            redWrap.style.display = 'inline';
+          } else {
+            redWrap.style.display = 'none';
+          }
+        }
+        detail.style.display = 'block';
+      })
+      .catch(() => {}); // Erreur réseau silencieuse — l'utilisateur garde le formulaire
+  }
+
+  // 5. Debounce : attendre 700 ms après la dernière frappe avant d'appeler l'API
+  function debounce() { clearTimeout(timer); timer = setTimeout(mettreAJour, 700); }
+
+  // 6. Écoute des événements
+  villeInput.addEventListener('input', debounce);
+  if (adresseInput) adresseInput.addEventListener('input', debounce);
+  if (menuSelect)   menuSelect.addEventListener('change', mettreAJour);
+  if (nbInput)      nbInput.addEventListener('input', debounce);
+
+  // 7. Préremplissage sur la page "modifier ma commande"
+  const data = document.getElementById('commande-data');
+  if (data && data.dataset.autostart) mettreAJour();
+})();</pre>
+
+<h3>Validation de formulaire côté navigateur</h3>
+<p>Pour le formulaire de contact j'ai ajouté une validation JS simple : vérification du format email et que le message n'est pas vide. Les erreurs s'affichent dans des <code>&lt;span&gt;</code> dédiés sans rechargement de page.</p>
+
+<pre>// assets/js/contact.js — validation côté client
+
+document.getElementById('contact-submit').addEventListener('click', function () {
+  const email = document.getElementById('contact-email').value.trim();
+  const msg   = document.getElementById('contact-message').value.trim();
+  let ok = true;
+
+  // Réinitialisation des erreurs précédentes
+  document.getElementById('err-contact-email').textContent   = '';
+  document.getElementById('err-contact-message').textContent = '';
+
+  // Contrôle de saisie : format e-mail
+  if (!email || !email.includes('@')) {
+    document.getElementById('err-contact-email').textContent = 'E-mail invalide.';
+    ok = false;
+  }
+
+  // Contrôle de saisie : message non vide
+  if (!msg) {
+    document.getElementById('err-contact-message').textContent = 'Le message est requis.';
+    ok = false;
+  }
+
+  if (ok) {
+    // Affichage du message de confirmation
+    document.getElementById('contact-success-email').textContent = email;
+    document.getElementById('contact-form').style.display    = 'none';
+    document.getElementById('contact-success').style.display = 'flex';
+  }
+});</pre>
+
+<h3>Insertion sécurisée dans le DOM — protection contre les XSS</h3>
+<p>Pour injecter les données dans le DOM j'utilise systématiquement <code>textContent</code> et jamais <code>innerHTML</code>. J'avais eu une mauvaise surprise en TP en utilisant <code>innerHTML</code> avec une valeur qui contenait des balises — elles s'étaient exécutées. Depuis je prends le réflexe <code>textContent</code> dès que je manipule des données venant de l'extérieur.</p>
+
+<pre>// ✅ CORRECT — textContent échappe automatiquement le HTML
+document.getElementById('r-livraison').textContent = fmt(data.prixLivraison);
+// Si data.prixLivraison contenait "&lt;script&gt;...", il s'affiche
+// tel quel sous forme de texte, sans être exécuté.
+
+// ❌ INCORRECT — innerHTML interpréterait le HTML et exécuterait les scripts
+// document.getElementById('r-livraison').innerHTML = fmt(data.prixLivraison);
+
+// Pour créer des éléments complexes de façon sécurisée :
+const li = document.createElement('li');
+li.textContent = nomDonnéParUtilisateur; // jamais .innerHTML ici
+ul.appendChild(li);</pre>
+
+<div class="info">
+  La validation JS c'est surtout pour le retour immédiat côté utilisateur. Mais j'ai aussi les contraintes <code>#[Assert\...]</code> de Symfony côté serveur — si quelqu'un désactive le JavaScript ou envoie une requête directement, le FormType valide de toute façon.
+</div>
+
+<!-- ═══ BC02 ═════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<div class="section-part">BC02 — Développement Back-End</div>
+
+<h2>C05 — Modélisation de la base de données</h2>
+<span class="comp">Compétence C05 — Mettre en place une base de données relationnelle</span>
+
+<h3>Schéma relationnel avec cardinalités</h3>
+<p>La base fait 11 tables. La table <code>commande</code> est un peu le centre du modèle : elle relie l'utilisateur qui commande, le menu choisi, et les suivis de statut. Les relations N,N comme <code>menu↔plat</code> ou <code>plat↔allergène</code> passent par des tables de liaison — c'est ce qui m'a pris le plus de temps à modéliser proprement au départ.</p>
+
+<table>
+  <tr><th>Relation</th><th>Cardinalité</th><th>Verbe</th></tr>
+  <tr><td>utilisateur → commande</td><td>1,N</td><td>un utilisateur <em>passe</em> plusieurs commandes</td></tr>
+  <tr><td>commande → menu</td><td>N,1</td><td>une commande <em>concerne</em> un menu</td></tr>
+  <tr><td>commande → suivi_commande</td><td>1,N</td><td>une commande <em>génère</em> plusieurs suivis</td></tr>
+  <tr><td>commande → avis</td><td>1,0..1</td><td>une commande <em>reçoit</em> au plus un avis</td></tr>
+  <tr><td>menu ↔ plat</td><td>N,N</td><td>un menu <em>contient</em> plusieurs plats ; un plat <em>apparaît dans</em> plusieurs menus</td></tr>
+  <tr><td>menu ↔ regime</td><td>N,N</td><td>un menu <em>convient à</em> plusieurs régimes</td></tr>
+  <tr><td>plat ↔ allergene</td><td>N,N</td><td>un plat <em>contient</em> plusieurs allergènes</td></tr>
+  <tr><td>menu → theme</td><td>N,1</td><td>un menu <em>appartient à</em> un thème</td></tr>
+  <tr><td>utilisateur → role</td><td>N,1</td><td>un utilisateur <em>possède</em> un rôle</td></tr>
+</table>
+
+<h3>Diagramme de cas d'utilisation</h3>
+<p>J'ai fait ce diagramme en début de projet pour clarifier qui peut faire quoi. Avec quatre profils différents — visiteur, client, employé, admin — il fallait que j'aie une vue claire avant de coder les routes et les voters Symfony.</p>
+<figure>
+  <img src="uml/use_case.svg" alt="Diagramme de cas d'utilisation — Vite &amp; Gourmand" style="width:100%;height:auto;border:1px solid var(--bordure);border-radius:4px;"/>
+  <figcaption>Figure 1 — Diagramme de cas d'utilisation (4 profils : Visiteur, Client, Employé, Administrateur)</figcaption>
+</figure>
+
+<h3>Diagramme de séquence — processus de commande</h3>
+<p>Ce diagramme montre ce qui se passe quand un client valide sa commande : le navigateur commence par appeler <code>/api/livraison-prix</code> pour afficher le récapitulatif en temps réel, puis quand le formulaire est soumis, le contrôleur Symfony calcule les prix finaux et persiste via Doctrine.</p>
+<figure>
+  <img src="uml/sequence_commande.svg" alt="Diagramme de séquence — Commande" style="width:100%;height:auto;border:1px solid var(--bordure);border-radius:4px;"/>
+  <figcaption>Figure 2 — Diagramme de séquence du processus de commande</figcaption>
+</figure>
+
+<!-- ═══ C06 ══════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<h2>C06 — Développement des composants d'accès aux données</h2>
+<span class="comp">Compétence C06 — Développer des composants d'accès aux données SQL et NoSQL</span>
+
+<h3>Migration Doctrine — création des tables</h3>
+<p>J'ai utilisé les migrations Doctrine pour créer les tables — je définis mes entités PHP avec les attributs <code>#[ORM\...]</code> et <code>doctrine:migrations:diff</code> génère le SQL. C'est plus propre qu'écrire le SQL à la main et ça garde un historique des changements de schéma. Voici un extrait des tables principales :</p>
+
+<pre>// migrations/Version20260625072933.php
+
+public function up(Schema $schema): void
+{
+    // Table des utilisateurs (clients, employés, admins)
+    $this->addSql('CREATE TABLE utilisateur (
+        id              INT AUTO_INCREMENT NOT NULL,
+        email           VARCHAR(255) NOT NULL,
+        password        VARCHAR(255) NOT NULL,
+        nom             VARCHAR(128) NOT NULL,
+        prenom          VARCHAR(128) NOT NULL,
+        telephone       VARCHAR(32)  NOT NULL,
+        adresse         VARCHAR(255) NOT NULL,
+        adresse_postale VARCHAR(16)  NOT NULL,
+        ville           VARCHAR(128) NOT NULL,
+        actif           TINYINT      NOT NULL,
+        role_id         INT DEFAULT NULL,
+        INDEX IDX_1D1C63B3D60322AC (role_id),
+        PRIMARY KEY (id)
+    ) DEFAULT CHARACTER SET utf8mb4');
+
+    // Table des commandes (pièce centrale du modèle)
+    $this->addSql('CREATE TABLE commande (
+        id               INT AUTO_INCREMENT NOT NULL,
+        numero_commande  VARCHAR(50)        NOT NULL,
+        date_commande    DATETIME           NOT NULL,
+        date_prestation  DATE               NOT NULL,
+        heure_livraison  VARCHAR(5)         NOT NULL,
+        adresse_livraison VARCHAR(255)      NOT NULL,
+        ville_livraison  VARCHAR(128)       NOT NULL,
+        nombre_personne  INT                NOT NULL,
+        prix_menu        NUMERIC(8,2)       NOT NULL,
+        prix_livraison   NUMERIC(8,2)       NOT NULL,
+        prix_reduction   NUMERIC(8,2)       NOT NULL,
+        prix_total       NUMERIC(8,2)       NOT NULL,
+        statut           VARCHAR(64)        NOT NULL,
+        pret_materiel    TINYINT            NOT NULL,
+        utilisateur_id   INT DEFAULT NULL,
+        menu_id          INT DEFAULT NULL,
+        INDEX IDX_6EEAA67DFB88E14F (utilisateur_id),
+        INDEX IDX_6EEAA67DCCD7E912 (menu_id),
+        PRIMARY KEY (id)
+    ) DEFAULT CHARACTER SET utf8mb4');
+
+    // Table de liaison menu ↔ plat (relation N,N)
+    $this->addSql('CREATE TABLE menu_plat (
+        menu_id INT NOT NULL,
+        plat_id INT NOT NULL,
+        PRIMARY KEY (menu_id, plat_id)
+    ) DEFAULT CHARACTER SET utf8mb4');
+
+    // Contraintes de clés étrangères
+    $this->addSql('ALTER TABLE utilisateur
+        ADD CONSTRAINT FK_1D1C63B3D60322AC
+        FOREIGN KEY (role_id) REFERENCES role (id)');
+    $this->addSql('ALTER TABLE commande
+        ADD CONSTRAINT FK_6EEAA67DFB88E14F
+        FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (id)');
+    $this->addSql('ALTER TABLE commande
+        ADD CONSTRAINT FK_6EEAA67DCCD7E912
+        FOREIGN KEY (menu_id) REFERENCES menu (id)');
+}</pre>
+
+<h3>Fixtures — insertion de données de test</h3>
+<p>Les fixtures me servent à remettre la base dans un état connu d'un coup avec <code>doctrine:fixtures:load</code>. J'y ai mis les rôles, les thèmes, les 14 allergènes réglementaires, les horaires et les comptes de test — les allergènes surtout, ce serait pénible à ressaisir manuellement à chaque reset de la base.</p>
+
+<pre>// src/DataFixtures/AppFixtures.php
+
+public function load(ObjectManager $manager): void
+{
+    // Création des rôles
+    $roleAdmin = new Role();
+    $roleAdmin->setLibelle('administrateur');
+    $manager->persist($roleAdmin);
+
+    $roleEmploye = new Role();
+    $roleEmploye->setLibelle('employe');
+    $manager->persist($roleEmploye);
+
+    // Thèmes des menus
+    foreach (['Noël', 'Pâques', 'Classique', 'Événement'] as $libelle) {
+        $theme = new Theme();
+        $theme->setLibelle($libelle);
+        $manager->persist($theme);
+    }
+
+    // 14 allergènes réglementaires
+    foreach ([
+        'Gluten', 'Crustacés', 'Œufs', 'Poissons', 'Arachides',
+        'Soja', 'Lait', 'Fruits à coque', 'Céleri', 'Moutarde',
+        'Graines de sésame', 'Sulfites', 'Lupin', 'Mollusques'
+    ] as $libelle) {
+        $allergene = new Allergene();
+        $allergene->setLibelle($libelle);
+        $manager->persist($allergene);
+    }
+
+    // Horaires d'ouverture (lun→sam ouvert, dim fermé)
+    foreach ([
+        1 => ['09:00', '18:00', false],
+        5 => ['09:00', '19:00', false],
+        6 => ['10:00', '17:00', false],
+        7 => ['00:00', '00:00', true], // fermé le dimanche
+    ] as $jour => [$ouverture, $fermeture, $ferme]) {
+        $horaire = new Horaire();
+        $horaire->setJour($jour)
+                ->setHeureOuverture($ouverture)
+                ->setHeureFermeture($fermeture)
+                ->setFerme($ferme);
+        $manager->persist($horaire);
+    }
+
+    // Compte administrateur
+    $admin = new Utilisateur();
+    $admin->setEmail('jose@vitegourmand.fr')
+          ->setPassword($this->hasher->hashPassword($admin, 'Admin@2024!'))
+          ->setNom('Dupont')->setPrenom('José')
+          ->setActif(true)->setRole($roleAdmin);
+    $manager->persist($admin);
+
+    $manager->flush(); // un seul flush à la fin pour optimiser les requêtes
+}</pre>
+
+<h3>QueryBuilder paramétré — protection contre les injections SQL</h3>
+<p>Pour les requêtes custom j'utilise le QueryBuilder de Doctrine avec <code>setParameter()</code> — les valeurs ne sont jamais collées directement dans la chaîne SQL. Exemple concret : récupérer les avis liés aux commandes d'un utilisateur donné.</p>
+
+<pre>// src/Repository/AvisRepository.php
+
+/**
+ * Récupère les avis d'un utilisateur via ses commandes.
+ * La valeur $utilisateur est liée en paramètre — jamais interpolée
+ * dans la chaîne DQL, ce qui protège contre les injections SQL.
+ */
+public function findByUtilisateur(Utilisateur $utilisateur): array
+{
+    return $this->createQueryBuilder('a')
+        ->join('a.commande', 'c')           // jointure avec la table commande
+        ->andWhere('c.utilisateur = :user') // :user est un paramètre nommé
+        ->setParameter('user', $utilisateur)// Doctrine lie la valeur de façon sécurisée
+        ->orderBy('a.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
+// Autre exemple — recherche de menus avec plusieurs paramètres liés :
+// $qb->andWhere('m.prixParPersonne <= :prix')
+//    ->setParameter('prix', $prixMax)
+//    ->andWhere('m.actif = :actif')
+//    ->setParameter('actif', true);</pre>
+
+<div class="info">
+  Avec <code>setParameter()</code>, la valeur n'est jamais interprétée comme du SQL : le moteur reçoit la structure de la requête et la valeur séparément. Une valeur comme <code>' OR 1=1 --</code> reste juste du texte, elle ne s'exécute pas.
+</div>
+
+<!-- ═══ C08 ══════════════════════════════════════════════════════════════ -->
+<div class="saut"></div>
+<h2>C08 — Mise en place de l'environnement conteneurisé Docker</h2>
+<span class="comp">Compétence C08 — Déployer une application web sur un serveur</span>
+
+<p>J'ai mis tout l'environnement sous Docker Compose pour que le projet soit reproductible sur n'importe quelle machine. Il y a trois services : PHP avec Symfony, MySQL pour les données principales, et MongoDB pour les stats de navigation. J'ai décalé les ports (<code>8081</code>, <code>3307</code>, <code>27018</code>) parce que sur ma machine j'avais déjà MySQL et MongoDB qui tournaient en local et ça rentrait en conflit.</p>
+
+<pre># compose.yaml — configuration complète de l'environnement Docker
+
+services:
+
+  # ── Service PHP (Symfony + FPM) ──────────────────────────────────────
+  php:
+    build: .                          # Dockerfile à la racine du projet
+    container_name: vitegourmand_php
+    ports:
+      - "8081:8081"                   # port exposé → port interne
+    volumes:
+      - .:/var/www/html               # code source monté dans le conteneur
+      - /var/www/html/vendor          # vendor géré dans le conteneur (perf)
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: mysql://root:secret@db:3306/vite_et_gourmand?serverVersion=8.0&charset=utf8mb4
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: vite_et_gourmand_stats
+    depends_on:
+      db:
+        condition: service_healthy    # attend que MySQL soit prêt
+      mongo:
+        condition: service_started
+    restart: unless-stopped
+
+  # ── Service MySQL ─────────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: vitegourmand_db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: vite_et_gourmand
+    ports:
+      - "3307:3306"                   # 3307 évite le conflit avec MySQL local
+    volumes:
+      - db_data:/var/lib/mysql        # persistance des données entre les redémarrages
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--password=secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # ── Service MongoDB (statistiques) ───────────────────────────────────
+  mongo:
+    image: mongo:7
+    container_name: vitegourmand_mongo
+    ports:
+      - "27018:27017"                 # 27018 évite le conflit avec MongoDB local
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+# ── Volumes nommés (persistance) ─────────────────────────────────────────
+volumes:
+  db_data:
+  mongo_data:</pre>
+
+<table>
+  <tr><th>Service</th><th>Image / build</th><th>Port exposé</th><th>Rôle</th></tr>
+  <tr><td>php</td><td>Dockerfile custom (PHP 8.3-fpm)</td><td>8081</td><td>Exécute Symfony, sert l'application</td></tr>
+  <tr><td>db</td><td>mysql:8.0</td><td>3307</td><td>Base de données relationnelle</td></tr>
+  <tr><td>mongo</td><td>mongo:7</td><td>27018</td><td>Base documentaire pour les statistiques</td></tr>
+</table>
+
+<h3>Procédure de déploiement local</h3>
+<table>
+  <tr><th>Étape</th><th>Commande</th></tr>
+  <tr><td>1. Cloner le dépôt</td><td><code>git clone &lt;url&gt; vite-gourmand &amp;&amp; cd vite-gourmand</code></td></tr>
+  <tr><td>2. Démarrer les conteneurs</td><td><code>docker compose up -d --build</code></td></tr>
+  <tr><td>3. Installer les dépendances</td><td><code>docker compose exec php composer install</code></td></tr>
+  <tr><td>4. Exécuter les migrations</td><td><code>docker compose exec php php bin/console doctrine:migrations:migrate</code></td></tr>
+  <tr><td>5. Charger les fixtures</td><td><code>docker compose exec php php bin/console doctrine:fixtures:load</code></td></tr>
+  <tr><td>6. Ouvrir l'application</td><td><a href="http://localhost:8081">http://localhost:8081</a></td></tr>
+</table>
+
+<div class="pied">Victor POUILLON — Dossier Projet Vite &amp; Gourmand — DWWM RNCP 37674 — 2025</div>
+
+<!-- Bouton impression (non imprimé) -->
+<div class="no-print" style="position:fixed;bottom:1.5rem;right:1.5rem;">
+  <button onclick="window.print()" style="background:var(--rouge);color:white;border:none;padding:.7rem 1.4rem;border-radius:6px;font-size:.9rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);">
+    🖨️ Exporter en PDF
+  </button>
+</div>
+
+</body>
+</html>

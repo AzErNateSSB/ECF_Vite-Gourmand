@@ -1,0 +1,63 @@
+<svg viewBox="0 0 340 780" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Wireframe Mobile — Catalogue des menus</title>
+  <rect width="340" height="780" fill="#f7f7f7"/>
+  <text x="170" y="13" text-anchor="middle" font-size="10" fill="#aaa">Wireframe Mobile — Catalogue (390px) — basse fidélité</text>
+
+  <!-- Contour téléphone -->
+  <rect x="30" y="20" width="280" height="748" rx="20" fill="white" stroke="#ccc" stroke-width="2"/>
+
+  <!-- Barre de statut -->
+  <rect x="30" y="20" width="280" height="24" rx="20" fill="#e9ecef"/>
+  <text x="170" y="36" text-anchor="middle" font-size="8" fill="#bbb">9:41  ●●●  WiFi  🔋</text>
+
+  <!-- Navbar -->
+  <rect x="30" y="44" width="280" height="40" fill="#ddd"/>
+  <rect x="46" y="52" width="60" height="22" rx="3" fill="#bbb"/>
+  <text x="76" y="67" text-anchor="middle" font-size="9" fill="#555">LOGO</text>
+  <text x="284" y="70" text-anchor="middle" font-size="12" fill="#888">☰</text>
+
+  <!-- Titre page -->
+  <rect x="46" y="94" width="180" height="16" rx="3" fill="#e0e0e0"/>
+  <text x="136" y="106" text-anchor="middle" font-size="9" fill="#888">Nos menus</text>
+
+  <!-- Filtres accordéon -->
+  <rect x="46" y="118" width="248" height="30" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="140" y="137" text-anchor="middle" font-size="9" fill="#aaa">▼ Filtres</text>
+  <!-- Filtres dépliés -->
+  <rect x="46" y="148" width="248" height="22" rx="2" fill="#e8e8e8" stroke="#ddd"/>
+  <text x="170" y="163" text-anchor="middle" font-size="8" fill="#999">[ Thème ▼ ]</text>
+  <rect x="46" y="174" width="248" height="22" rx="2" fill="#e8e8e8" stroke="#ddd"/>
+  <text x="170" y="189" text-anchor="middle" font-size="8" fill="#999">[ Régime ▼ ]</text>
+  <rect x="46" y="200" width="248" height="22" rx="2" fill="#e8e8e8" stroke="#ddd"/>
+  <text x="170" y="215" text-anchor="middle" font-size="8" fill="#999">[ Nb personnes ▼ ]</text>
+
+  <!-- Cards menus (empilées) -->
+  <text x="46" y="240" font-size="8" fill="#aaa">N résultats</text>
+
+  <rect x="46" y="248" width="248" height="140" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="46" y="248" width="248" height="80" rx="4" fill="#e0e0e0"/>
+  <text x="170" y="292" text-anchor="middle" font-size="9" fill="#bbb">[ Photo menu ]</text>
+  <rect x="58" y="336" width="140" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="58" y="356" width="200" height="8" rx="2" fill="#e0e0e0"/>
+  <rect x="58" y="370" width="160" height="8" rx="2" fill="#e0e0e0"/>
+  <text x="58" y="383" font-size="8" fill="#aaa">XX €/pers.</text>
+
+  <rect x="46" y="400" width="248" height="140" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="46" y="400" width="248" height="80" rx="4" fill="#e0e0e0"/>
+  <text x="170" y="444" text-anchor="middle" font-size="9" fill="#bbb">[ Photo menu ]</text>
+  <rect x="58" y="488" width="140" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="58" y="508" width="200" height="8" rx="2" fill="#e0e0e0"/>
+  <rect x="58" y="522" width="160" height="8" rx="2" fill="#e0e0e0"/>
+  <text x="58" y="535" font-size="8" fill="#aaa">XX €/pers.</text>
+
+  <rect x="46" y="552" width="248" height="140" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="46" y="552" width="248" height="80" rx="4" fill="#e0e0e0"/>
+  <text x="170" y="596" text-anchor="middle" font-size="9" fill="#bbb">[ Photo menu ]</text>
+  <rect x="58" y="640" width="140" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="58" y="660" width="200" height="8" rx="2" fill="#e0e0e0"/>
+  <text x="58" y="687" font-size="8" fill="#aaa">XX €/pers.</text>
+
+  <!-- Footer -->
+  <rect x="30" y="728" width="280" height="40" rx="20" fill="#e0e0e0"/>
+  <text x="170" y="752" text-anchor="middle" font-size="8" fill="#999">[ Footer mobile ]</text>
+</svg>

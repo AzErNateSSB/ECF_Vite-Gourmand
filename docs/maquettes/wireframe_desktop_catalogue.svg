@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Wireframe Desktop — Catalogue des menus</title>
+  <rect width="1000" height="680" fill="#f7f7f7"/>
+  <text x="500" y="15" text-anchor="middle" font-size="11" fill="#aaa">Wireframe Desktop — Catalogue des menus (1440px) — basse fidélité</text>
+
+  <!-- Fenêtre navigateur -->
+  <rect x="20" y="22" width="960" height="640" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <rect x="20" y="22" width="960" height="26" rx="6" fill="#e9ecef"/>
+  <circle cx="38" cy="35" r="4" fill="#ccc"/>
+  <circle cx="52" cy="35" r="4" fill="#ccc"/>
+  <circle cx="66" cy="35" r="4" fill="#ccc"/>
+  <rect x="180" y="27" width="640" height="14" rx="7" fill="white" stroke="#ccc" stroke-width="1"/>
+  <text x="500" y="38" text-anchor="middle" font-size="8" fill="#bbb">localhost:8081/menus</text>
+
+  <!-- Navbar -->
+  <rect x="20" y="48" width="960" height="44" fill="#ddd"/>
+  <rect x="36" y="58" width="90" height="24" rx="3" fill="#bbb"/>
+  <text x="81" y="74" text-anchor="middle" font-size="10" fill="#555">LOGO</text>
+  <rect x="420" y="61" width="60" height="18" rx="2" fill="#bbb"/>
+  <rect x="492" y="61" width="60" height="18" rx="2" fill="#ccc"/>
+  <rect x="564" y="61" width="60" height="18" rx="2" fill="#ccc"/>
+  <rect x="882" y="61" width="80" height="18" rx="9" fill="#bbb"/>
+  <text x="922" y="73" text-anchor="middle" font-size="9" fill="#555">[ Commander ]</text>
+
+  <!-- Barre filtres -->
+  <rect x="20" y="92" width="960" height="52" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="60" y="110" font-size="10" fill="#888">Filtres :</text>
+  <rect x="110" y="100" width="90" height="24" rx="3" fill="#ddd" stroke="#ccc"/>
+  <text x="155" y="116" text-anchor="middle" font-size="9" fill="#666">[ Thème ▼ ]</text>
+  <rect x="212" y="100" width="90" height="24" rx="3" fill="#ddd" stroke="#ccc"/>
+  <text x="257" y="116" text-anchor="middle" font-size="9" fill="#666">[ Régime ▼ ]</text>
+  <rect x="314" y="100" width="90" height="24" rx="3" fill="#ddd" stroke="#ccc"/>
+  <text x="359" y="116" text-anchor="middle" font-size="9" fill="#666">[ Nb pers. ▼ ]</text>
+  <rect x="416" y="100" width="90" height="24" rx="3" fill="#ddd" stroke="#ccc"/>
+  <text x="461" y="116" text-anchor="middle" font-size="9" fill="#666">[ Prix max ▼ ]</text>
+  <rect x="800" y="100" width="80" height="24" rx="12" fill="#bbb"/>
+  <text x="840" y="116" text-anchor="middle" font-size="9" fill="#555">[ Réinitialiser ]</text>
+
+  <!-- Grille menus (2 lignes × 3 cards) -->
+  <text x="40" y="168" font-size="10" fill="#aaa">Résultats (N menus)</text>
+
+  <!-- Ligne 1 -->
+  <rect x="36" y="176" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="36" y="176" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="178" y="235" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="48" y="296" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="48" y="316" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <rect x="48" y="332" width="180" height="10" rx="2" fill="#e0e0e0"/>
+  <rect x="180" y="348" width="120" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="60" y="360" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <rect x="358" y="176" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="358" y="176" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="500" y="235" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="370" y="296" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="370" y="316" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <rect x="370" y="332" width="180" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="382" y="360" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <rect x="680" y="176" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="680" y="176" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="822" y="235" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="692" y="296" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="692" y="316" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <rect x="692" y="332" width="180" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="704" y="360" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <!-- Ligne 2 -->
+  <rect x="36" y="382" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="36" y="382" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="178" y="440" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="48" y="502" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="48" y="522" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="60" y="565" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <rect x="358" y="382" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="358" y="382" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="500" y="440" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="370" y="502" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="370" y="522" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="382" y="565" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <rect x="680" y="382" width="284" height="190" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <rect x="680" y="382" width="284" height="110" rx="4" fill="#e0e0e0"/>
+  <text x="822" y="440" text-anchor="middle" font-size="10" fill="#bbb">[ Photo menu ]</text>
+  <rect x="692" y="502" width="160" height="12" rx="2" fill="#d5d5d5"/>
+  <rect x="692" y="522" width="220" height="10" rx="2" fill="#e0e0e0"/>
+  <text x="704" y="565" font-size="9" fill="#aaa">XX €/pers.</text>
+
+  <!-- Footer -->
+  <rect x="20" y="622" width="960" height="40" fill="#ddd"/>
+  <text x="500" y="646" text-anchor="middle" font-size="9" fill="#999">[ Footer ]</text>
+</svg>

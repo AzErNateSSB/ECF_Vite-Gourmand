@@ -1,0 +1,62 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <title>Wireframe Desktop — Accueil</title>
+  <rect width="1000" height="620" fill="#f7f7f7"/>
+  <text x="500" y="15" text-anchor="middle" font-size="11" fill="#aaa">Wireframe Desktop — Accueil (1440px) — basse fidélité</text>
+
+  <!-- Fenêtre navigateur -->
+  <rect x="20" y="22" width="960" height="580" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <rect x="20" y="22" width="960" height="26" rx="6" fill="#e9ecef"/>
+  <circle cx="38" cy="35" r="4" fill="#ccc"/>
+  <circle cx="52" cy="35" r="4" fill="#ccc"/>
+  <circle cx="66" cy="35" r="4" fill="#ccc"/>
+  <rect x="180" y="27" width="640" height="14" rx="7" fill="white" stroke="#ccc" stroke-width="1"/>
+  <text x="500" y="38" text-anchor="middle" font-size="8" fill="#bbb">localhost:8081</text>
+
+  <!-- Navbar -->
+  <rect x="20" y="48" width="960" height="44" fill="#ddd"/>
+  <rect x="36" y="58" width="90" height="24" rx="3" fill="#bbb"/>
+  <text x="81" y="74" text-anchor="middle" font-size="10" fill="#555">LOGO</text>
+  <rect x="420" y="61" width="60" height="18" rx="2" fill="#ccc"/>
+  <rect x="492" y="61" width="60" height="18" rx="2" fill="#ccc"/>
+  <rect x="564" y="61" width="60" height="18" rx="2" fill="#ccc"/>
+  <rect x="800" y="61" width="70" height="18" rx="9" fill="none" stroke="#bbb" stroke-width="1.5"/>
+  <text x="835" y="73" text-anchor="middle" font-size="9" fill="#888">[ Connexion ]</text>
+  <rect x="882" y="61" width="80" height="18" rx="9" fill="#bbb"/>
+  <text x="922" y="73" text-anchor="middle" font-size="9" fill="#555">[ Commander ]</text>
+
+  <!-- Hero -->
+  <rect x="20" y="92" width="960" height="230" fill="#e0e0e0"/>
+  <rect x="560" y="106" width="400" height="202" rx="3" fill="#ccc" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="760" y="210" text-anchor="middle" font-size="10" fill="#aaa">[ Image hero ]</text>
+  <rect x="40" y="130" width="280" height="28" rx="3" fill="#ccc"/>
+  <text x="180" y="149" text-anchor="middle" font-size="12" fill="#666">Titre principal H1</text>
+  <rect x="40" y="168" width="200" height="14" rx="2" fill="#d5d5d5"/>
+  <rect x="40" y="188" width="240" height="14" rx="2" fill="#d5d5d5"/>
+  <rect x="40" y="234" width="130" height="30" rx="15" fill="#bbb"/>
+  <text x="105" y="253" text-anchor="middle" font-size="9" fill="#555">[ CTA Principal ]</text>
+  <rect x="184" y="234" width="130" height="30" rx="15" fill="none" stroke="#bbb" stroke-width="1.5"/>
+  <text x="249" y="253" text-anchor="middle" font-size="9" fill="#888">[ CTA Secondaire ]</text>
+
+  <!-- Section atouts -->
+  <rect x="20" y="322" width="960" height="140" fill="white"/>
+  <text x="500" y="348" text-anchor="middle" font-size="11" fill="#888">Section — Nos atouts (3 colonnes)</text>
+  <rect x="60" y="358" width="260" height="80" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="190" y="403" text-anchor="middle" font-size="10" fill="#aaa">[ Icône + Titre + Texte ]</text>
+  <rect x="370" y="358" width="260" height="80" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="500" y="403" text-anchor="middle" font-size="10" fill="#aaa">[ Icône + Titre + Texte ]</text>
+  <rect x="680" y="358" width="260" height="80" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="810" y="403" text-anchor="middle" font-size="10" fill="#aaa">[ Icône + Titre + Texte ]</text>
+
+  <!-- Section menus aperçu -->
+  <rect x="20" y="462" width="960" height="100" fill="#f5f5f5"/>
+  <text x="500" y="488" text-anchor="middle" font-size="11" fill="#888">Section — Aperçu menus (cards horizontales)</text>
+  <rect x="60" y="498" width="180" height="50" rx="3" fill="#e0e0e0"/>
+  <rect x="260" y="498" width="180" height="50" rx="3" fill="#e0e0e0"/>
+  <rect x="460" y="498" width="180" height="50" rx="3" fill="#e0e0e0"/>
+  <rect x="800" y="508" width="140" height="30" rx="15" fill="#ccc"/>
+  <text x="870" y="527" text-anchor="middle" font-size="9" fill="#666">[ Voir tous les menus ]</text>
+
+  <!-- Footer -->
+  <rect x="20" y="562" width="960" height="40" fill="#ddd"/>
+  <text x="500" y="586" text-anchor="middle" font-size="9" fill="#999">[ Footer — Mentions légales | Contact | Réseaux ]</text>
+</svg>

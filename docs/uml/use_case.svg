@@ -1,75 +1,110 @@
 <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
   <rect width="900" height="640" fill="#f8f9fa"/>
   <text x="450" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1a2e">Diagramme de Cas d'Utilisation — Vite &amp; Gourmand</text>
+
+  <!-- Cadre système -->
   <rect x="200" y="50" width="520" height="560" rx="6" fill="white" stroke="#6c757d" stroke-width="1.5" stroke-dasharray="6,3"/>
   <text x="460" y="72" text-anchor="middle" font-size="12" fill="#6c757d" font-style="italic">Système Vite &amp; Gourmand</text>
+
+  <!-- ── Cas d'utilisation visiteur/client (haut) ───────────── -->
   <ellipse cx="370" cy="115" rx="90" ry="22" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1.5"/>
   <text x="370" y="119" text-anchor="middle" font-size="11" fill="#0d6efd">Consulter les menus</text>
+
   <ellipse cx="370" cy="168" rx="90" ry="22" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1.5"/>
   <text x="370" y="172" text-anchor="middle" font-size="11" fill="#0d6efd">S'inscrire</text>
+
   <ellipse cx="370" cy="221" rx="90" ry="22" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1.5"/>
   <text x="370" y="225" text-anchor="middle" font-size="11" fill="#0d6efd">Se connecter</text>
+
   <ellipse cx="560" cy="115" rx="90" ry="22" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
   <text x="560" y="119" text-anchor="middle" font-size="11" fill="#198754">Passer une commande</text>
+
   <ellipse cx="560" cy="168" rx="90" ry="22" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
   <text x="560" y="172" text-anchor="middle" font-size="11" fill="#198754">Suivre sa commande</text>
+
   <ellipse cx="560" cy="221" rx="90" ry="22" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
   <text x="560" y="225" text-anchor="middle" font-size="11" fill="#198754">Voir son historique</text>
+
   <ellipse cx="560" cy="274" rx="90" ry="22" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
   <text x="560" y="278" text-anchor="middle" font-size="11" fill="#198754">Gérer son profil</text>
-  <ellipse cx="370" cy="360" rx="90" ry="22" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
-  <text x="370" y="364" text-anchor="middle" font-size="11" fill="#856404">Voir commandes actives</text>
-  <ellipse cx="370" cy="413" rx="90" ry="22" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
-  <text x="370" y="417" text-anchor="middle" font-size="11" fill="#856404">Changer statut commande</text>
-  <ellipse cx="560" cy="360" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
-  <text x="560" y="364" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les menus</text>
-  <ellipse cx="560" cy="413" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
-  <text x="560" y="417" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les plats</text>
-  <ellipse cx="560" cy="466" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
-  <text x="560" y="470" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les utilisateurs</text>
-  <ellipse cx="560" cy="519" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
-  <text x="560" y="523" text-anchor="middle" font-size="11" fill="#dc3545">Voir statistiques</text>
+
+  <!-- Séparateur personnel -->
   <line x1="210" y1="320" x2="710" y2="320" stroke="#dee2e6" stroke-width="1" stroke-dasharray="4,3"/>
   <text x="460" y="315" text-anchor="middle" font-size="10" fill="#adb5bd">— Personnel —</text>
+
+  <!-- ── Cas d'utilisation employé/admin (bas) ──────────────── -->
+  <ellipse cx="370" cy="360" rx="90" ry="22" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
+  <text x="370" y="364" text-anchor="middle" font-size="11" fill="#856404">Voir commandes actives</text>
+
+  <ellipse cx="370" cy="413" rx="90" ry="22" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
+  <text x="370" y="417" text-anchor="middle" font-size="11" fill="#856404">Changer statut commande</text>
+
+  <ellipse cx="560" cy="360" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="560" y="364" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les menus</text>
+
+  <ellipse cx="560" cy="413" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="560" y="417" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les plats</text>
+
+  <ellipse cx="560" cy="466" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="560" y="470" text-anchor="middle" font-size="11" fill="#dc3545">Gérer les utilisateurs</text>
+
+  <ellipse cx="560" cy="519" rx="90" ry="22" fill="#fce8e8" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="560" y="523" text-anchor="middle" font-size="11" fill="#dc3545">Voir statistiques</text>
+
+  <!-- ── Acteur Visiteur (gauche, haut) ─────────────────────── -->
   <circle cx="80" cy="130" r="14" fill="none" stroke="#0d6efd" stroke-width="2"/>
   <line x1="80" y1="144" x2="80" y2="180" stroke="#0d6efd" stroke-width="2"/>
   <line x1="55" y1="158" x2="105" y2="158" stroke="#0d6efd" stroke-width="2"/>
   <line x1="80" y1="180" x2="58" y2="205" stroke="#0d6efd" stroke-width="2"/>
   <line x1="80" y1="180" x2="102" y2="205" stroke="#0d6efd" stroke-width="2"/>
   <text x="80" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#0d6efd">Visiteur</text>
-  <circle cx="80" cy="195" r="14" fill="none" stroke="#198754" stroke-width="2"/>
-  <line x1="80" y1="209" x2="80" y2="245" stroke="#198754" stroke-width="2"/>
-  <line x1="55" y1="223" x2="105" y2="223" stroke="#198754" stroke-width="2"/>
-  <line x1="80" y1="245" x2="58" y2="270" stroke="#198754" stroke-width="2"/>
-  <line x1="80" y1="245" x2="102" y2="270" stroke="#198754" stroke-width="2"/>
-  <text x="80" y="287" text-anchor="middle" font-size="12" font-weight="600" fill="#198754">Client</text>
+
+  <!-- ── Acteur Client (droite, haut) ───────────────────────── -->
+  <circle cx="820" cy="155" r="14" fill="none" stroke="#198754" stroke-width="2"/>
+  <line x1="820" y1="169" x2="820" y2="205" stroke="#198754" stroke-width="2"/>
+  <line x1="795" y1="183" x2="845" y2="183" stroke="#198754" stroke-width="2"/>
+  <line x1="820" y1="205" x2="798" y2="230" stroke="#198754" stroke-width="2"/>
+  <line x1="820" y1="205" x2="842" y2="230" stroke="#198754" stroke-width="2"/>
+  <text x="820" y="247" text-anchor="middle" font-size="12" font-weight="600" fill="#198754">Client</text>
+
+  <!-- ── Acteur Employé (gauche, bas) ───────────────────────── -->
   <circle cx="80" cy="385" r="14" fill="none" stroke="#856404" stroke-width="2"/>
   <line x1="80" y1="399" x2="80" y2="435" stroke="#856404" stroke-width="2"/>
   <line x1="55" y1="413" x2="105" y2="413" stroke="#856404" stroke-width="2"/>
   <line x1="80" y1="435" x2="58" y2="460" stroke="#856404" stroke-width="2"/>
   <line x1="80" y1="435" x2="102" y2="460" stroke="#856404" stroke-width="2"/>
   <text x="80" y="477" text-anchor="middle" font-size="12" font-weight="600" fill="#856404">Employé</text>
+
+  <!-- ── Acteur Admin (droite, bas) ─────────────────────────── -->
   <circle cx="820" cy="430" r="14" fill="none" stroke="#dc3545" stroke-width="2"/>
   <line x1="820" y1="444" x2="820" y2="480" stroke="#dc3545" stroke-width="2"/>
   <line x1="795" y1="458" x2="845" y2="458" stroke="#dc3545" stroke-width="2"/>
   <line x1="820" y1="480" x2="798" y2="505" stroke="#dc3545" stroke-width="2"/>
   <line x1="820" y1="480" x2="842" y2="505" stroke="#dc3545" stroke-width="2"/>
   <text x="820" y="522" text-anchor="middle" font-size="12" font-weight="600" fill="#dc3545">Admin</text>
-  <line x1="95" y1="130" x2="280" y2="115" stroke="#0d6efd" stroke-width="1.2"/>
-  <line x1="95" y1="140" x2="280" y2="168" stroke="#0d6efd" stroke-width="1.2"/>
-  <line x1="95" y1="145" x2="280" y2="220" stroke="#0d6efd" stroke-width="1.2"/>
-  <line x1="95" y1="200" x2="470" y2="115" stroke="#198754" stroke-width="1.2"/>
-  <line x1="95" y1="210" x2="470" y2="168" stroke="#198754" stroke-width="1.2"/>
-  <line x1="95" y1="215" x2="470" y2="221" stroke="#198754" stroke-width="1.2"/>
-  <line x1="95" y1="218" x2="470" y2="274" stroke="#198754" stroke-width="1.2"/>
+
+  <!-- ── Associations Visiteur → cas bleus (gauche→droite) ──── -->
+  <line x1="95" y1="125" x2="280" y2="115" stroke="#0d6efd" stroke-width="1.2"/>
+  <line x1="95" y1="135" x2="280" y2="168" stroke="#0d6efd" stroke-width="1.2"/>
+  <line x1="95" y1="140" x2="280" y2="220" stroke="#0d6efd" stroke-width="1.2"/>
+
+  <!-- ── Associations Client → cas verts (droite→gauche) ──────── -->
+  <line x1="805" y1="150" x2="650" y2="115" stroke="#198754" stroke-width="1.2"/>
+  <line x1="805" y1="160" x2="650" y2="168" stroke="#198754" stroke-width="1.2"/>
+  <line x1="805" y1="168" x2="650" y2="221" stroke="#198754" stroke-width="1.2"/>
+  <line x1="808" y1="175" x2="650" y2="274" stroke="#198754" stroke-width="1.2"/>
+
+  <!-- ── Associations Employé → cas jaunes ─────────────────── -->
   <line x1="95" y1="388" x2="280" y2="363" stroke="#856404" stroke-width="1.2"/>
   <line x1="95" y1="400" x2="280" y2="413" stroke="#856404" stroke-width="1.2"/>
+
+  <!-- ── Associations Admin → cas rouges ───────────────────── -->
   <line x1="808" y1="425" x2="650" y2="363" stroke="#dc3545" stroke-width="1.2"/>
   <line x1="808" y1="430" x2="650" y2="413" stroke="#dc3545" stroke-width="1.2"/>
   <line x1="808" y1="435" x2="650" y2="466" stroke="#dc3545" stroke-width="1.2"/>
   <line x1="812" y1="440" x2="650" y2="519" stroke="#dc3545" stroke-width="1.2"/>
-  <line x1="470" y1="115" x2="460" y2="221" stroke="#6c757d" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="500" y="168" font-size="9" fill="#6c757d">«include»</text>
+
+  <!-- ── Légende ──────────────────────────────────────────────── -->
   <rect x="210" y="590" width="12" height="12" rx="2" fill="#e8f4fd" stroke="#0d6efd" stroke-width="1.5"/>
   <text x="228" y="601" font-size="10" fill="#495057">Visiteur</text>
   <rect x="290" y="590" width="12" height="12" rx="2" fill="#e8f5e9" stroke="#198754" stroke-width="1.5"/>
