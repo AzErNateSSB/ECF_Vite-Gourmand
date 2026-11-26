@@ -34,3 +34,9 @@
 # OS
 .DS_Store
 Thumbs.db
+
+# Docs — fichiers générés ou intermédiaires
+/docs/Dossier_ViteGourmand.pdf
+/docs/*.docx
+/docs/scripts/
+/docs/sequence_commande-screenshot.png
